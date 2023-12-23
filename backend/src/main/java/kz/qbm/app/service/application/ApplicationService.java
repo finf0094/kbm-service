@@ -3,6 +3,7 @@ package kz.qbm.app.service.application;
 import jakarta.transaction.Transactional;
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
+import kz.qbm.app.dto.kafka.TestEmployeeEmail;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.entity.application.*;
 import kz.qbm.app.entity.position.Position;
@@ -12,6 +13,7 @@ import kz.qbm.app.mapper.applicaiton.ApplicationMapper;
 import kz.qbm.app.repository.application.ApplicationRepository;
 import kz.qbm.app.repository.application.EmployeeRepository;
 import kz.qbm.app.service.UserService;
+import kz.qbm.app.service.kafka.ProducerService;
 import kz.qbm.app.service.position.PositionService;
 import kz.qbm.app.service.quiz.QuizService;
 import kz.qbm.app.service.quiz.room.QuizSessionService;
@@ -43,6 +45,7 @@ public class ApplicationService {
     // SERVICES
     private final QuizService quizService;
     private final UserService userService;
+    private final ProducerService producerService;
     private final PositionService positionService;
     private final EducationService educationService;
     private final ExperienceService experienceService;
@@ -231,6 +234,17 @@ public class ApplicationService {
         if (application.getStatus() != ApplicationStatus.IN_PROCESS) {
             throw new BadRequestException("Application is not in process and cannot be moved to testing.");
         }
+
+        TestEmployeeEmail testEmployeeEmail = new TestEmployeeEmail(
+                application.getUser().getEmail(),
+                "QBM",
+                "subject",
+                "content",
+                application.getUser().getFirstname(),
+                List.of("185.125.91.161:3000/quiz-sessions")
+        );
+
+        producerService.sendEmail("send.email", testEmployeeEmail);
 
         application.setStatus(ApplicationStatus.TESTING);
         application = applicationRepository.save(application);
