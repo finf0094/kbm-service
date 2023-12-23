@@ -19,10 +19,17 @@ cd kbm-service
 docker-compose up -d --build
 ```
 
-Технологии
-Язык программирования: Java
-Фреймворк: Spring Boot
-Система обмена сообщениями: Kafka
-Тестирование: JUnit, Mockito
-Сборка: Maven
-CI/CD: Travis CI, Docker, AWS
+## Технологии
+
+### Backend
+- **Язык программирования:** Java
+- **Фреймворк:** Spring Boot
+- **Система обмена сообщениями:** Kafka
+- **Тестирование:** JUnit, Mockito
+- **Сборка:** Maven
+
+### Frontend
+- **Язык программирования:** TypeScript
+- **Фреймворк:** React
+- **Тестирование:** JUnit, Mockito
+- **Сборка:** Vite
