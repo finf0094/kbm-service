@@ -4,6 +4,7 @@ import {baseQueryWithReauth} from "../baseQuery.ts";
 
 import {CustomError} from "../../../models/error/CustomError.ts";
 import {IDepartment} from "../../../models/position/IDepartment.ts";
+import {IPage} from "../../../models/IPage.ts";
 
 export const departmentApi = createApi({
     reducerPath: 'departmentApi',
@@ -13,7 +14,8 @@ export const departmentApi = createApi({
         CustomError>,
     endpoints: (builder) => ({
         getDepartmentsByLocation: builder.query<IDepartment[], number>({
-            query: (locationId) => `/departments?locationId=${locationId}`,
+            query: (locationId) => `/departments?locationId=${locationId}&pageSize=100`,
+            transformResponse: (response: IPage<IDepartment>) => response.content,
         }),
     }),
 });

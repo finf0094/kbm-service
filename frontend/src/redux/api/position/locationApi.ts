@@ -2,6 +2,7 @@ import {BaseQueryFn, createApi, FetchArgs} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithReauth} from "../baseQuery.ts";
 import {CustomError} from "../../../models/error/CustomError.ts";
 import {ILocation} from "../../../models/position/ILocation.ts";
+import {IPage} from "../../../models/IPage.ts";
 
 export const locationApi = createApi({
     reducerPath: 'locationApi',
@@ -11,7 +12,8 @@ export const locationApi = createApi({
         CustomError>,
     endpoints: (builder) => ({
         getAllLocations: builder.query<ILocation[], void>({
-            query: () => '/locations'
+            query: () => '/locations?pageSize=100',
+            transformResponse: (response: IPage<ILocation>) => response.content,
         }),
     }),
 });
