@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: 12341234
       POSTGRES_DB: test
     volumes:
-      - 'postgresql_data:/bitnami'
+      - /home/root/data/postgresql
     networks:
       - mail-delivery-network
 
@@ -23,7 +23,7 @@ services:
     ports:
       - "3002:3002"
     volumes:
-      - 'backend_data:/bitnami'
+      - /home/root/data/backend
     environment:
       - KAFKA_SERVER=kafka-server:29092
       - DATABASE=postgresql
@@ -88,12 +88,6 @@ services:
       - mail-delivery-network
     depends_on:
       - zookeeper
-
-volumes:
-  backend_data:
-    driver: local
-  postgresql_data:
-    driver: local
 
 networks:
   mail-delivery-network:
