@@ -1,14 +1,14 @@
-import React from "react";
+import {Outlet} from "react-router-dom";
+
 import Sidebar from "./Sidebar.tsx";
-import './UI/Layout.css'
 import Navbar from "./Navbar.tsx";
 
+import './UI/Layout.css'
 
-interface ILayoutProps {
-    children: React.ReactNode
-}
 
-const Layout: React.FC<ILayoutProps> = ({children}) => {
+
+
+const Layout = () => {
 
     return (
         <>
@@ -16,7 +16,7 @@ const Layout: React.FC<ILayoutProps> = ({children}) => {
             <div className='container'>
                 <Sidebar/>
                 <div className='main-content'>
-                    {children}
+                    <Outlet />
                 </div>
             </div>
         </>

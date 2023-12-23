@@ -1,20 +1,14 @@
 package kz.qbm.app.repository.position;
 
-import kz.qbm.app.dto.position.DepartmentSummaryDTO;
-import kz.qbm.app.dto.position.LocationSummaryDTO;
 import kz.qbm.app.entity.position.Department;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import java.util.List;
-import java.util.Optional;
 
-public interface DepartmentRepository extends JpaRepository<Department, Long> {
-    @Query("SELECT new kz.qbm.app.dto.position.DepartmentSummaryDTO(d.id, d.name) " +
-            "FROM Department d " +
-            "WHERE d.location.id = :locationId")
-    Optional<List<DepartmentSummaryDTO>> findAllByLocationId(Long locationId);
-
-    @Query("SELECT new kz.qbm.app.dto.position.DepartmentSummaryDTO(l.id, l.name) FROM Department l")
-    List<DepartmentSummaryDTO> findAllDepartmentSummaries();
+public interface DepartmentRepository extends JpaRepository<Department, Long>, JpaSpecificationExecutor<Department> {
+    @Override
+    Page<Department> findAll(Specification<Department> spec, Pageable pageable);
 }

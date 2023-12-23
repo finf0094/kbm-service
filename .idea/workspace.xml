@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/hooks/useAppDispatch.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/auth/IAuthResponse.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/auth/IUserLogin.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/auth/IUserRegister.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/error/CustomError.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/error/IErrorResponse.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/position/ILocation.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/models/user/IUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/pages/LoginPage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/redux/api/authApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/redux/api/baseQuery.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin-panel/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin-panel/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +59,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/qbm-projects",
+    "last_opened_file_path": "C:/Users/User/Desktop/qbm-projects/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -126,6 +139,7 @@
       <workItem from="1703326068306" duration="841000" />
       <workItem from="1703326997057" duration="656000" />
       <workItem from="1703328206868" duration="2721000" />
+      <workItem from="1703332253072" duration="612000" />
     </task>
     <servers />
   </component>
