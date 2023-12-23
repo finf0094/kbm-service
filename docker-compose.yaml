@@ -73,8 +73,6 @@ services:
     restart: "no"
     ports:
       - "9092:9092"
-    volumes:
-      - 'kafka_data:/bitnami'
     environment:
       KAFKA_LISTENERS: "INTERNAL://:29092,EXTERNAL://:9092"
       KAFKA_ADVERTISED_LISTENERS: "INTERNAL://kafka-server:29092,EXTERNAL://localhost:9092"
@@ -92,8 +90,6 @@ services:
       - zookeeper
 
 volumes:
-  kafka_data:
-    driver: local
   backend_data:
     driver: local
   postgresql_data:

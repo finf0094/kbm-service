@@ -13,5 +13,7 @@ public class UserSummaryDTO {
     private String firstname;
     private String lastname;
     private String email;
+    private String position;
+    private String phoneNumber;
     private List<String> roles;
 }

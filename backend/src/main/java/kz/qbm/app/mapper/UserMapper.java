@@ -1,7 +1,6 @@
 package kz.qbm.app.mapper;
 
 import kz.qbm.app.dto.user.UserSummaryDTO;
-import kz.qbm.app.dto.user.UserUpdateDTO;
 import kz.qbm.app.entity.Role;
 import kz.qbm.app.entity.User;
 import org.springframework.stereotype.Component;
@@ -17,6 +16,8 @@ public class UserMapper {
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())
                 .email(user.getEmail())
+                .position(user.getPosition())
+                .phoneNumber(user.getPhoneNumber())
                 .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                 .build();
     }
