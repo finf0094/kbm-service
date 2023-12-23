@@ -1,0 +1,71 @@
+.education-request-modal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.input-box input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+
+/* Add this style to your CSS file or component */
+.select-box {
+    position: relative;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    background: #fff;
+    position: relative;
+    /* Ensure relative positioning for the ::after pseudo-element */
+}
+
+/* Style for the arrow icon in the select */
+select::after {
+    content: '\25BC';
+    /* Unicode character for the down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%) rotate(0deg);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+    /* Add transition for smooth rotation */
+}
+
+/* Style for the arrow icon when the select is open */
+select:focus::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.education-request-modal__content input,
+.education-request-modal__content select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}

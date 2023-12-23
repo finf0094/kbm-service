@@ -1,0 +1,30 @@
+.resume {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #739EFD80;
+}
+
+.resume__title {
+    font-weight: 500;
+    font-size: 30px;
+    color: #393939;
+    margin-bottom: 15px;
+}
+
+.resume__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resume__name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #393939;
+}
+
+.resume__download {
+    color: var(--first-color);
+    font-size: 16px;
+}

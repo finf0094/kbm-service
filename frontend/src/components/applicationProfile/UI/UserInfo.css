@@ -1,0 +1,90 @@
+.user-info {
+    width: 400px;
+    height: 500px;
+    border-radius: 24px;
+    background: #F9F9F9;
+    padding: 28px 46px;
+}
+
+.user-info__head {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid rgba(115, 158, 253, .5);
+    padding-bottom: 12px;
+}
+
+.user-info__name {
+    font-size: 24px;
+    text-transform: capitalize;
+    color: #393939;
+    margin-bottom: 5px;
+}
+
+.user-info__job {
+    font-size: 16px;
+    color: rgba(57, 57, 57, .5);
+}
+
+.user-info__info {
+    display: grid;
+    grid-gap: 5px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(115, 158, 253, .5);
+}
+
+.user-info__aboutMe {
+    padding-top: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(115, 158, 253, .5);
+}
+
+.user-info__aboutMe_title {
+    font-size: 16px;
+    color: rgba(57, 57, 57, .5);
+    margin-bottom: 7px;
+    text-align: center;
+}
+
+.user-info__aboutMe_desc {
+    font-size: 16px;
+    color: #393939;
+    line-height: 24px;
+}
+
+.user-info__status {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.user-info__status-text {
+    color: #39393980;
+}
+
+.user-info__status-select {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    color: var(--first-color);
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.user-info__status-select svg {
+    margin-top: 2px;
+}
+
+.user-info__date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(57, 57, 57, .5);
+}

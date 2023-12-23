@@ -1,0 +1,27 @@
+server:
+  port: 3002
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 120MB
+      max-request-size: 120MB
+  datasource:
+    url: jdbc:postgresql://postgresql/test
+    username: postgres
+    password: 12341234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+kafka:
+  servers: ${KAFKA_SERVER:localhost:9092}
+
+springdoc:
+  swagger-ui:
+    path: /api/docs

@@ -1,0 +1,162 @@
+@keyframes quizModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade-out animation */
+@keyframes quizModalFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes quizModalWrapperFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade-out animation */
+@keyframes quizModalWrapperFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+}
+
+
+.quizModal.quizModal-open {
+    animation: quizModalFadeIn 0.3s ease-in-out forwards;
+    pointer-events: auto;
+    /* Apply fade-in animation when modal is open */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.quizModal-closed {
+    display: none;
+}
+
+.quizModal.quizModal-closing-animation {
+    animation: quizModalFadeOut 0.3s ease-in-out forwards;
+    /* Apply fade-out animation when modal is closed */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.quizModal__wrapper.quizModal-open {
+    animation: quizModalWrapperFadeIn 0.5s ease-in-out forwards;
+    pointer-events: auto;
+    /* Apply fade-in animation when modal is open */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.quizModal__wrapper.quizModal-closing-animation {
+    animation: quizModalWrapperFadeOut 0.5s ease-in-out forwards;
+    /* Apply fade-out animation when modal is closed */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.quizModal__wrapper {
+    width: 480px;
+    position: relative;
+    border-radius: 40px;
+    padding-top: 90px;
+    padding-bottom: 27px;
+}
+
+.quizModal__icon {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    box-shadow: 0 6px 25px 0 #00000080;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.quizModal__icon i::before, .quizModal__icon span {
+    font-size: 130px;
+    color: #fff;
+}
+
+.quizModal__icon span {
+    font-size: 190px;
+    margin-bottom: 40px;
+}
+
+.quizModal__title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 7px;
+    text-align: center;
+}
+
+.quizModal__subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #000;
+    text-align: center;
+}
+
+.quizModal__score {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quizModal__score-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -53%);
+    z-index: -1;
+    font-size: 125px;
+    font-weight: 700;
+    filter: blur(5px);
+}
+
+.quizModal__score-value {
+    font-size: 70px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.quizModal .modal__button {
+    width: 420px;
+    height: 60px;
+    font-size: 21px;
+    border-radius: 24px;
+    margin-top: 30px;
+}

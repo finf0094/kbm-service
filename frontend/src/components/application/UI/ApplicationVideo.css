@@ -1,0 +1,30 @@
+.approvalrequestvideo__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.approvalrequestvideo__desc {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.approvalrequestvideo__content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.approvalrequestvideo__file {
+    padding: 15px 50px;
+    font-size: 19px;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    background: var(--first-color);
+    cursor: pointer;
+    gap: 15px;
+}

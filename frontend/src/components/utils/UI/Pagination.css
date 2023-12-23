@@ -1,0 +1,23 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.pagination button:disabled {
+    color: #ddd;
+    cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+    background: #ddd;
+}

@@ -1,0 +1,70 @@
+.user-resume__title {
+    font-size: 30px;
+    color: #393939;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.user-resume__item {
+    padding-right: 30px;
+}
+
+.user-resume__item, .user-resume__empty {
+    width: 100%;
+    height: 96px;
+    background: #F9F9F9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 24px;
+    padding-right: 30px;
+}
+
+.user-resume__image {
+    height: 100%;
+}
+
+.user-resume__links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.user-resume__link, .user-resume__add {
+    color: var(--first-color);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.user-resume__empty {
+    padding: 0 24px;
+}
+
+.user-resume__empty span {
+    font-size: 24px;
+    color: rgba(57, 57, 57, .5);
+}
+
+@media screen and (max-width: 1100px) {
+    .user-resume__item {
+        display: grid;
+        padding-right: 0;
+        padding-bottom: 20px;
+        height: auto;
+        width: 69%;
+    }
+
+    .user-resume__links {
+        padding-top: 20px;
+        justify-content: center;
+    }
+
+    .user-resume__image {
+        width: 100%;
+    }
+
+    .user-resume__link {
+        font-size: 17px;
+    }
+}

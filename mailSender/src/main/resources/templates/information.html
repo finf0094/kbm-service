@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Информационное письмо</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+        h1, h2 {
+            color: #446699;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${title}">Заголовок</h1>
+    <p th:text="${greeting}">Приветствие</p>
+    <div th:each="info : ${information}">
+        <h2 th:text="${info.title}">Подзаголовок</h2>
+        <p th:text="${info.content}">Содержание</p>
+    </div>
+    <p>С уважением,</p>
+    <p>A pro Studio</p>
+</div>
+</body>
+</html>

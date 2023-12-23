@@ -1,0 +1,110 @@
+.approval-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.approvalrequestpage__buttons {
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.approvalrequestpage__next {
+    padding: 15px 50px;
+    font-size: 19px;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    background: var(--first-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.approvalrequestpage__prev {
+    padding: 15px 0;
+    font-size: 19px;
+    color: var(--first-color);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.approvalrequestpage__button svg {
+    margin-top: 4px;
+}
+
+/* Add these styles to your CSS file */
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.progress-step {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    position: relative;
+    margin-right: 5px;
+    margin-bottom: 50px;
+}
+
+.progress-step.completed {
+    background-color: #739EFD;
+    color: white;
+}
+
+.progress-line {
+    flex: 1;
+    height: 2px;
+    background-color: #ddd;
+    position: relative;
+    margin-right: 5px;
+}
+
+.progress-line.completed {
+    background-color: #739EFD;
+}
+
+.progress-line:after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #ddd;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.progress-line.completed:after {
+    background-color: #739EFD;
+    border-color: #739EFD;
+}
+
+.approvalrequestpage__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

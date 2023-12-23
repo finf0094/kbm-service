@@ -1,0 +1,286 @@
+@keyframes modalExampleFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade-out animation */
+@keyframes modalExampleFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes modalExampleWrapperFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-5%);
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade-out animation */
+@keyframes modalExampleWrapperFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-5%);
+    }
+}
+
+
+.modal.modal-open {
+    animation: modalExampleFadeIn 0.3s ease-in-out forwards;
+    pointer-events: auto;
+    /* Apply fade-in animation when modal is open */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.modal.modal-closing-animation {
+    animation: modalExampleFadeOut 0.3s ease-in-out forwards;
+    /* Apply fade-out animation when modal is closed */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.modal__wrapper.modal-open {
+    animation: modalExampleWrapperFadeIn 0.5s ease-in-out forwards;
+    pointer-events: auto;
+    /* Apply fade-in animation when modal is open */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+.modal__wrapper.modal-closing-animation {
+    animation: modalExampleWrapperFadeOut 0.5s ease-in-out forwards;
+    /* Apply fade-out animation when modal is closed */
+    animation-direction: alternate;
+    /* Add this line */
+}
+
+/* Modal styling with animations */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+    /* Keep the final state after animation */
+}
+
+.modal__wrapper {
+    padding: 44px 48px;
+    border-radius: 15px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: .5s;
+}
+
+.modal__close {
+    position: absolute;
+    background: none;
+    padding: 0;
+    font-size: 32px;
+    right: 15px;
+    top: 1px;
+    cursor: pointer;
+}
+
+.modal__title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #424B5A;
+}
+
+/* Children start */
+
+.modal__form {
+    text-align: center;
+}
+
+.modal__inputs {
+    display: grid;
+    grid-gap: 20px;
+    margin-bottom: 10px;
+}
+
+.modal__input {
+    width: 450px;
+    outline: none;
+    border: none;
+    background: #F9F9F9;
+    padding: 18px 0 18px 16px;
+    font-size: 15px;
+    color: #9299A2;
+    border-radius: 20px;
+}
+
+.modal__input::placeholder {
+    color: #9299A2;
+}
+
+.modal__responsibility {
+    max-width: 400px;
+    color: #393939;
+    font-size: 14px;
+    margin-right: auto;
+    margin-left: 5px;
+    line-height: 18px;
+}
+
+.modal__route {
+    color: #393939;
+    margin-right: auto;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.modal__route-link {
+    font-size: 16px;
+    text-decoration: underline;
+    color: var(--first-color);
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.modal__desc {
+    width: 600px;
+    background: #f9f9f9;
+    padding: 30px 40px;
+    text-align: center;
+    border-radius: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #393939;
+    margin-bottom: 5px;
+}
+
+.modal__check {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.modal__check input {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #393939;
+    width: 17px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal__check input:after {
+    font-family: 'remixicon' !important;
+    content: "\eb58";
+    color: #1CAA19;
+    font-size: 14px;
+    font-weight: 700;
+    display: none;
+}
+
+.modal__check input:checked {
+    border: 1px solid #1CAA19;
+}
+
+.modal__check input:checked:after {
+    display: block;
+    color: #1CAA19;
+}
+
+.modal__input input[type="file"] {
+    display: none;
+}
+
+.modal__integration span {
+    font-size: 15px;
+    color: #bcbcbc;
+}
+
+.modal__integration-selects {
+    display: grid;
+    grid-gap: 15px;
+}
+
+.modal__integration select {
+    outline: none;
+    border: none;
+    background: #F9F9F9;
+    padding: 18px 16px;
+    font-size: 15px;
+    color: #9299A2;
+    border-radius: 20px;
+}
+
+.modal__file-icon {
+    width: 40px;
+}
+
+.modal__file.modal__input {
+    padding: 0;
+}
+
+.modal__button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+/* Children end */
+
+.modal__button {
+    width: 450px;
+    padding: 15px 0;
+    font-size: 19px;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    margin-top: 40px;
+    background: var(--first-color);
+    cursor: pointer;
+}
+
+.error-message {
+    text-align: center;
+    color: red;
+    margin-bottom: 15px;
+}
+
+
+

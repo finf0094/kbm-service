@@ -1,0 +1,29 @@
+.quizForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quizForm__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quizForm__item input,
+.quizForm__item textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.quizForm__item button {
+    align-self: flex-end;
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--first-color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}

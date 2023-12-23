@@ -1,0 +1,42 @@
+.openQuestionSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.openQuestionSection__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.openQuestion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.openQuestionSection__item input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.openQuestionSection__item button {
+    align-self: flex-end;
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--first-color);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+div.openQuestionSection__item button.remove-question-button {
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}

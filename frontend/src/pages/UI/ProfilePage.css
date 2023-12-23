@@ -1,0 +1,17 @@
+.profile {
+    display: flex;
+    gap: 24px;
+}
+
+.profile-info {
+    width: 100%;
+    display: grid;
+    grid-gap: 24px;
+}
+
+@media screen and (max-width: 960px) {
+    .profile {
+        display: grid;
+        grid-gap: 80px;
+    }
+}

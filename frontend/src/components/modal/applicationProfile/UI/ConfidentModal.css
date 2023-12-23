@@ -1,0 +1,128 @@
+/* src/components/UI/Formconfident-Modal.css */
+
+/* Fade-in animation */
+@keyframes confidentModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Fade-out animation */
+@keyframes confidentModalFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes confidentModalWrapperFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    50%,
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade-out animation */
+@keyframes confidentModalWrapperFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+}
+
+/* confident-Modal styling with animations */
+.confident-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-duration: 0.3s;
+    /* Animation duration */
+    animation-timing-function: ease-in-out;
+    /* Animation timing function */
+    animation-fill-mode: forwards;
+    pointer-events: none;
+
+    /* Keep the final state after animation */
+}
+
+.confident-modal.confident-modal-open {
+    animation: confidentModalFadeIn 0.3s ease-in-out forwards;
+    pointer-events: auto;
+    /* Apply fade-in animation when modal is open */
+    animation-direction: alternate; /* Add this line */
+}
+
+.confident-modal.confidentModal-closing-animation {
+    animation: confidentModalFadeOut 0.3s ease-in-out forwards;
+    /* Apply fade-out animation when modal is closed */
+    animation-direction: alternate; /* Add this line */
+}
+
+.confident-modal__wrapper.confident-modal-open {
+    animation: confidentModalWrapperFadeIn 0.5s ease-in-out forwards;
+    pointer-events: auto;
+    /* Apply fade-in animation when modal is open */
+    animation-direction: alternate; /* Add this line */
+}
+
+.confident-modal__wrapper.confidentModal-closing-animation {
+    animation: confidentModalWrapperFadeOut 0.5s ease-in-out forwards;
+    /* Apply fade-out animation when modal is closed */
+    animation-direction: alternate; /* Add this line */
+}
+
+.confident-modal__wrapper {
+    padding: 44px 48px;
+    border-radius: 15px;
+    background: #fff;
+    color: #000 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: 0.3s;
+}
+
+.confident-modal__title {
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+.confident-modal__title,
+.confident-modal__button {
+    font-size: 20px;
+}
+
+.confident-modal__buttons {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.confident-modal__button {
+    cursor: pointer;
+}

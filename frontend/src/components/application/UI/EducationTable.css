@@ -1,0 +1,57 @@
+.educationtable__content {
+    margin-bottom: 3vh;
+}
+
+.educationtable table {
+    width: 100%;
+    border: 1px solid #cecece6e;
+    color: #393939;
+    border-spacing: 0;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    border-collapse: collapse;
+}
+
+.educationtable th {
+    background: #edeced;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.educationtable tr {
+    border-bottom: 1px solid;
+    border-color: #cecece6e;
+}
+
+.educationtable tr:last-child {
+    border: 0;
+}
+
+.educationtable th, td {
+    padding: 13px 0;
+    border-right: 1px solid #cecece6e;
+}
+
+.educationtable__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.educationtable__button button {
+    padding: 15px 50px;
+    font-size: 19px;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    background: var(--first-color); /* Make sure to define this variable or replace it with the actual color code */
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+.educationtable__button i::before {
+    color: #fff;
+}

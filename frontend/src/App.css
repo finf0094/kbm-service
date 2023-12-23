@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Exo:wght@400;700&display=swap');
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
+  font-family: 'Exo 2', sans-serif;
+  color: #393939;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  --first-color: #5787f6;
+}
+
+.container {
+  width: 100%;
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.page {
+  margin: 200px 0 100px;
+  padding: 0 80px;
+  flex: 1 1 auto;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.App {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
+}
+
+.toast__link {
+  color: var(--first-color);
+  text-decoration: underline !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page {
+    padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .page {
+    padding: 0 25px;
+  }
+}

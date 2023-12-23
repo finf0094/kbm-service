@@ -1,0 +1,48 @@
+.quiz-sessions {
+    padding: 20px;
+    border-radius: 25px;
+    background-color: #f9f9f9;
+}
+
+.quiz-session {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-session h2 {
+    margin-bottom: 10px;
+}
+
+.quiz-session p {
+    margin-bottom: 5px;
+}
+
+.quiz-session hr {
+    margin-top: 20px;
+}
+
+.quiz-sessions-title {
+    margin-bottom: 20px;
+}
+
+.quiz-session p {
+    margin-bottom: 5px;
+}
+
+.quiz-session .go-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quiz-session .go-button:hover {
+    background-color: #0056b3;
+}

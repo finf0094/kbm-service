@@ -1,0 +1,58 @@
+.approvalrequesttable__content {
+    margin-bottom: 3vh;
+}
+
+.approvalrequesttable table {
+    width: 100%;
+    border: 1px solid #cecece6e;
+    color: #393939;
+    border-spacing: 0;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    border-collapse: collapse;
+}
+
+.approvalrequesttable th {
+    background: #edeced;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+
+.approvalrequesttable tr {
+    border-bottom: 1px solid;
+    border-color: #cecece6e;
+}
+
+.approvalrequesttable tr:last-child {
+    border: 0;
+}
+
+.approvalrequesttable th, td {
+    padding: 13px 0;
+    border-right: 1px solid #cecece6e;
+}
+
+.approvalrequesttable__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.approvalrequesttable__button button {
+    padding: 15px 50px;
+    font-size: 19px;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    background: var(--first-color);
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+.approvalrequesttable__button i::before {
+    color: #fff;
+}
