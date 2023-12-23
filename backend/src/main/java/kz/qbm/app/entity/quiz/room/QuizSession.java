@@ -37,6 +37,7 @@ public class QuizSession {
     @CollectionTable(name = "quiz_session_answers", joinColumns = @JoinColumn(name = "session_id"))
     @MapKeyColumn(name = "question_id")
     @Column(name = "answer_id")
+    @Builder.Default
     private Map<String, String> selectedAnswers = new HashMap<>();
 
     private Date startTime;
