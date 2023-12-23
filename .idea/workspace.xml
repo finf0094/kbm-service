@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/application/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/application/ApplicationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/applicationProfile/ApplicationProfileVideo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/applicationProfile/ApplicationProfileVideo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/moderator/ApplicationProfilePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/moderator/ApplicationProfilePage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +45,11 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/qbm-projects",
+    "last_opened_file_path": "C:/Users/User/Desktop/qbm-projects/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -118,6 +123,8 @@
       <updated>1703290040140</updated>
       <workItem from="1703290042332" duration="4107000" />
       <workItem from="1703294972522" duration="39000" />
+      <workItem from="1703295029661" duration="893000" />
+      <workItem from="1703296047663" duration="3336000" />
     </task>
     <servers />
   </component>

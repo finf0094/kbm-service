@@ -12,7 +12,7 @@ interface IApplicationProfileResumeProps {
 const ApplicationProfileResume: React.FC<IApplicationProfileResumeProps> = ({videoUrl}) => {
     const {t} = useTranslation();
 
-    const downloadResume = () => {
+    const downloadVideo = () => {
         window.location.href = `${baseUrl}/${videoUrl}`;
     };
 
@@ -28,7 +28,7 @@ const ApplicationProfileResume: React.FC<IApplicationProfileResumeProps> = ({vid
                     />
                     <span className="resume__name-file">Видео</span>
                 </div>
-                <button className="resume__download" onClick={downloadResume}>{t("video_download")}</button>
+                <button className="resume__download" onClick={downloadVideo}>{t("video_download")}</button>
             </div>
         </div>
     );

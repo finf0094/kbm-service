@@ -14,8 +14,8 @@ public class UserMapper {
         return UserSummaryDTO.builder()
                 .id(user.getId())
                 .itin(user.getItin())
-                .firstName(user.getFirstname())
-                .lastName(user.getLastname())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
                 .email(user.getEmail())
                 .roles(user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                 .build();

@@ -29,6 +29,8 @@ services:
       - DATABASE=postgresql
     networks:
       - mail-delivery-network
+    depends_on:
+      - kafka-server
 
   mail-delivery-service:
     container_name: mail-delivery-service
@@ -41,6 +43,8 @@ services:
       - KAFKA_SERVER=kafka-server:29092
     networks:
       - mail-delivery-network
+    depends_on:
+      - kafka-server
 
   kafdrop:
     image: obsidiandynamics/kafdrop
@@ -84,6 +88,8 @@ services:
       ALLOW_PLAINTEXT_LISTENER: "yes"
     networks:
       - mail-delivery-network
+    depends_on:
+      - zookeeper
 
 volumes:
   kafka_data:

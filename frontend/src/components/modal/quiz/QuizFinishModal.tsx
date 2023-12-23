@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useSpring, animated} from "react-spring";
 import {redirect} from "react-router-dom";
-import "../UI/Modal.css";
+import "../UI/modal.css";
 import "./UI/QuizFinishModal.css";
 
 interface QuizModalProps {
