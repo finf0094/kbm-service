@@ -52,6 +52,10 @@ const mockData = [
             {
                 name: "Департаменты",
                 redirect: "/integration/departments/"
+            },
+            {
+                name: "Позиций",
+                redirect: "/integration/positions/"
             }
         ]
     }

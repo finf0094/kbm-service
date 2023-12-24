@@ -66,7 +66,6 @@ public class UserService {
                 .firstname("")
                 .lastname("")
                 .phoneNumber("")
-                .position("")
                 .aboutMe("")
                 .password(passwordEncoder.encode(createUserRequest.getPassword()))
                 .build();

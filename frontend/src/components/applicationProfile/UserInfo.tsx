@@ -36,10 +36,10 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user, status }) => {
         <span className="user-info__name">
             {user.firstname} {user.lastname}
     </span>
-                        <span className="user-info__job">{user.position}</span>
+                        <span className="user-info__job">{user.position.name}</span>
                     </div>
                     <div className="user-info__info">
-                        <span>{user.position}</span>
+                        <span>{user.position.name}</span>
                         <span>{user.phoneNumber}</span>
                         <span>{user.email}</span>
                     </div>

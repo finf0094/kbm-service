@@ -90,7 +90,7 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
                             <input
                                 type="text"
                                 name="job"
-                                value={editedData.position}
+                                value={editedData.position.name}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -116,10 +116,10 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
                                 <div className="edited-card__head">
                                          <span
                                              className="edited-card__name">{data.firstname} {data.lastname}</span>
-                                    <span className="edited-card__job">{data.position}</span>
+                                    <span className="edited-card__job">{data.position.name}</span>
                                 </div>
                                 <div className="edited-card__info">
-                                    <span>{data.position}</span>
+                                    <span>{data.position.name}</span>
                                     <span>"ТУТ НУЖЕН JOB EXPERIENCE TIME</span><span>{data.phoneNumber}</span>
                                     <span>{data.email}</span>
                                 </div>

@@ -1,5 +1,6 @@
 package kz.qbm.app.dto.user;
 
+import kz.qbm.app.entity.position.Position;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ public class UserSummaryDTO {
     private String firstname;
     private String lastname;
     private String email;
-    private String position;
+    private Position position;
     private String phoneNumber;
     private List<String> roles;
 }
