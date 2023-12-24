@@ -17,15 +17,6 @@
     position: relative;
 }
 
-.content__search input {
-    width: 300px;
-    background: #292929;
-    border-radius: 50px;
-    height: 35px;
-    border: 1px solid #ffffff17;
-    padding: 0px 20px;
-}
-
 .content__search button {
     position: absolute;
     right: 13px;

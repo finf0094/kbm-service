@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import {useCreateLocationMutation, useGetAllLocationsQuery} from "../redux/api/locationApi.ts";
-import {useCreateDepartmentMutation, useGetAllDepartmentsQuery} from "../redux/api/departmentApi.ts";
-import {useCreatePositionMutation} from "../redux/api/positionApi.ts";
+
+import { useCreateLocationMutation, useGetAllLocationsQuery } from "../redux/api/locationApi.ts";
+import { useCreateDepartmentMutation, useGetAllDepartmentsQuery } from "../redux/api/departmentApi.ts";
+import { useCreatePositionMutation } from "../redux/api/positionApi.ts";
+
+import './UI/AddItemPage.css'
+
 
 const AddItemPage: React.FC<{
     mutationFn: typeof useCreateLocationMutation | typeof useCreateDepartmentMutation | typeof useCreatePositionMutation,
     onItemAdded: (item: any) => void,
     queryFn: typeof useGetAllLocationsQuery | typeof useGetAllDepartmentsQuery,
-    transformInput: (name: string, parentId?: number | null) => any
-}> = ({ mutationFn, onItemAdded, queryFn, transformInput }) => {
+    transformInput: (name: string, parentId?: number | null) => any,
+    title: string
+}> = ({ mutationFn, onItemAdded, queryFn, transformInput, title }) => {
     const [itemName, setItemName] = useState<string>('');
     const [parentId, setParentId] = useState<number | null>(null);
     const [createItem] = mutationFn();
@@ -29,10 +34,11 @@ const AddItemPage: React.FC<{
     const showSelect = transformInput.length > 1;
 
     return (
-        <div>
+        <div className='addItem'>
+            <div className="addItem__title">Добавить {title.toLowerCase()}</div>
             <input
                 type="text"
-                placeholder="Item Name"
+                placeholder="Название"
                 value={itemName}
                 onChange={(e) => setItemName(e.target.value)}
             />
@@ -40,14 +46,15 @@ const AddItemPage: React.FC<{
                 <select
                     value={parentId || ''}
                     onChange={(e) => setParentId(Number(e.target.value))}
+                    className='addItem__select'
                 >
-                    <option value="">Select a parent</option>
+                    <option value="">Выберите</option>
                     {parents?.content.map(parent => (
                         <option key={parent.id} value={parent.id}>{parent.name}</option>
                     ))}
                 </select>
             )}
-            <button onClick={handleAddItem}>Add Item</button>
+            <button onClick={handleAddItem}>Добавить</button>
         </div>
     );
 };

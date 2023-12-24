@@ -1,0 +1,34 @@
+.addItem {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.addItem input, .addItem select {
+    width: 100%;
+}
+
+.addItem select {
+    width: calc(100% + 20px);
+}
+
+.addItem__title {
+    font-size: 16px;
+}
+
+.addItem button {
+    width: 140px;
+    height: 40px;
+    background: #292929;
+    border-radius: 50px;
+    border: 1px solid #ffffff17;
+    padding: 0 20px;
+    color: #ffffff63;
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 15px;
+}

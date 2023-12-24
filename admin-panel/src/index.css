@@ -26,4 +26,22 @@ a {
 button {
   background: none;
   border: none;
+  cursor: pointer;
+}
+
+input, select {
+  width: 300px;
+  background: #292929;
+  border-radius: 50px;
+  height: 35px;
+  border: 1px solid #ffffff17;
+  padding: 0px 20px;
+  padding-right: 0;
+  color: #ffffff63;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+select {
+  padding: 0 17px;
 }

@@ -51,7 +51,8 @@ function App() {
                         mutationFn={useCreateLocationMutation}
                         onItemAdded={(item) => console.log('Location added:', item)}
                         queryFn={useGetAllLocationsQuery}
-                        transformInput={(name) => name} // Для локаций просто передаем имя
+                        transformInput={(name) => name} 
+                        title="Локация"
                     />}
                 />
                 <Route path="/integration/departments/add" element={
@@ -59,7 +60,8 @@ function App() {
                         mutationFn={useCreateDepartmentMutation}
                         onItemAdded={(item) => console.log('Department added:', item)}
                         queryFn={useGetAllLocationsQuery} // Для создания департамента, выбираем локацию
-                        transformInput={(name, parentId) => ({ name, locationId: parentId })} // Для департаментов преобразуем parentId в locationId
+                        transformInput={(name, parentId) => ({ name, locationId: parentId })}
+                        title="Департамент" // Для департаментов преобразуем parentId в locationId
                     />}
                 />
                 <Route path="/integration/positions/add" element={
@@ -67,7 +69,8 @@ function App() {
                         mutationFn={useCreatePositionMutation}
                         onItemAdded={(item) => console.log('Position added:', item)}
                         queryFn={useGetAllDepartmentsQuery} // Для создания позиции, выбираем департамент
-                        transformInput={(name, parentId) => ({ name, departmentId: parentId })} // Для позиций преобразуем parentId в departmentId
+                        transformInput={(name, parentId) => ({ name, departmentId: parentId })}
+                        title="Позиции" // Для позиций преобразуем parentId в departmentId
                     />}
                 />
 
