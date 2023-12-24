@@ -1,4 +1,4 @@
-export interface ILocation {
+export interface IItem {
     id: number,
     name: string
 }

@@ -1,0 +1,21 @@
+.header {
+    background: #1c1c1c;
+    padding: 13px 20px;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logout {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: .25s ease-in-out;
+}
+
+.header__logout:hover {
+    color: #f09999;
+}

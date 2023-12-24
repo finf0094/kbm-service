@@ -1,9 +1,7 @@
-import {Outlet} from "react-router-dom";
-
 import Sidebar from "./Sidebar.tsx";
-import Navbar from "./Navbar.tsx";
-
+import Header from "./Header.tsx";
 import './UI/Layout.css'
+import { Outlet } from "react-router-dom";
 
 
 
@@ -11,15 +9,15 @@ import './UI/Layout.css'
 const Layout = () => {
 
     return (
-        <>
-            <Navbar />
+        <div className="layout">
+            <Header />
             <div className='container'>
                 <Sidebar/>
-                <div className='main-content'>
+                <div className="main-content">
                     <Outlet />
                 </div>
             </div>
-        </>
+        </div>
 
     )
 }
