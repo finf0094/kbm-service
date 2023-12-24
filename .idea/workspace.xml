@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/918b97ae-86b1-465b-a70e-19c491467283.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/918b97ae-86b1-465b-a70e-19c491467283.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/918b97ae-86b1-465b-a70e-19c491467283/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/918b97ae-86b1-465b-a70e-19c491467283/storage_v2/_src_/database/test.kkQ2AA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/dto/user/UserSummaryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/dto/user/UserSummaryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/dto/user/UserUpdateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/dto/user/UserUpdateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +47,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "mikosh",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/User/Desktop/qbm-projects",
     "node.js.detected.package.eslint": "true",
@@ -129,6 +131,7 @@
       <workItem from="1703328206868" duration="2721000" />
       <workItem from="1703332253072" duration="612000" />
       <workItem from="1703348428161" duration="414000" />
+      <workItem from="1703436714313" duration="34000" />
     </task>
     <servers />
   </component>
