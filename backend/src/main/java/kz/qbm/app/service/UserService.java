@@ -1,6 +1,7 @@
 package kz.qbm.app.service;
 
 import kz.qbm.app.dto.user.UserUpdateDTO;
+import kz.qbm.app.entity.position.Position;
 import kz.qbm.app.exception.BadRequestException;
 import kz.qbm.app.exception.InvalidVideoFileException;
 import kz.qbm.app.repository.UserRepository;
@@ -10,7 +11,9 @@ import kz.qbm.app.entity.User;
 import kz.qbm.app.exception.NotFoundException;
 import kz.qbm.app.exception.RequestExistException;
 import kz.qbm.app.mapper.UserMapper;
+import kz.qbm.app.repository.position.PositionRepository;
 import kz.qbm.app.service.storage.StorageService;
+import kz.qbm.app.utils.NullAwareBeanUtilsBean;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -19,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +70,6 @@ public class UserService {
                 .firstname("")
                 .lastname("")
                 .phoneNumber("")
-                .position("")
                 .aboutMe("")
                 .password(passwordEncoder.encode(createUserRequest.getPassword()))
                 .build();
@@ -79,7 +82,17 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException(String.format("User with id: %s not found", userId)));
 
         // Update the fields with values from UserUpdateDTO
-        BeanUtils.copyProperties(userUpdateDTO, existingUser, "id", "password", "createdAt", "updatedAt", "resumeUrl");
+        NullAwareBeanUtilsBean beanUtils = new NullAwareBeanUtilsBean();
+        try {
+            beanUtils.copyProperties(existingUser, userUpdateDTO);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new BadRequestException("Updating user failed: " + e.getMessage());
+        }
+
+        // If password is provided, encode it and set it
+        if (userUpdateDTO.getPassword() != null) {
+            existingUser.setPassword(passwordEncoder.encode(userUpdateDTO.getPassword()));
+        }
 
         // Save the updated user
         return userRepository.save(existingUser);

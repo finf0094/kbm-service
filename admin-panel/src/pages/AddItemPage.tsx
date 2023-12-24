@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-
-import { useCreateLocationMutation, useGetAllLocationsQuery } from "../redux/api/locationApi.ts";
-import { useCreateDepartmentMutation, useGetAllDepartmentsQuery } from "../redux/api/departmentApi.ts";
-import { useCreatePositionMutation } from "../redux/api/positionApi.ts";
-
-import './UI/AddItemPage.css'
-
+import {useCreateLocationMutation, useGetAllLocationsQuery} from "../redux/api/locationApi.ts";
+import {useCreateDepartmentMutation, useGetAllDepartmentsQuery} from "../redux/api/departmentApi.ts";
+import {useCreatePositionMutation} from "../redux/api/positionApi.ts";
 
 const AddItemPage: React.FC<{
     mutationFn: typeof useCreateLocationMutation | typeof useCreateDepartmentMutation | typeof useCreatePositionMutation,
