@@ -45,11 +45,11 @@ public class PositionController {
 
     @GetMapping
     public Page<PositionSummaryDTO> getAllPositionsWithPaginationAndSearch(
-            @RequestParam(name = "positionId", required = false) Long positionId,
+            @RequestParam(name = "departmentId", required = false) Long departmentId,
             @RequestParam(name = "search", defaultValue = "") String search,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-        return positionService.getAllPositionsWithPaginationAndSearch(positionId, search, offset, pageSize);
+        return positionService.getAllPositionsWithPaginationAndSearch(departmentId, search, offset, pageSize);
     }
 
     @DeleteMapping("/{id}")

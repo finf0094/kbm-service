@@ -12,11 +12,11 @@ export const positionApi = createApi({
         getPositionById: builder.query<IPosition, number>({
             query: (id) => `/positions/${id}`
         }),
-        getAllPositions: builder.query<IPage<IPosition>, { positionId: number, search: string, offset: number, pageSize: number }>({
-            query: ({ positionId, search, offset, pageSize }) => ({
+        getAllPositions: builder.query<IPage<IPosition>, { departmentId?: number, search: string, offset: number, pageSize: number }>({
+            query: ({ departmentId, search, offset, pageSize }) => ({
                 url: '/positions',
                 params: {
-                    positionId,
+                    departmentId,
                     search,
                     offset,
                     pageSize
