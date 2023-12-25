@@ -1,17 +1,34 @@
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
-import {useCreateLocationMutation, useGetAllLocationsQuery} from "./redux/api/locationApi.ts";
-import {useCreateDepartmentMutation, useGetAllDepartmentsQuery} from "./redux/api/departmentApi.ts";
+import {
+    useCreateLocationMutation,
+    useDeleteLocationMutation,
+    useGetAllLocationsQuery,
+    useGetLocationByIdQuery
+} from "./redux/api/locationApi.ts";
+import {
+    useCreateDepartmentMutation,
+    useDeleteDepartmentMutation,
+    useGetAllDepartmentsQuery,
+    useGetDepartmentByIdQuery
+} from "./redux/api/departmentApi.ts";
+import {
+    useCreatePositionMutation,
+    useDeletePositionMutation,
+    useGetAllPositionsQuery,
+    useGetPositionByIdQuery
+} from "./redux/api/positionApi.ts";
 
-import AddItemPage from "./pages/AddItemPage.tsx";
-import ItemListPage from "./pages/ItemListPage.tsx";
+import AddItemPage from "./pages/item/AddItemPage.tsx";
+import ItemListPage from "./pages/item/ItemListPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import ItemPage from "./pages/item/ItemPage.tsx";
 
 import RequireAuth from "./components/auth/RequireAuth.tsx";
 import Layout from "./components/Provider/Layout.tsx";
 
 import './App.css'
-import {useCreatePositionMutation, useGetAllPositionsQuery} from "./redux/api/positionApi.ts";
+
 
 
 
@@ -50,12 +67,38 @@ function App() {
                 />
 
 
+                <Route path="/integration/locations/:id" element={
+                    <ItemPage
+                        queryFn={useGetLocationByIdQuery}
+                        relatedQueryFn={useGetAllDepartmentsQuery}
+                        delQueryFn={useDeleteLocationMutation}
+                        title="Location"
+                    />}
+                />
+                <Route path="/integration/departments/:id" element={
+                    <ItemPage
+                        queryFn={useGetDepartmentByIdQuery}
+                        relatedQueryFn={useGetAllPositionsQuery}
+                        delQueryFn={useDeleteDepartmentMutation}
+                        title="Department"
+                    />}
+                />
+                <Route path="/integration/positions/:id" element={
+                    <ItemPage
+                        queryFn={useGetPositionByIdQuery}
+                        delQueryFn={useDeletePositionMutation}
+                        title="Position"
+                    />}
+                />
+
+
+
                 <Route path="/integration/locations/add" element={
                     <AddItemPage
                         mutationFn={useCreateLocationMutation}
                         onItemAdded={(item) => { console.log('Location added:', item); navigate('http://localhost:5173/integration/locations') }}
                         queryFn={useGetAllLocationsQuery}
-                        transformInput={(name) => name} 
+                        transformInput={(name) => name}
                         title="Локация"
                     />}
                 />
@@ -64,7 +107,7 @@ function App() {
                         mutationFn={useCreateDepartmentMutation}
                         onItemAdded={(item) => { console.log('Department added:', item); navigate('http://localhost:5173/integration/departments'); }}
                         queryFn={useGetAllLocationsQuery} // Для создания департамента, выбираем локацию
-                        transformInput={(name, parentId) => ({ name, locationId: parentId })}
+                        transformInput={(name, parentId) => ({name, locationId: parentId})}
                         title="Департамент" // Для департаментов преобразуем parentId в locationId
                     />}
                 />
@@ -73,10 +116,11 @@ function App() {
                         mutationFn={useCreatePositionMutation}
                         onItemAdded={(item) => { console.log('Position added:', item); navigate('http://localhost:5173/integration/positions'); }}
                         queryFn={useGetAllDepartmentsQuery} // Для создания позиции, выбираем департамент
-                        transformInput={(name, parentId) => ({ name, departmentId: parentId })}
+                        transformInput={(name, parentId) => ({name, departmentId: parentId})}
                         title="Позиции" // Для позиций преобразуем parentId в departmentId
                     />}
                 />
+
 
                 {/* ADMIN */}
                 <Route element={<RequireAuth allowedRoles={['ROLE_ADMIN']}/>}>

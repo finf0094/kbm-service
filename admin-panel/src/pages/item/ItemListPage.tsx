@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import {useGetAllLocationsQuery} from "../redux/api/locationApi.ts";
-import {useGetAllDepartmentsQuery} from "../redux/api/departmentApi.ts";
-import List from "../components/List.tsx";
-import Loader from "../components/utils/Loader.tsx";
-import {useGetAllPositionsQuery} from "../redux/api/positionApi.ts";
+
+import {useGetAllLocationsQuery} from "../../redux/api/locationApi.ts";
+import {useGetAllDepartmentsQuery} from "../../redux/api/departmentApi.ts";
+import {useGetAllPositionsQuery} from "../../redux/api/positionApi.ts";
+
+import List from "../../components/List.tsx";
+import Loader from "../../components/utils/Loader.tsx";
+import Pagination from "../../components/Pagination.tsx";
+
 
 const ItemListPage: React.FC<{
     queryFn: typeof useGetAllLocationsQuery | typeof useGetAllDepartmentsQuery | typeof useGetAllPositionsQuery,
@@ -26,7 +30,12 @@ const ItemListPage: React.FC<{
         setCurrentPage(0); // Сбросить текущую страницу при поиске
     }
 
-    return <List title={title} items={items.content} onSearch={handleSearch} />;
+    return (
+        <div>
+            <List title={title} items={items.content} onSearch={handleSearch} />
+            <Pagination totalPages={items.totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
+        </div>
+    );
 };
 
 export default ItemListPage;

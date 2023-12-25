@@ -9,13 +9,13 @@ export const departmentApi = createApi({
     baseQuery: baseQueryWithReauth as BaseQueryFn<string | FetchArgs, unknown, CustomError>,
     endpoints: (builder) => ({
         getDepartmentById: builder.query<IDepartment, number>({
-            query: (id) => `/departments/${id}`
+            query: (id) => `/departments/getDepartment?id=${id}`
         }),
-        getAllDepartments: builder.query<IPage<IDepartment>, { locationId?: number, search: string, offset: number, pageSize: number }>({
-            query: ({ locationId, search, offset, pageSize }) => ({
+        getAllDepartments: builder.query<IPage<IDepartment>, { id?: number, search: string, offset: number, pageSize: number }>({
+            query: ({ id, search, offset, pageSize }) => ({
                 url: '/departments',
                 params: {
-                    locationId,
+                    locationId: id,
                     search,
                     offset,
                     pageSize

@@ -58,7 +58,7 @@ const QuizListPage: React.FC = () => {
         return <Loader/>;
     }
 
-
+        
 
     return (
         <div className="page">

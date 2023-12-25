@@ -13,11 +13,13 @@ import kz.qbm.app.exception.RequestExistException;
 import kz.qbm.app.mapper.UserMapper;
 import kz.qbm.app.repository.position.PositionRepository;
 import kz.qbm.app.service.storage.StorageService;
+import kz.qbm.app.specification.UserSpecification;
 import kz.qbm.app.utils.NullAwareBeanUtilsBean;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,8 +44,15 @@ public class UserService {
     // UTILS
     private final PasswordEncoder passwordEncoder;
 
-    public Page<UserSummaryDTO> getAllUsers(int offset, int pageSize) {
-        Page<User> users = userRepository.findAll(PageRequest.of(offset, pageSize));
+    public Page<UserSummaryDTO> getAllUsers(String roleName, String search, int offset, int pageSize) {
+        Specification<User> spec = Specification.where(UserSpecification.search(search));
+
+        if (roleName != null && !roleName.isEmpty()) {
+            spec = spec.and(UserSpecification.hasRole(roleName));
+        }
+
+        Page<User> users = userRepository.findAll(spec, PageRequest.of(offset, pageSize));
+
         return users.map(userMapper::convertToUserSummaryDTO);
     }
 

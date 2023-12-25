@@ -52,7 +52,7 @@ const List: React.FC<{ items: IItem[],title: string, onSearch: (search: string) 
                             {items.map((item) => (
                                 <tr key={item.id}>
                                     <td className="content__table-id">{item.id}</td>
-                                    <td className="content__table-title"><Link to={`${item.id}/change`}>{item.name}</Link></td>
+                                    <td className="content__table-title"><Link to={`${item.id}`}>{item.name}</Link></td>
                                 </tr>
                             ))}
                         </tbody>

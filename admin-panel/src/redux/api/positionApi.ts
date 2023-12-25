@@ -10,13 +10,13 @@ export const positionApi = createApi({
     baseQuery: baseQueryWithReauth as BaseQueryFn<string | FetchArgs, unknown, CustomError>,
     endpoints: (builder) => ({
         getPositionById: builder.query<IPosition, number>({
-            query: (id) => `/positions/${id}`
+            query: (id) => `/positions/getPosition?id=${id}`
         }),
-        getAllPositions: builder.query<IPage<IPosition>, { departmentId?: number, search: string, offset: number, pageSize: number }>({
-            query: ({ departmentId, search, offset, pageSize }) => ({
+        getAllPositions: builder.query<IPage<IPosition>, { id?: number, search: string, offset: number, pageSize: number }>({
+            query: ({ id, search, offset, pageSize }) => ({
                 url: '/positions',
                 params: {
-                    departmentId,
+                    departmentId: id,
                     search,
                     offset,
                     pageSize

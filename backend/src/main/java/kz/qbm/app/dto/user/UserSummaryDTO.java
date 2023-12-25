@@ -13,7 +13,6 @@ public class UserSummaryDTO {
     private String itin;
     private String firstname;
     private String lastname;
-    private String password;
     private String email;
     private Position position;
     private String phoneNumber;

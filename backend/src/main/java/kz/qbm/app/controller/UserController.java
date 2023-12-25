@@ -22,9 +22,11 @@ public class UserController {
 
     @GetMapping
     public Page<UserSummaryDTO> getAllUsers(
+            @RequestParam(name = "role", required = false) String roleName,
+            @RequestParam(name = "search", required = false) String search,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-        return userService.getAllUsers(offset, pageSize);
+        return userService.getAllUsers(roleName, search, offset, pageSize);
     }
 
     @GetMapping("/getUser")
@@ -62,7 +64,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}/deleteResume")
-    public Message handleResumeUpload(@PathVariable Long userId) {
+    public Message handleResumeDelete(@PathVariable Long userId) {
         userService.deleteResume(userId);
 
         return new Message(HttpStatus.OK.value(), "Resume successfully deleted !");
