@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './UI/AddItemPage.css'
 
 import {useCreateLocationMutation, useGetAllLocationsQuery} from "../redux/api/locationApi.ts";
 import {useCreateDepartmentMutation, useGetAllDepartmentsQuery} from "../redux/api/departmentApi.ts";

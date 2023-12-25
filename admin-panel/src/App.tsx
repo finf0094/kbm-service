@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 import {useCreateLocationMutation, useGetAllLocationsQuery} from "./redux/api/locationApi.ts";
 import {useCreateDepartmentMutation, useGetAllDepartmentsQuery} from "./redux/api/departmentApi.ts";
@@ -16,6 +16,10 @@ import {useCreatePositionMutation, useGetAllPositionsQuery} from "./redux/api/po
 
 
 function App() {
+
+    const navigate = (url: string) => {
+        window.location.href = url;
+    }
 
     return (
         <Routes>
@@ -49,7 +53,7 @@ function App() {
                 <Route path="/integration/locations/add" element={
                     <AddItemPage
                         mutationFn={useCreateLocationMutation}
-                        onItemAdded={(item) => console.log('Location added:', item)}
+                        onItemAdded={(item) => { console.log('Location added:', item); navigate('http://localhost:5173/integration/locations') }}
                         queryFn={useGetAllLocationsQuery}
                         transformInput={(name) => name} 
                         title="Локация"
@@ -58,7 +62,7 @@ function App() {
                 <Route path="/integration/departments/add" element={
                     <AddItemPage
                         mutationFn={useCreateDepartmentMutation}
-                        onItemAdded={(item) => console.log('Department added:', item)}
+                        onItemAdded={(item) => { console.log('Department added:', item); navigate('http://localhost:5173/integration/departments'); }}
                         queryFn={useGetAllLocationsQuery} // Для создания департамента, выбираем локацию
                         transformInput={(name, parentId) => ({ name, locationId: parentId })}
                         title="Департамент" // Для департаментов преобразуем parentId в locationId
@@ -67,7 +71,7 @@ function App() {
                 <Route path="/integration/positions/add" element={
                     <AddItemPage
                         mutationFn={useCreatePositionMutation}
-                        onItemAdded={(item) => console.log('Position added:', item)}
+                        onItemAdded={(item) => { console.log('Position added:', item); navigate('http://localhost:5173/integration/positions'); }}
                         queryFn={useGetAllDepartmentsQuery} // Для создания позиции, выбираем департамент
                         transformInput={(name, parentId) => ({ name, departmentId: parentId })}
                         title="Позиции" // Для позиций преобразуем parentId в departmentId

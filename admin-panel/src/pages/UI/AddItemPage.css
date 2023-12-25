@@ -31,4 +31,10 @@
     font-size: 15px;
     font-weight: 400;
     margin-top: 15px;
+    transition: .25s ease-in-out;
+}
+
+.addItem button:hover {
+    color: #fff;
+    border: 1px solid #ffffff36;
 }
