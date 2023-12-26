@@ -3,10 +3,12 @@ import jakarta.transaction.Transactional;
 import kz.qbm.app.dto.quiz.room.EndQuizRequest;
 import kz.qbm.app.dto.quiz.room.QuizSessionDTO;
 import kz.qbm.app.dto.quiz.room.SubmitAnswerRequest;
+import kz.qbm.app.dto.quiz.room.SubmitOpenAnswerRequest;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.entity.application.Application;
 import kz.qbm.app.entity.application.ApplicationStatus;
 import kz.qbm.app.entity.quiz.Quiz;
+import kz.qbm.app.entity.quiz.openQuestion.OpenQuestion;
 import kz.qbm.app.entity.quiz.question.Answer;
 import kz.qbm.app.entity.quiz.question.Question;
 import kz.qbm.app.entity.quiz.room.QuizSession;
@@ -18,6 +20,7 @@ import kz.qbm.app.mapper.quiz.room.QuizSessionMapper;
 import kz.qbm.app.repository.UserRepository;
 import kz.qbm.app.repository.application.ApplicationRepository;
 import kz.qbm.app.repository.quiz.QuizRepository;
+import kz.qbm.app.repository.quiz.openQuestion.OpenQuestionRepository;
 import kz.qbm.app.repository.quiz.question.AnswerRepository;
 import kz.qbm.app.repository.quiz.question.QuestionRepository;
 import kz.qbm.app.repository.quiz.room.QuizSessionRepository;
@@ -38,6 +41,7 @@ public class QuizSessionService {
     private final QuestionRepository questionRepository;
     private final QuizSessionRepository quizSessionRepository;
     private final ApplicationRepository applicationRepository;
+    private final OpenQuestionRepository openQuestionRepository;
 
     // MAPPERS
     private final QuizSessionMapper quizSessionMapper;
@@ -79,6 +83,25 @@ public class QuizSessionService {
             quizSession.setStatus(QuizSessionStatus.TIME_EXPIRED);
         } else {
             updateScoreAndCalculatePercentage(quizSession, request.getQuestionId(), request.getAnswerId());
+        }
+
+        quizSession = quizSessionRepository.save(quizSession);
+        return quizSession;
+    }
+
+    @Transactional
+    public QuizSession submitOpenAnswer(SubmitOpenAnswerRequest request) {
+        QuizSession quizSession = getQuizSession(request.getUserId(), request.getQuizId());
+        checkQuizInProgress(quizSession);
+
+        if (isTimeExpired(quizSession)) {
+            quizSession.setStatus(QuizSessionStatus.TIME_EXPIRED);
+        } else {
+            OpenQuestion openQuestion = openQuestionRepository.findById(request.getOpenQuestionId()).orElseThrow(
+                    () -> new NotFoundException(String.format("Open question with id %s does not exist", request.getOpenQuestionId()))
+            );
+
+            quizSession.getOpenQuestionAnswers().put(openQuestion.getName(), request.getOpenQuestionText());
         }
 
         quizSession = quizSessionRepository.save(quizSession);

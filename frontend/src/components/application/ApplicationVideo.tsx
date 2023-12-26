@@ -121,7 +121,7 @@ const ApprovalRequestVideo: React.FC = () => {
                             />
                         )}
                         {loading && <div>Upload progress: {uploadProgress}%</div>}
-                        <button onClick={handleFinishClick}>Завершить</button>
+                        {selectedFile && <button onClick={handleFinishClick}>Завершить</button>}
                     </div>
                 </div>
             </div>

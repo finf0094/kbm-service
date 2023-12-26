@@ -5,6 +5,7 @@ import {baseQueryWithReauth} from "./baseQuery.ts";
 import {IQuizSession} from "../../models/quizSession/IQuizSession.ts";
 import {ISubmitAnswerRequest} from "../../models/quizSession/request/ISubmitAnswerRequest.ts";
 import {IEndQuizSessionRequest} from "../../models/quizSession/request/IEndQuizSessionRequest.ts";
+import {ISubmitOpenAnswerRequest} from "../../models/quizSession/request/ISubmitOpenAnswerRequest.ts";
 
 export const quizSessionApi = createApi({
     reducerPath: 'quizSessionApi',
@@ -32,6 +33,13 @@ export const quizSessionApi = createApi({
                 body: request,
             }),
         }),
+        submitOpenAnswer: builder.mutation<IQuizSession, ISubmitOpenAnswerRequest>({
+            query: (request) => ({
+                url: `quizSessions/submitOpenAnswer`,
+                method: 'POST',
+                body: request,
+            }),
+        }),
         endQuiz: builder.mutation<IQuizSession, IEndQuizSessionRequest>({
             query: (request) => ({
                 url: `quizSessions/end`,
@@ -43,6 +51,7 @@ export const quizSessionApi = createApi({
 });
 
 export const {
+    useSubmitOpenAnswerMutation,
     useGetQuizSessionByIdQuery,
     useGetAllQuizSessionsByUserIdQuery,
     useStartQuizMutation,

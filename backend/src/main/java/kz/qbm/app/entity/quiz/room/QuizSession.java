@@ -40,6 +40,13 @@ public class QuizSession {
     @Builder.Default
     private Map<String, String> selectedAnswers = new HashMap<>();
 
+    @ElementCollection
+    @CollectionTable(name = "quiz_session_open_answers", joinColumns = @JoinColumn(name = "session_id"))
+    @MapKeyColumn(name = "question_id")
+    @Column(name = "answer_text", columnDefinition = "TEXT")
+    @Builder.Default
+    private Map<String, String> openQuestionAnswers = new HashMap<>();
+
     private Date startTime;
 
     private Date endTime;
