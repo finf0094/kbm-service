@@ -11,14 +11,14 @@ export const userApi = createApi({
     endpoints: (builder) => ({
         getUser: builder.query<IUserDetail, { id?: number, itin?: string }>({
             query: ({ id, itin }) => ({
-                url: `/getUser`,
-                params: { id, itin },
+                url: `/users/getUser`,
+                params: {id, itin },
             }),
         }),
-        getAllUsers: builder.query<IPage<IUserSummary>, { offset: number, pageSize: number }>({
-            query: ({ offset, pageSize }) => ({
+        getAllUsers: builder.query<IPage<IUserSummary>, { search: string, offset: number, pageSize: number }>({
+            query: ({ search, offset, pageSize }) => ({
                 url: `/users`,
-                params: { offset, pageSize },
+                params: { search, offset, pageSize },
             }),
         }),
         updateUser: builder.mutation<IUserDetail, { userId: number, user: IUpdateUser }>({

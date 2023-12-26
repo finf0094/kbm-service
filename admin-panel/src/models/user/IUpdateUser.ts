@@ -1,4 +1,5 @@
-
+import {IRole} from "./IRole.ts";
+import {IPosition} from "../position/IPosition.ts";
 
 export interface IUpdateUser {
     id: number,
@@ -7,7 +8,8 @@ export interface IUpdateUser {
     lastname: string,
     password: string,
     email: string,
-    position: string,
+    position: IPosition,
     phoneNumber: string,
+    roles: IRole[]
     aboutMe: string,
 }

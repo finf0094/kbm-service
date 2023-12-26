@@ -28,6 +28,8 @@ import RequireAuth from "./components/auth/RequireAuth.tsx";
 import Layout from "./components/Provider/Layout.tsx";
 
 import './App.css'
+import UserListPage from "./pages/user/UserListPage.tsx";
+import UserDetailPage from "./pages/user/UserDetailPage.tsx";
 
 
 
@@ -120,6 +122,9 @@ function App() {
                         title="Позиции" // Для позиций преобразуем parentId в departmentId
                     />}
                 />
+
+                <Route path="/auth/users" element={<UserListPage/>}/>
+                <Route path="/auth/users/:id" element={<UserDetailPage/>}/>
 
 
                 {/* ADMIN */}

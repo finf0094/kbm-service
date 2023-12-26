@@ -1,3 +1,6 @@
+import {IRole} from "./IRole.ts";
+import {IPosition} from "../position/IPosition.ts";
+
 export interface IUserDetail {
     id: number,
     itin: string,
@@ -5,8 +8,9 @@ export interface IUserDetail {
     lastname: string,
     password: string,
     email: string,
-    position: string,
+    position: IPosition,
     phoneNumber: string,
+    roles: IRole[],
     aboutMe: string,
 }
 

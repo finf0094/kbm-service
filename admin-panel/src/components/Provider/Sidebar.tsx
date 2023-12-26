@@ -27,7 +27,7 @@ const Sidebar = () => {
     );
 };
 
-// TODO: realize this data with server 
+// TODO: realize this data in server
 const mockData = [
     {
         title: "AUTHENTICATION AND AUTHORIZATION",
@@ -38,7 +38,7 @@ const mockData = [
             },
             {
                 name: "Users",
-                redirect: "/auth/user/"
+                redirect: "/auth/users/"
             }
         ]
     },

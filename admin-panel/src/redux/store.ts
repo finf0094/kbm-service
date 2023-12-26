@@ -8,6 +8,7 @@ import {authApi} from "./api/authApi.ts";
 import {locationApi} from "./api/locationApi.ts";
 import {departmentApi} from "./api/departmentApi.ts";
 import {positionApi} from "./api/positionApi.ts";
+import {userApi} from "./api/userApi.ts";
 
 // API
 
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     [authApi.reducerPath]: authApi.reducer,
     [locationApi.reducerPath]: locationApi.reducer,
     [departmentApi.reducerPath]: departmentApi.reducer,
-    [positionApi.reducerPath]: positionApi.reducer
+    [positionApi.reducerPath]: positionApi.reducer,
+    [userApi.reducerPath]: userApi.reducer
 });
 
 // Создание хранилища
@@ -30,7 +32,8 @@ const store = configureStore({
         getDefaultMiddleware({
             serializableCheck: false
         }).concat(
-            authApi.middleware,locationApi.middleware, departmentApi.middleware, positionApi.middleware
+            authApi.middleware,locationApi.middleware, departmentApi.middleware, positionApi.middleware,
+            userApi.middleware
         ),
 });
 
