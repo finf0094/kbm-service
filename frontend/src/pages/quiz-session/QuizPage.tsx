@@ -103,13 +103,19 @@ const QuizPage = () => {
     }, [dispatch, userId, quizSession?.quiz?.quizId, selectedAnswers, currentQuestionIndex, totalQuestions]);
 
     const handleOpenAnswerSubmit = useCallback(async () => {
-        for (const questionId in selectedAnswers) {
-            await dispatch(submitOpenQuizAnswer({ userId, quizId: quizSession?.quiz?.quizId || '', openQuestionId: questionId, openQuestionText: selectedAnswers[questionId] }));
+        if (currentQuestion && 'id' in currentQuestion) {
+            const openQuestionId = currentQuestion.id;
+            if (openQuestionId) {
+                const openQuestionText = selectedAnswers[openQuestionId];
+                if (openQuestionText) {
+                    await dispatch(submitOpenQuizAnswer({ userId, quizId: quizSession?.quiz?.quizId || '', openQuestionId, openQuestionText }));
+                }
+            }
         }
         if (currentQuestionIndex === totalQuestions - 1) {
             await dispatch(finishQuizSession({ userId, quizId: quizSession?.quiz?.quizId || '' }));
         }
-    }, [dispatch, userId, quizSession?.quiz?.quizId, selectedAnswers, currentQuestionIndex, totalQuestions]);
+    }, [dispatch, userId, quizSession?.quiz?.quizId, selectedAnswers, currentQuestion, currentQuestionIndex, totalQuestions]);
 
     const handleNextQuestion = useCallback(() => {
         setCurrentQuestionIndex((prev) => prev + 1);
