@@ -1,0 +1,56 @@
+
+
+.item__head {
+    margin-bottom: 20px;
+}
+
+.item__head span {
+    font-weight: 600;
+}
+
+.item__head-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.item__datas {
+    display: grid;
+    grid-gap: 4px;
+}
+
+.item__title, .related-items__title {
+    border-bottom: 1px solid #ffffff17;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.related-items__title, .item__title, .item__name {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.item__delete, .item__save {
+    background: #ba2121;
+    border-radius: 4px;
+    padding: 7px 15px;
+    transition: .25s ease-in-out;
+}
+
+.item__save {
+    background: #3535f8;
+}
+
+.item__save:hover {
+    background: #3131e2;
+}
+
+.item__delete:hover {
+    background: #a41515;
+}
+
+.item__data-notFound {
+    font-weight: 400;
+}

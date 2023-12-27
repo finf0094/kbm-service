@@ -4,19 +4,22 @@ import {
     useCreateLocationMutation,
     useDeleteLocationMutation,
     useGetAllLocationsQuery,
-    useGetLocationByIdQuery
+    useGetLocationByIdQuery,
+    useUpdateLocationMutation
 } from "./redux/api/locationApi.ts";
 import {
     useCreateDepartmentMutation,
     useDeleteDepartmentMutation,
     useGetAllDepartmentsQuery,
-    useGetDepartmentByIdQuery
+    useGetDepartmentByIdQuery,
+    useUpdateDepartmentMutation
 } from "./redux/api/departmentApi.ts";
 import {
     useCreatePositionMutation,
     useDeletePositionMutation,
     useGetAllPositionsQuery,
-    useGetPositionByIdQuery
+    useGetPositionByIdQuery,
+    useUpdatePositionMutation
 } from "./redux/api/positionApi.ts";
 
 import AddItemPage from "./pages/item/AddItemPage.tsx";
@@ -50,21 +53,21 @@ function App() {
                     <ItemListPage
                         key="locations"
                         queryFn={useGetAllLocationsQuery}
-                        title="Location"
+                        title="локации"
                     />}
                 />
                 <Route path="/integration/departments/" element={
                     <ItemListPage
                         key="departments"
                         queryFn={useGetAllDepartmentsQuery}
-                        title="Department"
+                        title="департамент"
                     />}
                 />
                 <Route path="/integration/positions/" element={
                     <ItemListPage
                         key="positions"
                         queryFn={useGetAllPositionsQuery}
-                        title="Position"
+                        title="позиции"
                     />}
                 />
 
@@ -74,7 +77,9 @@ function App() {
                         queryFn={useGetLocationByIdQuery}
                         relatedQueryFn={useGetAllDepartmentsQuery}
                         delQueryFn={useDeleteLocationMutation}
-                        title="Location"
+                        updateMutationFn={useUpdateLocationMutation}
+                        title="локации"
+                        relatedTitle="Департаменты"
                     />}
                 />
                 <Route path="/integration/departments/:id" element={
@@ -82,14 +87,17 @@ function App() {
                         queryFn={useGetDepartmentByIdQuery}
                         relatedQueryFn={useGetAllPositionsQuery}
                         delQueryFn={useDeleteDepartmentMutation}
-                        title="Department"
+                        updateMutationFn={useUpdateDepartmentMutation}
+                        title="департамент"
+                        relatedTitle="Позиции"
                     />}
                 />
                 <Route path="/integration/positions/:id" element={
                     <ItemPage
                         queryFn={useGetPositionByIdQuery}
                         delQueryFn={useDeletePositionMutation}
-                        title="Position"
+                        updateMutationFn={useUpdatePositionMutation}
+                        title="позиции"
                     />}
                 />
 

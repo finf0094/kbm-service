@@ -23,7 +23,7 @@ const ItemListPage: React.FC<{
     });
 
     if (isLoading) return <div className="center"><Loader/></div>;
-    if (!isSuccess) return <div>Error loading {title}</div>;
+    if (!isSuccess) return <div>Ошибка при загрузке {title}</div>;
 
     const handleSearch = (search: string) => {
         setSearch(search);
@@ -33,7 +33,7 @@ const ItemListPage: React.FC<{
     return (
         <div>
             <List title={title} items={items.content} onSearch={handleSearch} />
-            <Pagination totalPages={items.totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
+            {items.totalPages > 1 && <Pagination totalPages={items.totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
         </div>
     );
 };

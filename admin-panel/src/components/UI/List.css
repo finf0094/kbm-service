@@ -17,12 +17,24 @@
     position: relative;
 }
 
+.content__search input {
+    width: 300px;
+    border-radius: 50px;
+    height: 35px;
+    padding: 0px 20px;
+}
+
 .content__search button {
     position: absolute;
     right: 13px;
     top: 6px;
     z-index: 1;
     cursor: pointer;
+    transition: .25s ease-in-out;
+}
+
+.content__search-icon_path:hover {
+    fill: #fff;
 }
 
 /* Table */

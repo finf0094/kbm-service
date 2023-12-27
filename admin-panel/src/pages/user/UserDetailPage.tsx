@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import './styles.css'
 import { useParams, useNavigate } from "react-router-dom";
-import {useGetUserQuery, useUpdateUserMutation} from "../../redux/api/userApi.ts";
-import {useGetAllPositionsQuery} from "../../redux/api/positionApi.ts";
+import { useGetUserQuery, useUpdateUserMutation } from "../../redux/api/userApi.ts";
+import { useGetAllPositionsQuery } from "../../redux/api/positionApi.ts";
 
 
 // Mock roles data
@@ -50,47 +51,48 @@ const UserDetailPage: React.FC = () => {
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         updateUser({ userId: Number(id), user: editedUser });
+        window.location.href = 'http://localhost:5173/auth/users'
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                First Name:
+        <form onSubmit={handleSubmit} className="user-edit">
+            <label className="user-edit__item">
+                Имя:
                 <input type="text" name="firstname" value={editedUser.firstname} onChange={handleInputChange} />
             </label>
-            <label>
-                Last Name:
+            <label className="user-edit__item">
+                Фамилия:
                 <input type="text" name="lastname" value={editedUser.lastname} onChange={handleInputChange} />
             </label>
-            <label>
+            <label className="user-edit__item">
                 Email:
                 <input type="email" name="email" value={editedUser.email} onChange={handleInputChange} />
             </label>
-            <label>
-                Phone Number:
+            <label className="user-edit__item">
+                Номер телефона:
                 <input type="tel" name="phoneNumber" value={editedUser.phoneNumber} onChange={handleInputChange} />
             </label>
-            <label>
-                ITIN:
+            <label className="user-edit__item">
+                ИИН:
                 <input type="text" name="itin" value={editedUser.itin} onChange={handleInputChange} />
             </label>
-            <label>
-                Position:
+            <label className="user-edit__item">
+                Позиция:
                 <select name="position" value={editedUser.position?.id} onChange={handleSelectChange}>
                     {positions.content.map((position) => (
                         <option key={position.id} value={position.id}>{position.name}</option>
                     ))}
                 </select>
             </label>
-            <label>
-                Role:
+            <label className="user-edit__item">
+                Роль:
                 <select name="role" value={editedUser.roles[0]?.name} onChange={handleRoleChange}>
                     {roles.map((role) => (
                         <option key={role.id} value={role.name}>{role.name}</option>
                     ))}
                 </select>
             </label>
-            <button type="submit">Save</button>
+            <button type="submit" className="user-edit__button">Сохранить</button>
         </form>
     );
 };

@@ -25,7 +25,7 @@ const UserListPage: React.FC = () => {
     return (
         <div>
             <UserList users={users.content} onSearch={handleSearch} />
-            <Pagination totalPages={users.totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
+            {users.totalPages > 1 && <Pagination totalPages={users.totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
         </div>
     );
 };

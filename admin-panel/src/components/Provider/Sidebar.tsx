@@ -13,9 +13,9 @@ const Sidebar = () => {
                                 {item.links.map((link) => (
                                     <div className="sidebar__item-link" key={link.name}>
                                         <Link to={link.redirect}>{link.name}</Link>
-                                        <button className="sidebar__item-add">
+                                        <Link to={`${link.redirect}add`} className="sidebar__item-add">
                                             <span>+</span> Add
-                                        </button>
+                                        </Link>
                                     </div>
                                 ))}
                             </li>
@@ -30,20 +30,16 @@ const Sidebar = () => {
 // TODO: realize this data in server
 const mockData = [
     {
-        title: "AUTHENTICATION AND AUTHORIZATION",
+        title: "АВТОРИЗАЦИЯ",
         links: [
             {
-                name: "Groups",
-                redirect: "/auth/group/"
-            },
-            {
-                name: "Users",
+                name: "Пользователи",
                 redirect: "/auth/users/"
             }
         ]
     },
     {
-        title: "INTEGRATION",
+        title: "ИНТЕГРАЦИЯ",
         links: [
             {
                 name: "Локации",
@@ -54,7 +50,7 @@ const mockData = [
                 redirect: "/integration/departments/"
             },
             {
-                name: "Позиций",
+                name: "Позиции",
                 redirect: "/integration/positions/"
             }
         ]

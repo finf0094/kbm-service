@@ -21,7 +21,7 @@ const List: React.FC<{ items: IItem[],title: string, onSearch: (search: string) 
             <div className="content">
                 <div className="content__inner">
                     <div className="content__head">
-                        <div className="content__title">Select {title} to change</div>
+                        <div className="content__title">Выберите {title.toLowerCase()} для редактирования</div>
                         <form action="" className="content__search" onSubmit={handleSearch}>
                             <input type="text" placeholder="Поиск" />
                             <button type="submit" className="content__search-button"><svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@ const List: React.FC<{ items: IItem[],title: string, onSearch: (search: string) 
                             </svg></button>
                         </form>
                         <Link to={`add`} className="content__add">
-                            Add {title}
+                            Добавить {title.toLowerCase()}
                         </Link>
                     </div>
                     <table className="content__table">
