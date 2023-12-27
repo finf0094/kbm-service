@@ -40,7 +40,9 @@ const ConfidentModal: React.FC<{ id: string, selectedOption: string, resetSelect
     }
 
     const send = (selectedOption: string) => {
-        console.log(selectedOption)
+
+
+
     }
 
     return (

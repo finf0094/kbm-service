@@ -7,12 +7,13 @@ import ConfidentModal from "../modal/applicationProfile/ConfidentModal.tsx";
 import {IUserDetail} from "../../models/user/IUserDetail.ts";
 
 import "./UI/UserInfo.css";
+
 interface IUserInfoProps {
     user: IUserDetail,
     status: string
 }
 
-const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user, status }) => {
+const UserInfo: React.FC<IUserInfoProps> = React.memo(({user, status}) => {
     const {t} = useTranslation();
 
     const dispatch = useAppDispatch();
@@ -36,10 +37,10 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user, status }) => {
         <span className="user-info__name">
             {user.firstname} {user.lastname}
     </span>
-                        <span className="user-info__job">{user.position.name}</span>
+                        <span className="user-info__job">{user.position?.name}</span>
                     </div>
                     <div className="user-info__info">
-                        <span>{user.position.name}</span>
+                        <span>{user.position?.name}</span>
                         <span>{user.phoneNumber}</span>
                         <span>{user.email}</span>
                     </div>

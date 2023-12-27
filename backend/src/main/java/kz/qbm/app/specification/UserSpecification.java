@@ -22,16 +22,17 @@ public class UserSpecification {
         };
     }
 
-
     public static Specification<User> search(String search) {
         return (root, query, cb) -> {
+            Join<User, Position> position = root.join("position");
+
             return cb.or(
                     cb.like(root.get("itin"), "%" + search + "%"),
                     cb.like(root.get("firstname"), "%" + search + "%"),
                     cb.like(root.get("lastname"), "%" + search + "%"),
                     cb.like(root.get("phoneNumber"), "%" + search + "%"),
-                    cb.like(root.get("position"), "%" + search + "%"),
-                    cb.like(root.get("email"), "%" + search + "%")
+                    cb.like(root.get("email"), "%" + search + "%"),
+                    cb.like(position.get("name"), "%" + search + "%")
             );
         };
     }
