@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import './UI/ItemPage.css'
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/utils/Loader.tsx";
-import { toast } from "react-toastify";
 
 interface IItemPageProps {
     queryFn: any;
@@ -33,14 +32,11 @@ const ItemPage: React.FC<IItemPageProps> = ({ queryFn, relatedQueryFn, delQueryF
     // Mutation for deleting item
     const [deleteItem, { isLoading: deleteLoading, isError: deleteError, error: deleteErrorData }] = delQueryFn ? delQueryFn() : [null, { isLoading: false, isError: false, error: null }];
     const [updateItem, { isLoading: updateLoading, isError: updateError, error: updateErrorData }] = updateMutationFn();
-    console.log(itemData);
     
-    const [editedName, setEditedName] = useState(itemData.name);
-
+    const [editedName, setEditedName] = useState("");
 
     if (deleteError) return <div>{deleteErrorData.data.message}</div>
     if (updateError) return <div>{updateErrorData.data.message}</div>
-    if (!itemData) return <div>Не удалось получить информацию о элементе.</div>; // or return a loading indicator
 
     if (itemLoading || relatedLoading || deleteLoading || updateLoading) return <div className="center"><Loader /></div>
     if (itemError || relatedError || deleteError || updateError) return <div>Ошибка с загрузкой информации о элементе.</div>
@@ -48,16 +44,12 @@ const ItemPage: React.FC<IItemPageProps> = ({ queryFn, relatedQueryFn, delQueryF
     const handleDelete = () => {
         if (deleteItem) {
             deleteItem(id);
-            toast.success('Успешно удалено.')
         }
     }
 
     const handleUpdate = () => {
-        if (updateItem) {
-            updateItem(id, editedName);
-            window.history.back();
-            window.location.reload();
-            toast.success(`${itemData.name} успешно переименован в ${editedName}!`)
+        if (id && editedName) {
+            updateItem({id, newName: editedName});
         }
     }
 
@@ -86,11 +78,11 @@ const ItemPage: React.FC<IItemPageProps> = ({ queryFn, relatedQueryFn, delQueryF
                                     <p className="item__data">Локация: <span>{itemData.department.location.name}</span></p>
                                 )}
                             </div>
-                        ) : <p className="item__data-notFound">Не найдено локации или департаментов.</p>}
+                        ): null}
                     </div>
                     {relatedData && (
                         <div className="related-items">
-                            <h2 className="related-items__title">Похожие {relatedTitle && relatedTitle.toLowerCase()}</h2>
+                            <h2 className="related-items__title">{relatedTitle && relatedTitle.toLowerCase()}</h2>
                             <table className="content__table">
                                 <thead>
                                     <tr>

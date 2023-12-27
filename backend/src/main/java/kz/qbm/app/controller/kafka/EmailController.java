@@ -1,7 +1,6 @@
 package kz.qbm.app.controller.kafka;
 
-import kz.qbm.app.dto.kafka.Email;
-import kz.qbm.app.dto.kafka.TestEmployeeEmail;
+import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import kz.qbm.app.service.kafka.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

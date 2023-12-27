@@ -21,6 +21,9 @@ spring:
 
 kafka:
   servers: ${KAFKA_SERVER:localhost:9092}
+  topics:
+    test: send.email.test
+    interview: send.email.interview
 
 springdoc:
   swagger-ui:

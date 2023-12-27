@@ -2,6 +2,7 @@ package kz.qbm.app.controller.application;
 
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
+import kz.qbm.app.dto.kafka.interview.ScheduleInterviewDetails;
 import kz.qbm.app.entity.application.Application;
 import kz.qbm.app.entity.application.Education;
 import kz.qbm.app.entity.application.Employee;
@@ -98,6 +99,11 @@ public class ApplicationController {
         return applicationService.startTesting(userId);
     }
 
+    @PostMapping("/{applicationId}/scheduleAnInterview")
+    public Application scheduleAnInterview(@PathVariable String applicationId, ScheduleInterviewDetails scheduleInterviewDetails) {
+        return applicationService.scheduleAnInterview(applicationId, scheduleInterviewDetails);
+    }
+
     @PostMapping("{applicationId}/approve")
     public Application approve(@PathVariable String applicationId) {
         
@@ -108,4 +114,5 @@ public class ApplicationController {
     public Application reject(@PathVariable String applicationId) {
         return applicationService.reject(applicationId);
     }
+
 }

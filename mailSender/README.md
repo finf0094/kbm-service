@@ -71,7 +71,7 @@ Stop and remove mail delivery service.
 |   |       |   
 |   |       +---static
 |   |       \---templates
-|   |               confirmation.html
+|   |               test.html
 |   |               
 |   \---test
 |       \---java

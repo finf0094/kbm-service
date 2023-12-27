@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Тест для сотрудника</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #446699;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 20px 0;
+            color: #fff;
+            background-color: #446699;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${'Привет, ' + employeeName + '!'}">Привет, Имя сотрудника!</h1>
+    <p>Сегодня <span th:text="${#dates.format(subscriptionDate)}">28-12-2023</span>.</p>
+    <p>Нажмите на кнопку ниже, чтобы перейти к тесту:</p>
+    <a th:href="${testLink}" class="button">Перейти к тесту</a>
+    <p>Удачи!</p>
+    <p>С уважением,</p>
+    <p>KBM CORP.</p>
+</div>
+</body>
+</html>

@@ -3,7 +3,9 @@ package kz.qbm.app.service.application;
 import jakarta.transaction.Transactional;
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
-import kz.qbm.app.dto.kafka.TestEmployeeEmail;
+import kz.qbm.app.dto.kafka.interview.InterviewEmployeeEmail;
+import kz.qbm.app.dto.kafka.interview.ScheduleInterviewDetails;
+import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.entity.application.*;
 import kz.qbm.app.entity.position.Position;
@@ -235,14 +237,14 @@ public class ApplicationService {
 
         TestEmployeeEmail testEmployeeEmail = new TestEmployeeEmail(
                 application.getUser().getEmail(),
-                "QBM",
+                "KBM",
                 "subject",
                 "content",
                 application.getUser().getFirstname(),
                 List.of("185.125.91.161:3000/quiz-sessions")
         );
 
-        producerService.sendEmail("send.email", testEmployeeEmail);
+        producerService.sendTestEmail(testEmployeeEmail);
 
         application.setStatus(ApplicationStatus.TESTING);
         application = applicationRepository.save(application);
@@ -270,6 +272,28 @@ public class ApplicationService {
         return applicationRepository.save(application);
     }
 
+    public Application scheduleAnInterview(String applicationId, ScheduleInterviewDetails scheduleInterviewDetails) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new NotFoundException("Application not found"));
+        application.setStatus(ApplicationStatus.INTERVIEW_SCHEDULED);
+
+        InterviewEmployeeEmail interviewEmployeeEmail =
+                new InterviewEmployeeEmail(
+                        application.getUser().getEmail(),
+                        "KBM CORP.",
+                        "subject",
+                        "content",
+                        application.getUser().getFirstname(),
+                        scheduleInterviewDetails.getPosition(),
+                        scheduleInterviewDetails.getFormat(),
+                        scheduleInterviewDetails.getVenue(),
+                        scheduleInterviewDetails.getTime()
+                );
+
+        producerService.sendInterviewEmail(interviewEmployeeEmail);
+
+        return applicationRepository.save(application);
+    }
 
     // Extract key value from the error message
     private String extractKeyValueFromErrorMessage(String errorMessage) {
