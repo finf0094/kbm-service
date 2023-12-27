@@ -51,7 +51,6 @@ public class ApplicationService {
     private final QuizSessionService quizSessionService;
     private final FileSystemStorageService fileSystemStorageService;
 
-    // TODO: here necessary to do to set video in application
     public Optional<Application> getApplicationById(String applicationId) {
         return applicationRepository.findById(applicationId);
     }
@@ -257,6 +256,20 @@ public class ApplicationService {
         return application;
     }
 
+    public Application approve(String applicationId) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new NotFoundException("Application not found"));
+        application.setStatus(ApplicationStatus.APPROVED);
+        return applicationRepository.save(application);
+    }
+
+    public Application reject(String applicationId) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new NotFoundException("Application not found"));
+        application.setStatus(ApplicationStatus.REJECTED);
+        return applicationRepository.save(application);
+    }
+
 
     // Extract key value from the error message
     private String extractKeyValueFromErrorMessage(String errorMessage) {
@@ -273,4 +286,6 @@ public class ApplicationService {
             return "N/A";
         }
     }
+
+
 }

@@ -1,0 +1,27 @@
+.pagination {
+    margin-top: 15px;
+}
+
+.pagination__content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pagination__item {
+    border: 1px solid #ffffff17;
+    padding: 4px 11px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #63ceff;
+}
+
+.pagination__total {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.pagination__total span {
+    font-weight: 500;
+    color: #63ceff;
+}

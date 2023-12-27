@@ -1,27 +1,28 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
 import {setupListeners} from "@reduxjs/toolkit/query";
 
 
 // REDUCER
 import authReduces from "./store/authSlice.ts";
 import {authApi} from "./api/authApi.ts";
+import {locationApi} from "./api/locationApi.ts";
+import {departmentApi} from "./api/departmentApi.ts";
+import {positionApi} from "./api/positionApi.ts";
+import {userApi} from "./api/userApi.ts";
 
 // API
 
 
 
-// Конфигурация Redux Persist
-const persistConfig = {
-    key: 'root',
-    storage,
-};
 
 // Объединение редьюсеров с поддержкой Redux Persist
 const rootReducer = combineReducers({
     auth: authReduces,
     [authApi.reducerPath]: authApi.reducer,
+    [locationApi.reducerPath]: locationApi.reducer,
+    [departmentApi.reducerPath]: departmentApi.reducer,
+    [positionApi.reducerPath]: positionApi.reducer,
+    [userApi.reducerPath]: userApi.reducer
 });
 
 // Создание хранилища
@@ -31,7 +32,8 @@ const store = configureStore({
         getDefaultMiddleware({
             serializableCheck: false
         }).concat(
-            authApi.middleware
+            authApi.middleware,locationApi.middleware, departmentApi.middleware, positionApi.middleware,
+            userApi.middleware
         ),
 });
 
@@ -39,7 +41,6 @@ const store = configureStore({
 setupListeners(store.dispatch);
 
 // Создание объекта persistor для Redux Persist
-const persistor = persistStore(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
@@ -47,4 +48,4 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
 // Экспорт хранилища и persistor
-export { store, persistor };
+export { store };

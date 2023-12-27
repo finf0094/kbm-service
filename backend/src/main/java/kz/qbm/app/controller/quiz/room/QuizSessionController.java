@@ -2,6 +2,7 @@ package kz.qbm.app.controller.quiz.room;
 
 import kz.qbm.app.dto.quiz.room.EndQuizRequest;
 import kz.qbm.app.dto.quiz.room.SubmitAnswerRequest;
+import kz.qbm.app.dto.quiz.room.SubmitOpenAnswerRequest;
 import kz.qbm.app.entity.quiz.room.QuizSession;
 import kz.qbm.app.exception.UnknownParameterException;
 import kz.qbm.app.service.quiz.room.QuizSessionService;
@@ -44,6 +45,11 @@ public class QuizSessionController {
     @PostMapping("/submitAnswer")
     public QuizSession submitAnswer(@RequestBody SubmitAnswerRequest request) {
         return quizSessionService.submitAnswer(request);
+    }
+
+    @PostMapping("/submitOpenAnswer")
+    public QuizSession submitOpenAnswer(@RequestBody SubmitOpenAnswerRequest request) {
+        return quizSessionService.submitOpenAnswer(request);
     }
 
     @PostMapping("/end")

@@ -9,5 +9,4 @@ public class SubmitAnswerRequest {
     private String questionId;
     private String answerId;
 
-    // getters and setters
 }

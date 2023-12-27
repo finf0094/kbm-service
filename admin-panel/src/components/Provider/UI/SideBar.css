@@ -1,24 +1,55 @@
 .sidebar {
-    background-color: #343a40;
-    color: white;
-    padding: 20px;
-    width: 200px;
-    height: 100%; /* Full height */
-    box-sizing: border-box; /* Include padding in the height calculation */
+    width: 300px;
+    height: 100vh; /* Set an explicit height */
+    padding: 20px 20px 0;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: var(--item-bg);
+    overflow-y: auto; /* Add overflow-y property for scroll if content exceeds height */
 }
 
-.sidebar-section h3 {
-    margin-top: 0;
+
+.sidebar__items {
+    display: grid;
+    grid-gap: 30px;
 }
 
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    margin: 5px 0;
+.sidebar__item {
+    border: 1px solid #ffffff17;
 }
 
-.sidebar a:hover {
-    background-color: #495057;
+.sidebar__item-title {
+    background: #464646;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 7px 15px;
+    padding-right: 0;
+    text-transform: uppercase;
+}
+
+.sidebar__item-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 7px 15px;
+    padding-right: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #ffffff0c;
+}
+
+.sidebar__item-link:nth-child(odd) {
+    background: #2e2e2e;
+}
+
+.sidebar__item-link:nth-child(even) {
+    background: #242424;
+}
+
+.sidebar__item-link:last-child {
+    border: 0;
 }

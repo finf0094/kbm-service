@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Информационное письмо</title>
+    <title>Поздравляем с успешным прохождением!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
         body {
@@ -29,12 +29,11 @@
 </head>
 <body>
 <div class="container">
-    <h1 th:text="${title}">Заголовок</h1>
-    <p th:text="${greeting}">Приветствие</p>
-    <div th:each="info : ${information}">
-        <h2 th:text="${info.title}">Подзаголовок</h2>
-        <p th:text="${info.content}">Содержание</p>
-    </div>
+    <h1 th:text="${'Поздравляем, ' + userName + '!'}">Поздравляем, Имя пользователя!</h1>
+    <p>Вы успешно прошли тестирование на позицию <span th:text="${position}">Java разработчик</span>, и вам назначено интервью <span th:text="${#dates.format(testDate)}">28-12-2023</span>.</p>
+    <p th:if="${format == 'online'}">Интервью будет проводиться в формате онлайн.</p>
+    <p th:if="${format == 'offline'}">Интервью будет проводиться в <span th:text="${location}">Москва</span>.</p>
+    <p>Благодарим вас за участие и желаем удачи на интервью!</p>
     <p>С уважением,</p>
     <p>A pro Studio</p>
 </div>

@@ -15,7 +15,7 @@ const ApprovalRequestInfo: React.FC<ApprovalRequestInfoProps> = ({application,})
             </h3>
             <div className="admin__claims-info_items">
                 <h3 className="admin__claims-info_item admin__claims-job">
-                    {application.user.position}
+                    {application.user.position?.name}
                 </h3>
                 <h3 className="admin__claims-info_item admin__claims-phone">
                     {application.user.phoneNumber}

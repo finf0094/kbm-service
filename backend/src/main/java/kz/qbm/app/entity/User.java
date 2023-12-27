@@ -2,6 +2,7 @@ package kz.qbm.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import kz.qbm.app.entity.position.Position;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,8 +39,9 @@ public class User {
     @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
-    private String position;
+    @ManyToOne
+    @JoinColumn(name = "position_id")
+    private Position position;
 
     @Column(nullable = false)
     private String aboutMe;

@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import './UI/LoginPage.css';
 import {useLoginUserMutation} from "../redux/api/authApi.ts";
-import {toast} from "react-toastify";
 import Loader from "../components/utils/Loader.tsx";
 import {useAppDispatch} from "../hooks/useAppDispatch.ts";
 import {loginSuccess} from "../redux/store/authSlice.ts";
@@ -19,7 +18,7 @@ const LoginPage = () => {
         if (itin && password) {
             await loginUser({itin, password})
         } else {
-            toast.error("Please fill all input")
+            alert("Please fill all input")
         }
     };
 
