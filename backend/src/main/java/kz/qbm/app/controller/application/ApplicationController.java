@@ -97,4 +97,15 @@ public class ApplicationController {
     public Application startTesting(@PathVariable Long userId) {
         return applicationService.startTesting(userId);
     }
+
+    @PostMapping("{applicationId}/approve")
+    public Application approve(@PathVariable String applicationId) {
+        
+        return applicationService.approve(applicationId);
+    }
+
+    @PostMapping("{applicationId}/reject")
+    public Application reject(@PathVariable String applicationId) {
+        return applicationService.reject(applicationId);
+    }
 }

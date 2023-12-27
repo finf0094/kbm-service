@@ -3,6 +3,7 @@ import { quizSessionApi } from '../api/quizSessionApi';
 import {IQuizSession} from "../../models/quizSession/IQuizSession.ts";
 import {ISubmitAnswerRequest} from "../../models/quizSession/request/ISubmitAnswerRequest.ts";
 import {IEndQuizSessionRequest} from "../../models/quizSession/request/IEndQuizSessionRequest.ts";
+import {ISubmitOpenAnswerRequest} from "../../models/quizSession/request/ISubmitOpenAnswerRequest.ts";
 
 interface QuizSessionState {
     session: IQuizSession | null;
@@ -52,6 +53,18 @@ export const submitQuizAnswer = createAsyncThunk<IQuizSession, ISubmitAnswerRequ
     }
 );
 
+export const submitOpenQuizAnswer = createAsyncThunk<IQuizSession, ISubmitOpenAnswerRequest>(
+    'quizSession/submitOpenAnswerStatus',
+    async (submitOpenAnswerRequest, { dispatch }) => {
+        const response = await dispatch(quizSessionApi.endpoints.submitOpenAnswer.initiate(submitOpenAnswerRequest));
+        if ('data' in response) {
+            return response.data;
+        } else {
+            throw response.error;
+        }
+    }
+);
+
 export const finishQuizSession = createAsyncThunk<IQuizSession, IEndQuizSessionRequest>(
     'quizSession/endStatus',
     async (endQuizRequest, { dispatch }) => {
@@ -85,6 +98,10 @@ const quizSessionSlice = createSlice({
                 state.session = action.payload;
             })
             .addCase(submitQuizAnswer.fulfilled, (state, action: PayloadAction<IQuizSession>) => {
+                state.status = 'succeeded';
+                state.session = action.payload;
+            })
+            .addCase(submitOpenQuizAnswer.fulfilled, (state, action: PayloadAction<IQuizSession>) => {
                 state.status = 'succeeded';
                 state.session = action.payload;
             })

@@ -1,12 +1,12 @@
 package kz.qbm.app.dto.quiz.room;
 
+
 import lombok.Data;
 
 @Data
-public class SubmitAnswerRequest {
+public class SubmitOpenAnswerRequest {
     private Long userId;
     private String quizId;
-    private String questionId;
-    private String answerId;
-
+    private String openQuestionId;
+    private String openQuestionText;
 }
