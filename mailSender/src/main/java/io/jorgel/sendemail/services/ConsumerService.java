@@ -67,9 +67,8 @@ public class ConsumerService {
         String position = object.getAsJsonObject().get("position").getAsString();
         String format = object.getAsJsonObject().get("format").getAsString();
         String venue = object.getAsJsonObject().get("venue").getAsString();
-        String timeString = object.getAsJsonObject().get("time").getAsString();
-        Instant instant = Instant.parse(timeString);
-        Duration time = Duration.between(Instant.EPOCH, instant);
+        long timeMillis = object.getAsJsonObject().get("time").getAsLong();
+        Date time = new Date(timeMillis);
 
         InterviewEmployeeEmail interviewEmail = new InterviewEmployeeEmail(to, from, subject, content, employeeName, position, format, venue, time);
 

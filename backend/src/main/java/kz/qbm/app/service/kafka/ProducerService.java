@@ -2,6 +2,7 @@ package kz.qbm.app.service.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import kz.qbm.app.dto.kafka.interview.InterviewEmployeeEmail;
 import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,9 @@ public class ProducerService {
 
     public void sendInterviewEmail(InterviewEmployeeEmail interviewEmployeeEmail) {
         try {
-            String message = objectMapper.writeValueAsString(interviewEmployeeEmail);
+            ObjectNode interviewEmailNode = objectMapper.valueToTree(interviewEmployeeEmail);
+            interviewEmailNode.put("time", interviewEmployeeEmail.getTime().getTime());
+            String message = objectMapper.writeValueAsString(interviewEmailNode);
             kafkaTemplate.send(interviewEmailTopic, message);
         } catch (JsonProcessingException e) {
             log.error("Json processing error: ", e);

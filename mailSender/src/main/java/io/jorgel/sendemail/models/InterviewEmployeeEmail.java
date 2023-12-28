@@ -11,8 +11,8 @@ public class InterviewEmployeeEmail extends Email {
     private String position;
     private String format;
     private String venue;
-    private Duration time;
-    public InterviewEmployeeEmail(String to, String from, String subject, String content, String employeeName, String position, String format, String venue, Duration time) {
+    private Date time;
+    public InterviewEmployeeEmail(String to, String from, String subject, String content, String employeeName, String position, String format, String venue, Date time) {
         super(to, from, subject, content);
         this.employeeName = employeeName;
         this.position = position;
