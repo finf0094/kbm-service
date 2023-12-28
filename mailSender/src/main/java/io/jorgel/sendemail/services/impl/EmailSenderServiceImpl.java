@@ -17,6 +17,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Service
@@ -68,7 +70,8 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         context.setVariable("position", interviewEmployeeEmail.getPosition()); // Set the position variable
         context.setVariable("format", interviewEmployeeEmail.getFormat()); // Set the format variable
         context.setVariable("venue", interviewEmployeeEmail.getVenue()); // Set the venue variable
-        context.setVariable("time", interviewEmployeeEmail.getTime()); // You should pass the actual date here
+        LocalDateTime time = LocalDateTime.ofInstant(interviewEmployeeEmail.getTime().toInstant(), ZoneId.systemDefault());
+        context.setVariable("time", time);
 
         String html = templateEngine.process("interview", context); // "interview" is the template name
 
