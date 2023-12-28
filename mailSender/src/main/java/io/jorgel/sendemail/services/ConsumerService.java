@@ -68,7 +68,7 @@ public class ConsumerService {
         String timeString = object.getAsJsonObject().get("time").getAsString();
 
         // Преобразование timeString в Date
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         LocalDateTime localDateTime = LocalDateTime.parse(timeString, formatter);
         Date time = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
