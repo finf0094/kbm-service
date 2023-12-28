@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
 import kz.qbm.app.dto.kafka.interview.InterviewEmployeeEmail;
-import kz.qbm.app.dto.kafka.interview.ScheduleInterviewDetails;
+import kz.qbm.app.entity.application.ScheduleInterviewDetails;
 import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.entity.application.*;
@@ -292,6 +292,7 @@ public class ApplicationService {
 
         producerService.sendInterviewEmail(interviewEmployeeEmail);
 
+        application.setInterviewDetails(scheduleInterviewDetails);
         return applicationRepository.save(application);
     }
 

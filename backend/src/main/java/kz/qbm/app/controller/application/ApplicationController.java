@@ -2,7 +2,7 @@ package kz.qbm.app.controller.application;
 
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
-import kz.qbm.app.dto.kafka.interview.ScheduleInterviewDetails;
+import kz.qbm.app.entity.application.ScheduleInterviewDetails;
 import kz.qbm.app.entity.application.Application;
 import kz.qbm.app.entity.application.Education;
 import kz.qbm.app.entity.application.Employee;

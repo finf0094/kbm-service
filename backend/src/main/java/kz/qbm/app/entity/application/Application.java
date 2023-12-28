@@ -49,5 +49,9 @@ public class Application {
     @JoinColumn(name = "application_id")
     private List<Education> educations;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "interview_details_id")
+    private ScheduleInterviewDetails interviewDetails;
+
     private String videoUrl;
 }

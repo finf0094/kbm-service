@@ -97,6 +97,21 @@ const ModerationPage: React.FC = () => {
                                 <p className="admin__nav-name">Отклонённые</p>
                             </button>
                         </li>
+                        <li className="admin__nav-item">
+                            <button
+                                className="admin__nav-button"
+                                onClick={() => handleButtonClick(ApplicationStatus.INTERVIEW_SCHEDULED)}
+                            >
+                                <span
+                                    className={
+                                        showingStatus == ApplicationStatus.INTERVIEW_SCHEDULED
+                                            ? "admin__nav-navbar active-nav"
+                                            : "admin__nav-navbar"
+                                    }
+                                ></span>
+                                <p className="admin__nav-name">Назначено интервью</p>
+                            </button>
+                        </li>
                     </ul>
                     <div className="admin-second">
                         <div className="admin__sort">
