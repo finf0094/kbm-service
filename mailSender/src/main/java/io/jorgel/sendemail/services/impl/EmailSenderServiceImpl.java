@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Service
@@ -71,7 +72,9 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         context.setVariable("format", interviewEmployeeEmail.getFormat()); // Set the format variable
         context.setVariable("venue", interviewEmployeeEmail.getVenue()); // Set the venue variable
         LocalDateTime time = LocalDateTime.ofInstant(interviewEmployeeEmail.getTime().toInstant(), ZoneId.systemDefault());
-        context.setVariable("time", time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        String formattedDateTime = time.format(formatter);
+        context.setVariable("time", formattedDateTime);
 
         String html = templateEngine.process("interview", context); // "interview" is the template name
 
