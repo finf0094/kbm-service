@@ -280,8 +280,8 @@ public class ApplicationService {
         InterviewEmployeeEmail interviewEmployeeEmail =
                 new InterviewEmployeeEmail(
                         application.getUser().getEmail(),
-                        "KBM CORP.",
-                        "subject",
+                        "KBM-CORP.",
+                        "Congratulations",
                         "content",
                         application.getUser().getFirstname(),
                         scheduleInterviewDetails.getPosition(),

@@ -100,7 +100,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/{applicationId}/scheduleAnInterview")
-    public Application scheduleAnInterview(@PathVariable String applicationId, ScheduleInterviewDetails scheduleInterviewDetails) {
+    public Application scheduleAnInterview(@PathVariable String applicationId, @RequestBody ScheduleInterviewDetails scheduleInterviewDetails) {
         return applicationService.scheduleAnInterview(applicationId, scheduleInterviewDetails);
     }
 

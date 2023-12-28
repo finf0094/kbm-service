@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 
-import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
+import {useAppDispatch, useAppSelector} from "../../hooks/useAppDispatch.ts";
 import {openModal} from "../../redux/slices/modalSlice.ts";
 import ConfidentModal from "../modal/applicationProfile/ConfidentModal.tsx";
 import {IUserDetail} from "../../models/user/IUserDetail.ts";
 
 import "./UI/UserInfo.css";
+import ScheduleInterviewModal from "../modal/applicationProfile/ScheduleInterviewModal.tsx";
 
 interface IUserInfoProps {
     user: IUserDetail,
@@ -15,19 +16,28 @@ interface IUserInfoProps {
 
 const UserInfo: React.FC<IUserInfoProps> = React.memo(({user, status}) => {
     const {t} = useTranslation();
-
+    const {id: applicationId} = useAppSelector(state => state.application);
     const dispatch = useAppDispatch();
 
     const [selectedOption, setSelectedOption] = useState("");
 
+
+    useEffect(() => {
+        handleConfidentModal();
+    }, [selectedOption]);
+
     const handleConfidentModal = () => {
-        dispatch(openModal({id: 'confidentModal'}));
+        console.log(selectedOption)
+        if (selectedOption.toUpperCase() === "INTERVIEW_SCHEDULED") {
+            dispatch(openModal({id: 'scheduleInterviewModal'}));
+        } else {
+            dispatch(openModal({id: 'confidentModal'}));
+        }
     }
 
     const resetSelectedOption = () => {
         setSelectedOption("");
     }
-    console.log(status)
 
     return (
         <div>
@@ -48,7 +58,7 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({user, status}) => {
                         <div className="user-info__aboutMe_title">{t("About_me")}</div>
                         <p className="user-info__aboutMe_desc">{user.aboutMe}</p>
                     </div>
-                    <div className="user-info__status" onChange={handleConfidentModal}>
+                    <div className="user-info__status">
                         <span className="user-info__status-text">{t("user_info_status")}</span>
                         <select
                             className="user-info__status-select"
@@ -59,6 +69,7 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({user, status}) => {
                             <option value="APPROVED">{t("user_info_status_approve")}</option>
                             <option value="REJECTED">{t("user_info_status_reject")}</option>
                             <option value="PENDING">{t("user_info_status_pending")}</option>
+                            <option value="INTERVIEW_SCHEDULED">{t("user_info_status_interview_scheduled")}</option>
                             <option value="NOT-REQUESTED">{t("user_info_status_not_requested")}</option>
                         </select>
                     </div>
@@ -68,6 +79,7 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({user, status}) => {
                 </div>
                 <ConfidentModal id="confidentModal" selectedOption={selectedOption}
                                 resetSelectedOption={resetSelectedOption}/>
+                <ScheduleInterviewModal id="scheduleInterviewModal" applicationId={applicationId}/>
             </div>
         </div>
     );

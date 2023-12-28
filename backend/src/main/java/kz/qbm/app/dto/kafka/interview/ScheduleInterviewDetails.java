@@ -2,7 +2,6 @@ package kz.qbm.app.dto.kafka.interview;
 
 import lombok.Getter;
 
-import java.time.Duration;
 import java.util.Date;
 
 @Getter

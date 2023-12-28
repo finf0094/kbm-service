@@ -2,7 +2,6 @@ package io.jorgel.sendemail.models;
 
 import lombok.Getter;
 
-import java.time.Duration;
 import java.util.Date;
 
 @Getter

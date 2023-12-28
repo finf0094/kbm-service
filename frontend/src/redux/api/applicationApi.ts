@@ -7,6 +7,7 @@ import {IEmployee} from "../../models/employee/IEmployee.ts";
 import {IMessageResponse} from "../../models/information/IMessageResponse.ts";
 import {IEducationWithoutId} from "../../models/application/IEducation.ts";
 import {IExperienceWithoutId} from "../../models/application/IExperience.ts";
+import {IScheduleInterviewDetails} from "../../models/application/IScheduleInterviewDetails.ts";
 
 
 export const applicationApi = createApi({
@@ -96,6 +97,25 @@ export const applicationApi = createApi({
                 method: 'POST',
             }),
         }),
+        scheduleAnInterview: builder.mutation<IApplication, { applicationId: string, scheduleInterviewDetails: IScheduleInterviewDetails }>({
+            query: ({applicationId, scheduleInterviewDetails}) => ({
+                url: `/applications/${applicationId}/scheduleAnInterview`,
+                method: 'POST',
+                body: scheduleInterviewDetails
+            }),
+        }),
+        approve: builder.mutation<IApplication, string>({
+            query: (applicationId: string) => ({
+                url: `/applications/${applicationId}/approve`,
+                method: 'POST',
+            }),
+        }),
+        reject: builder.mutation<IApplication, string>({
+            query: (applicationId: string) => ({
+                url: `/applications/${applicationId}/reject`,
+                method: 'POST',
+            }),
+        }),
     }),
 });
 
@@ -111,7 +131,10 @@ export const {
     useDeleteEducationMutation,
     useDeleteExperienceMutation,
     useUploadVideoMutation,
-    useStartTestingMutation
+    useStartTestingMutation,
+    useScheduleAnInterviewMutation,
+    useApproveMutation,
+    useRejectMutation
 } = applicationApi;
 
 
