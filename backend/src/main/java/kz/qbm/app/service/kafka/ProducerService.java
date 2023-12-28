@@ -17,9 +17,9 @@ public class ProducerService {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    @Value("kafka.topics.test")
+    @Value("${kafka.topics.test}")
     private String testEmailTopic;
-    @Value("kafka.topics.interview")
+    @Value("${kafka.topics.interview}")
     private String interviewEmailTopic;
 
     @Autowired
