@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -66,11 +68,8 @@ public class ConsumerService {
         String format = object.getAsJsonObject().get("format").getAsString();
         String venue = object.getAsJsonObject().get("venue").getAsString();
         String timeString = object.getAsJsonObject().get("time").getAsString();
-
-// Преобразование timeString в Date
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        LocalDateTime localDateTime = LocalDateTime.parse(timeString, formatter);
-        Date time = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        Instant instant = Instant.parse(timeString);
+        Duration time = Duration.between(Instant.EPOCH, instant);
 
         InterviewEmployeeEmail interviewEmail = new InterviewEmployeeEmail(to, from, subject, content, employeeName, position, format, venue, time);
 

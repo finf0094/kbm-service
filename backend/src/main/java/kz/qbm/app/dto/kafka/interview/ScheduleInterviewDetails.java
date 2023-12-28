@@ -2,11 +2,11 @@ package kz.qbm.app.dto.kafka.interview;
 
 import lombok.Getter;
 
-import java.util.Date;
+import java.time.Duration;
 
 @Getter
 public class ScheduleInterviewDetails {
-    private Date time;
+    private Duration time;
     private String format;
     private String venue;
     private String position;
