@@ -41,7 +41,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public Page<UserSummaryDTO> getAllUsers(String roleName, String search, int offset, int pageSize) {
-        Specification<User> spec = Specification.where(UserSpecification.search(search)).and(UserSpecification.hasRole(roleName));
+        Specification<User> spec = Specification.where(UserSpecification.hasRole(roleName));
 
         Page<User> users = userRepository.findAll(spec, PageRequest.of(offset, pageSize));
 
