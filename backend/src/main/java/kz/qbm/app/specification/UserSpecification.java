@@ -19,16 +19,13 @@ public class UserSpecification {
 
     public static Specification<User> search(String search) {
         return (root, query, cb) -> {
-            Join<User, Position> position = root.join("position");
-
             Predicate itinPredicate = cb.like(root.get("itin"), "%" + search + "%");
             Predicate firstnamePredicate = cb.like(root.get("firstname"), "%" + search + "%");
             Predicate lastnamePredicate = cb.like(root.get("lastname"), "%" + search + "%");
             Predicate phoneNumberPredicate = cb.like(root.get("phoneNumber"), "%" + search + "%");
             Predicate emailPredicate = cb.like(root.get("email"), "%" + search + "%");
-            Predicate positionNamePredicate = cb.like(position.get("name"), "%" + search + "%");
 
-            return cb.and(itinPredicate, firstnamePredicate, lastnamePredicate, phoneNumberPredicate, emailPredicate, positionNamePredicate);
+            return cb.and(itinPredicate, firstnamePredicate, lastnamePredicate, phoneNumberPredicate, emailPredicate);
         };
     }
 
