@@ -15,7 +15,7 @@ export const userApi = createApi({
                 params: {id, itin },
             }),
         }),
-        getAllUsers: builder.query<IPage<IUserSummary>, { search: string, offset: number, pageSize: number }>({
+        getAllUsers: builder.query<IPage<IUserSummary>, { search?: string, offset: number, pageSize: number }>({
             query: ({ search, offset, pageSize }) => ({
                 url: `/users`,
                 params: { search, offset, pageSize },
