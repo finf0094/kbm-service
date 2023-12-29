@@ -109,7 +109,7 @@ const ModerationPage: React.FC = () => {
                                             : "admin__nav-navbar"
                                     }
                                 ></span>
-                                <p className="admin__nav-name">Назначено интервью</p>
+                                <p className="admin__nav-name">Собеседование</p>
                             </button>
                         </li>
                     </ul>
@@ -142,6 +142,7 @@ const ModerationPage: React.FC = () => {
                             (application) => (
                                 <li key={application.id} className="admin__claims-item">
                                     <ApplicationWrapper application={application}>
+                                        
                                         <Link to={`/application/${application.id}`}
                                               className="admin__claims-button">Открыть</Link>
                                     </ApplicationWrapper>

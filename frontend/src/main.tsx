@@ -11,22 +11,26 @@ import ModalProvider from "./providers/ModalProvider.tsx";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {PersistGate} from "redux-persist/integration/react";
+import { I18nextProvider } from 'react-i18next';
+import i18n from './utils/i18n.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
+            <I18nextProvider i18n={i18n}>
+                <BrowserRouter>
 
-                <ModalProvider/>
-                <ToastContainer/>
+                    <ModalProvider/>
+                    <ToastContainer/>
 
-                <PersistGate loading={null} persistor={persistor}>
-                    <Routes>
-                        <Route path="/*" element={<App/>}/>
-                    </Routes>
-                </PersistGate>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <Routes>
+                            <Route path="/*" element={<App/>}/>
+                        </Routes>
+                    </PersistGate>
 
-            </BrowserRouter>
+                </BrowserRouter>
+            </I18nextProvider>
         </Provider>
     </React.StrictMode>,
 )

@@ -150,12 +150,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 150px;
+    margin-right: 15px;
     font-size: 15px;
+}
+
+.admin__claims-info_item:last-child {
+    margin-right: 0;
 }
 
 .admin__claims-info_items {
     margin-left: 40px;
+    display: grid !important;
+    grid-gap: 1vh;
 }
 
 .admin__claims-status {

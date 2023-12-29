@@ -7,6 +7,7 @@ import {IEmployee} from "../../models/employee/IEmployee.ts";
 import {IExperience} from "../../models/application/IExperience.ts";
 import {IEducation} from "../../models/application/IEducation.ts";
 import {ApplicationStatus} from "../../models/application/ApplicationStatus.ts";
+import { IScheduleInterviewDetails } from '../../models/application/IScheduleInterviewDetails.ts';
 
 // Define a function to initialize the authentication state from cookies
 const initializeApplicationState = () => {
@@ -18,6 +19,7 @@ const initializeApplicationState = () => {
         employee: {} as IEmployee,
         experiences: [] as IExperience[],
         educations: [] as IEducation[],
+        interviewDetails: {} as IScheduleInterviewDetails,
         videoUrl: "",
     };
 };
@@ -38,6 +40,7 @@ const applicationSlice = createSlice({
             state.employee = payload.employee;
             state.experiences = payload.experiences;
             state.educations = payload.educations;
+            state.interviewDetails = payload.interviewDetails;
             state.videoUrl = payload.videoUrl;
         },
         deleteDesiredPosition: (state, action: PayloadAction<IPosition>) => {

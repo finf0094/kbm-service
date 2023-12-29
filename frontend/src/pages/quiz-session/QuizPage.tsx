@@ -149,10 +149,10 @@ const QuizPage = () => {
                 <div className="test">
                     {quizSession?.status === QuizSessionStatus.IN_PROGRESS && remainingTime !== null && (
                         <div className="timer">
-                            Time remaining: {formatTime(remainingTime)}
+                            Оставшееся время: {formatTime(remainingTime)}
                         </div>
                     )}
-                    <div className="test__content">
+                    <div className="test__content" style={isCurrentQuestionOpen ? {padding: "0"} : { padding: "0px 5%" }}>
                         {currentQuestion && (
                             <div className="test__item">
                                 <div className="test__item-content">

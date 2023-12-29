@@ -4,6 +4,7 @@ import {IPosition} from "../position/IPosition.ts";
 import {IEmployee} from "../employee/IEmployee.ts";
 import {IExperience} from "./IExperience.ts";
 import {IEducation} from "./IEducation.ts";
+import { IScheduleInterviewDetails } from "./IScheduleInterviewDetails.ts";
 
 export interface IApplication{
     id: string,
@@ -13,5 +14,6 @@ export interface IApplication{
     employee: IEmployee,
     experiences: IExperience[]
     educations: IEducation[],
+    interviewDetails: IScheduleInterviewDetails,
     videoUrl: string
 }

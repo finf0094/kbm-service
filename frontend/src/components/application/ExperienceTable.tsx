@@ -72,6 +72,7 @@ const ExperienceTable: React.FC<{isChangble: boolean}> = ({ isChangble }) => {
         <div className="experience-table">
             <div className="experience-table__wrapper">
                 <form className="experience-table__form">
+                    <div className="table__title">Опыт работы</div>
                     <div className="experience-table__content">
                         <table>
                             <thead>
@@ -91,8 +92,8 @@ const ExperienceTable: React.FC<{isChangble: boolean}> = ({ isChangble }) => {
                                         <td>{experience.company}</td>
                                         <td>{experience.position}</td>
                                         <td>{experience.jobResponsibilities}</td>
-                                        <td>{experience.workStart}</td>
-                                        <td>{experience.workEnd}</td>
+                                        <td>{new Date(experience.workStart).toLocaleString()}</td>
+                                        <td>{new Date(experience.workEnd).toLocaleString()}</td>
                                         {isChangble ? <td>
                                             <button
                                                 type="button"

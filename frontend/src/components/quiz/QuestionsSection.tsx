@@ -79,10 +79,10 @@ const QuestionsSection: React.FC = () => {
                             <button className="remove-answer-button" onClick={() => handleRemoveAnswer(questionIndex, answerIndex)}>×</button>
                         </div>
                     ))}
-                    <button onClick={() => handleAddAnswer(questionIndex)}>Add Answer</button>
+                    <button onClick={() => handleAddAnswer(questionIndex)}>Добавить ответ</button>
                 </div>
             ))}
-            <button onClick={handleAddQuestion}>Add Question</button>
+            <button onClick={handleAddQuestion}>Добавить вопрос</button>
         </div>
     );
 };

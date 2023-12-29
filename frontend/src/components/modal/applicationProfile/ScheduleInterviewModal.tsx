@@ -22,6 +22,8 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
         position: '',
     });
 
+    
+
     const [scheduleInterview, {isLoading}] = useScheduleAnInterviewMutation();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -37,54 +39,61 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
             });
         }
     };
+    
+    const formattedTime = scheduleDetails.time.toLocaleString();
 
     const handleClose = () => {
         dispatch(closeModal({ id }))
     }
 
     const handleSubmit = () => {
-        console.log(scheduleDetails.time.toISOString())
-            // @ts-ignore
-        scheduleInterview({applicationId, scheduleInterviewDetails: {...scheduleDetails, time: scheduleDetails.time.toISOString()}});
+        scheduleInterview({applicationId, scheduleInterviewDetails: {...scheduleDetails, time: formattedTime}});
     };
 
     return (
         <Modal
             id={id}
-            title="Schedule an Interview"
+            title="Собеседование"
             button={true}
-            buttonText="Schedule"
+            buttonText="Запланировать"
             buttonDisabled={isLoading}
             isOpen={isOpen}
             onClose={handleClose}
             onConfirm={handleSubmit}
         >
-            <input
-                type="datetime-local"
-                name="time"
-                value={scheduleDetails.time.toISOString().substring(0,16)}
-                onChange={handleChange}
-                required
-            />
-            <select name="format" value={scheduleDetails.format} onChange={handleChange} required>
-                <option value="">Select format</option>
-                <option value="online">Online</option>
-                <option value="offline">Offline</option>
-            </select>
-            <input
-                type="text"
-                name="venue"
-                value={scheduleDetails.venue}
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="text"
-                name="position"
-                value={scheduleDetails.position}
-                onChange={handleChange}
-                required
-            />
+            <div className="modal__inputs">
+                <input
+                    type="datetime-local"
+                    className='modal__input'
+                    name="time"
+                    value={formattedTime.substring(0,16)}
+                    onChange={handleChange}
+                    required
+                />
+                <select name="format" className='modal__input' value={scheduleDetails.format} onChange={handleChange} required>
+                    <option value="">Выберите формат</option>
+                    <option value="online">Онлайн</option>
+                    <option value="offline">Оффлайн</option>
+                </select>
+                <input
+                    type="text"
+                    className='modal__input'
+                    name="venue"
+                    placeholder='Город проведения'
+                    value={scheduleDetails.venue}
+                    onChange={handleChange}
+                    required
+                />
+                <input
+                    type="text"
+                    className='modal__input'
+                    name="position"
+                    placeholder='Позиция'
+                    value={scheduleDetails.position}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
         </Modal>
     );
 };

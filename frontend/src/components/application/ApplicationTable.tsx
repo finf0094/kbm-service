@@ -62,6 +62,7 @@ const ApplicaitonTable: React.FC<ApprovalRequestTableProps> = React.memo(({ isCh
         <div className="approvalrequesttable">
             <div className="approvalrequesttable__wrapper">
                 <form className="approvalrequesttable__form">
+                    <div className="table__title">Желаемая должность</div>
                     <div className="approvalrequesttable__content">
                         <table>
                             <thead>

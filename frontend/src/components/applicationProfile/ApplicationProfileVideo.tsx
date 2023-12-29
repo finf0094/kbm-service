@@ -13,7 +13,7 @@ const ApplicationProfileResume: React.FC<IApplicationProfileResumeProps> = ({vid
     const {t} = useTranslation();
 
     const downloadVideo = () => {
-        window.location.href = `${baseUrl}/${videoUrl}`;
+        window.location.href = `${baseUrl}${videoUrl}`;
     };
 
     return (

@@ -1,5 +1,11 @@
+.table__title {
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
 .approvalrequesttable__content {
-    margin-bottom: 3vh;
+    margin-bottom: 5vh;
 }
 
 .approvalrequesttable table {
