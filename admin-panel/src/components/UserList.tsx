@@ -55,7 +55,7 @@ const UserList: React.FC<IUserListProps> = ({ users, onSearch }) => {
                                 <td className="content__table-title">
                                     {user.firstname && user.lastname ? <Link to={`${user.id}`}>{user.firstname} {user.lastname}</Link> : <Link to={`${user.id}`}>Редактировать</Link>}
                                 </td>
-                                <td className="content__table-title">{user.position}</td>
+                                <td className="content__table-title">{user.position?.name}</td>
                                 <td className="content__table-title">{user.email}</td>
                                 <td className="content__table-title">{user.phoneNumber}</td>
                                 <td className="content__table-title">{user.itin}</td>
