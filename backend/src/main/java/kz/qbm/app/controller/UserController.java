@@ -22,11 +22,10 @@ public class UserController {
 
     @GetMapping
     public Page<UserSummaryDTO> getAllUsers(
-            @RequestParam(name = "role", required = false) String roleName,
             @RequestParam(name = "search", required = false) String search,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-        return userService.getAllUsers(roleName, search, offset, pageSize);
+        return userService.getAllUsers(search, offset, pageSize);
     }
 
     @GetMapping("/getUser")
