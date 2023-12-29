@@ -20,14 +20,14 @@ public class UserController {
     // SERVICES
     private final UserService userService;
 
-        @GetMapping
-        public Page<UserSummaryDTO> getAllUsers(
-                @RequestParam(name = "role", required = false) String roleName,
-                @RequestParam(name = "search", required = false) String search,
-                @RequestParam(name = "offset", defaultValue = "0") int offset,
-                @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-            return userService.getAllUsers(roleName, search, offset, pageSize);
-        }
+    @GetMapping
+    public Page<UserSummaryDTO> getAllUsers(
+            @RequestParam(name = "role", required = false) String roleName,
+            @RequestParam(name = "search", required = false) String search,
+            @RequestParam(name = "offset", defaultValue = "0") int offset,
+            @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
+        return userService.getAllUsers(roleName, search, offset, pageSize);
+    }
 
     @GetMapping("/getUser")
     public User getUser(@RequestParam(required = false) Long id,

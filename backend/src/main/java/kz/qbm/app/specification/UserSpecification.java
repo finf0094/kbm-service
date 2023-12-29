@@ -1,7 +1,6 @@
 package kz.qbm.app.specification;
 
 import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import kz.qbm.app.entity.Role;
 import kz.qbm.app.entity.User;
@@ -20,7 +19,7 @@ public class UserSpecification {
 
     public static Specification<User> search(String search) {
         return (root, query, cb) -> {
-            Join<User, Position> position = root.join("position", JoinType.LEFT);
+            Join<User, Position> position = root.join("position");
 
             Predicate itinPredicate = cb.like(root.get("itin"), "%" + search + "%");
             Predicate firstnamePredicate = cb.like(root.get("firstname"), "%" + search + "%");
