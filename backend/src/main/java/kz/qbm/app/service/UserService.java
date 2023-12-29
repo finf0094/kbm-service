@@ -138,9 +138,9 @@ public class UserService {
         if (resumeUrl.startsWith("storage/")) {
             String filename = resumeUrl.substring("storage/".length());
             storageService.delete(filename);
+            user.setResumeUrl(null);
         }
 
-        user.setResumeUrl(null);
         return userRepository.save(user);
     }
 }

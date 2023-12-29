@@ -1,6 +1,7 @@
 package kz.qbm.app.specification;
 
 import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
 import kz.qbm.app.entity.Role;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.entity.position.Position;
@@ -20,14 +21,14 @@ public class UserSpecification {
         return (root, query, cb) -> {
             Join<User, Position> position = root.join("position");
 
-            return cb.or(
-                    cb.like(root.get("itin"), "%" + search + "%"),
-                    cb.like(root.get("firstname"), "%" + search + "%"),
-                    cb.like(root.get("lastname"), "%" + search + "%"),
-                    cb.like(root.get("phoneNumber"), "%" + search + "%"),
-                    cb.like(root.get("email"), "%" + search + "%"),
-                    cb.like(position.get("name"), "%" + search + "%")
-            );
+            Predicate itinPredicate = cb.like(root.get("itin"), "%" + search + "%");
+            Predicate firstnamePredicate = cb.like(root.get("firstname"), "%" + search + "%");
+            Predicate lastnamePredicate = cb.like(root.get("lastname"), "%" + search + "%");
+            Predicate phoneNumberPredicate = cb.like(root.get("phoneNumber"), "%" + search + "%");
+            Predicate emailPredicate = cb.like(root.get("email"), "%" + search + "%");
+            Predicate positionNamePredicate = cb.like(position.get("name"), "%" + search + "%");
+
+            return cb.and(itinPredicate, firstnamePredicate, lastnamePredicate, phoneNumberPredicate, emailPredicate, positionNamePredicate);
         };
     }
 

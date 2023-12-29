@@ -6,7 +6,6 @@ export const baseUrl = 'http://185.125.91.161:3002/api'
 
 export const baseQuery = fetchBaseQuery({
     baseUrl,
-    credentials: 'include',
     prepareHeaders: (headers: Headers, { getState }) => {
         const state = getState() as RootState;
 
