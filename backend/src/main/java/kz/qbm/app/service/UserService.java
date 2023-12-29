@@ -1,9 +1,7 @@
 package kz.qbm.app.service;
 
 import kz.qbm.app.dto.user.UserUpdateDTO;
-import kz.qbm.app.entity.position.Position;
 import kz.qbm.app.exception.BadRequestException;
-import kz.qbm.app.exception.InvalidVideoFileException;
 import kz.qbm.app.repository.UserRepository;
 import kz.qbm.app.dto.auth.CreateUserRequest;
 import kz.qbm.app.dto.user.UserSummaryDTO;
@@ -11,12 +9,10 @@ import kz.qbm.app.entity.User;
 import kz.qbm.app.exception.NotFoundException;
 import kz.qbm.app.exception.RequestExistException;
 import kz.qbm.app.mapper.UserMapper;
-import kz.qbm.app.repository.position.PositionRepository;
 import kz.qbm.app.service.storage.StorageService;
 import kz.qbm.app.specification.UserSpecification;
 import kz.qbm.app.utils.NullAwareBeanUtilsBean;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -44,12 +40,10 @@ public class UserService {
     // UTILS
     private final PasswordEncoder passwordEncoder;
 
-    public Page<UserSummaryDTO> getAllUsers(String roleName, String search, int offset, int pageSize) {
+    public Page<User> getAllUsers(String roleName, String search, int offset, int pageSize) {
         Specification<User> spec = Specification.where(UserSpecification.search(search)).and(UserSpecification.hasRole(roleName));
 
-        Page<User> users = userRepository.findAll(spec, PageRequest.of(offset, pageSize));
-
-        return users.map(userMapper::convertToUserSummaryDTO);
+        return userRepository.findAll(spec, PageRequest.of(offset, pageSize));
     }
 
     public Optional<User> getUserById(Long userId) {

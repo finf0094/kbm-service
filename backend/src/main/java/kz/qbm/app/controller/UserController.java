@@ -21,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public Page<UserSummaryDTO> getAllUsers(
+    public Page<User> getAllUsers(
             @RequestParam(name = "role", required = false) String roleName,
             @RequestParam(name = "search", required = false) String search,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
