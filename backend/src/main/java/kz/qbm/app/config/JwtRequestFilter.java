@@ -41,7 +41,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 String requestOrigin = request.getHeader("Origin");
                 response.setHeader("Access-Control-Allow-Origin", requestOrigin);
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
+                throw ex;
             }
 
         }

@@ -61,17 +61,14 @@ public class ApplicationService {
         return applicationRepository.findByUserId(userId);
     }
 
-    public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(String status, String search, int offset, int pageSize) {
-        ApplicationStatus applicationStatus;
+    public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(String status, String positionName, String search, int offset, int pageSize) {
+        ApplicationStatus applicationStatus = ApplicationStatus.valueOf(status);
 
-        try {
-            applicationStatus = ApplicationStatus.valueOf(status);
-        } catch (IllegalArgumentException e) {
-            throw new UnknownParameterException(String.format("Unknown parameters: %s", status));
-        }
+        Specification<Application> spec = Specification.where(ApplicationSpecification.search(search));
 
-        Specification<Application> spec = Specification.where(ApplicationSpecification.hasStatus(applicationStatus))
-                .and(ApplicationSpecification.search(search));
+        if (status != null && !status.isEmpty()) spec = spec.and(ApplicationSpecification.hasStatus(applicationStatus));
+        if (positionName != null && !status.isEmpty()) spec = spec.and(ApplicationSpecification.hasPosition(positionName));
+
 
         Page<Application> applications = applicationRepository.findAll(spec, PageRequest.of(offset, pageSize));
 
