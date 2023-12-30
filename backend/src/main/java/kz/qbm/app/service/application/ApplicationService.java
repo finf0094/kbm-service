@@ -67,7 +67,7 @@ public class ApplicationService {
         Specification<Application> spec = Specification.where(ApplicationSpecification.search(search));
 
         if (status != null && !status.isEmpty()) spec = spec.and(ApplicationSpecification.hasStatus(applicationStatus));
-        if (positionName != null && !status.isEmpty()) spec = spec.and(ApplicationSpecification.hasPosition(positionName));
+        if (positionName != null && !positionName.isEmpty()) spec = spec.and(ApplicationSpecification.hasPosition(positionName));
 
 
         Page<Application> applications = applicationRepository.findAll(spec, PageRequest.of(offset, pageSize));
