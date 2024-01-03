@@ -1,7 +1,5 @@
-# Используем Node.js 20 в качестве базового образа
 FROM node:20 as BUILD_IMAGE
 
-# Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
 COPY package.json .

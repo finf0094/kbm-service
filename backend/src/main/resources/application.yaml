@@ -28,3 +28,7 @@ kafka:
 springdoc:
   swagger-ui:
     path: /api/docs
+
+
+cors:
+  allowed_origins: ${ALLOWED_ORIGIN:localhost:5432}
