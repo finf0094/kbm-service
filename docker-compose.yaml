@@ -41,7 +41,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - API_URL=backend
+      - VITE_API_URL=backend
     networks:
       - app-network
     depends_on:

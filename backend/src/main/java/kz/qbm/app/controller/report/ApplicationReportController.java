@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController("/api/report")
 public class ApplicationReportController {
 
     @Autowired
     private ApplicationReportService applicationReportService;
 
-    @GetMapping("/report/position")
+    @GetMapping("/position")
     public List<PositionReportDTO> getPositionReport() {
         return applicationReportService.generatePositionReport();
     }
 
-    @GetMapping("/report/candidates")
+    @GetMapping("/candidates")
     public List<PositionCandidatesDTO> getCandidatesByPosition(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String search,

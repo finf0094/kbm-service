@@ -1,25 +1,28 @@
-FROM node:20 as BUILD_IMAGE
+# Этап 1: Сборка проекта
+FROM node:20 AS build-stage
 
 WORKDIR /app
 
-COPY package.json .
+# Копирование файлов `package.json` и `yarn.lock` (или `package-lock.json` для npm)
+COPY package.json yarn.lock ./
 
+# Установка зависимостей
 RUN yarn install
 
+# Копирование исходного кода проекта
 COPY . .
 
+# Сборка приложения
 RUN yarn build
 
-FROM node:20 as PRODUCTION_IMAGE
-WORKDIR /app/react-app
+# Этап 2: Настройка веб-сервера
+FROM nginx:stable-alpine as production-stage
 
-COPY --from=BUILD_IMAGE app/dist app/dist
+# Копирование сбилженных файлов из предыдущего этапа
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-EXPOSE 3000
+# Открытие порта 80 для доступа к серверу
+EXPOSE 80
 
-COPY package.json .
-COPY vite.config.ts .
-
-RUN yarn add typescript
-
-CMD ["yarn", "build"]
+# Запуск nginx
+CMD ["nginx", "-g", "daemon off;"]
