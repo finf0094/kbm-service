@@ -8,7 +8,7 @@ public class CuratorSpecification {
     public static Specification<Curator> search(String search) {
         return (root, query, cb) -> cb.or(
                 cb.like(root.get("fullName"), "%" + search + "%"),
-                cb.like(root.get("identityNumber"), "%" + search + "%"),
+                cb.like(root.get("itin"), "%" + search + "%"),
                 cb.like(root.get("curatorNumber"), "%" + search + "%"),
                 cb.like(root.get("workPhoneNumber"), "%" + search + "%"),
                 cb.like(root.get("personalPhoneNumber"), "%" + search + "%"),
