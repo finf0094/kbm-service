@@ -2,6 +2,7 @@ package kz.qbm.app.service;
 
 import jakarta.transaction.Transactional;
 import kz.qbm.app.entity.Policy;
+import kz.qbm.app.exception.BadRequestException;
 import kz.qbm.app.exception.NotFoundException;
 import kz.qbm.app.repository.PolicyRepository;
 import kz.qbm.app.service.storage.FileSystemStorageService;
@@ -22,17 +23,33 @@ public class PolicyService {
     private final FileSystemStorageService storageService;
 
     public Policy addPolicy(MultipartFile file) {
+        // Check the file is a pdf
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("application/pdf")) {
+            throw new BadRequestException("Uploaded file is not a pdf");
+        }
+
         String filename = storageService.store(file);
+        String policyUrl = "storage/" + filename;
         Policy policy = new Policy();
-        policy.setName(filename);
+        policy.setPolicyUrl(policyUrl);
         return policyRepository.save(policy);
     }
 
     @Transactional
-    public void deletePolicy(Long id) {
-        Policy policy = policyRepository.findById(id).orElseThrow(() -> new NotFoundException("Policy not found"));
-        storageService.delete(policy.getName());
-        policyRepository.delete(policy);
+    public Policy deletePolicy(Long id) {
+        Policy policy = policyRepository.findById(id).orElseThrow(
+                () -> new NotFoundException(String.format("Policy with id: %s not found", id))
+        );
+
+        String policyUrl = policy.getPolicyUrl();
+        if (policyUrl.startsWith("storage/")) {
+            String filename = policyUrl.substring("storage/".length());
+            storageService.delete(filename);
+            policy.setPolicyUrl(null);
+        }
+
+        return policyRepository.save(policy);
     }
 
     public List<Policy> getAllPolicies() {
