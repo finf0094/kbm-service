@@ -19,17 +19,14 @@ public class Curator {
     @Column(name = "birth_date")
     private String birthDate;
 
-    @Column(name = "identity_number")
-    private String identityNumber;
+    @Column(name = "itin")
+    private String itin;
 
     @Column(name = "curator_number")
     private String curatorNumber;
 
     @Column(name = "work_phone_number")
-    private String workPhoneNumber;
-
-    @Column(name = "personal_phone_number")
-    private String personalPhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "email")
     private String email;
