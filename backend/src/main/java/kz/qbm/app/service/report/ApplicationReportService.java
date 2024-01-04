@@ -1,68 +1,81 @@
 package kz.qbm.app.service.report;
 
-
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
-import kz.qbm.app.dto.report.PositionCandidatesDTO;
 import kz.qbm.app.dto.report.PositionReportDTO;
+import kz.qbm.app.entity.application.Application;
+import kz.qbm.app.entity.application.ApplicationStatus;
 import kz.qbm.app.entity.position.Position;
+import kz.qbm.app.exception.NotFoundException;
+import kz.qbm.app.mapper.applicaiton.ApplicationMapper;
+import kz.qbm.app.repository.application.ApplicationRepository;
 import kz.qbm.app.repository.position.PositionRepository;
-import kz.qbm.app.service.application.ApplicationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import kz.qbm.app.specification.ApplicationSpecification;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ApplicationReportService {
 
-    @Autowired
-    private PositionRepository positionRepository;
+    // REPOSITORIES
+    private final PositionRepository positionRepository;
+    private final ApplicationRepository applicationRepository;
 
-    @Autowired
-    private ApplicationService applicationService; // предполагается, что ваш метод getAllApplicationWithPagination находится здесь
+    // MAPPER
+    private final ApplicationMapper applicationMapper;
 
-    public List<PositionReportDTO> generatePositionReport() {
-        List<Position> positions = positionRepository.findAll();
-        List<PositionReportDTO> report = new ArrayList<>();
+    public PositionReportDTO getPositionReport(Long positionId) {
+        Position position = positionRepository.findById(positionId).orElseThrow(
+                () -> new NotFoundException(String.format("Position with id %s not found", positionId))
+        );
 
-        for (Position position : positions) {
-            Page<ApplicationSummaryDTO> totalApplications = applicationService.getAllApplicationWithPagination(null, position.getName(), null, 0, 1);
-            Page<ApplicationSummaryDTO> passedApplications = applicationService.getAllApplicationWithPagination("APPROVED", position.getName(), null, 0, 1);
-            Page<ApplicationSummaryDTO> failedApplications = applicationService.getAllApplicationWithPagination("REJECTED", position.getName(), null, 0, 1);
-            Page<ApplicationSummaryDTO> inInterviewApplications = applicationService.getAllApplicationWithPagination("INTERVIEW_SCHEDULED", position.getName(), null, 0, 1);
-            Page<ApplicationSummaryDTO> inTestingApplications = applicationService.getAllApplicationWithPagination("TESTING", position.getName(), null, 0, 1);
-            Page<ApplicationSummaryDTO> inProcessApplications = applicationService.getAllApplicationWithPagination("IN_PROCESS", position.getName(), null, 0, 1);
+        long totalApplicationsCount = applicationRepository.count(ApplicationSpecification.hasPosition(position.getName()));
+        long approvedApplicationsCount = applicationRepository.count(
+                ApplicationSpecification.hasStatus(ApplicationStatus.APPROVED)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
+        long rejectedApplicationsCount = applicationRepository.count(
+                ApplicationSpecification.hasStatus(ApplicationStatus.REJECTED)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
+        long testingApplicationsCount = applicationRepository.count(
+                ApplicationSpecification.hasStatus(ApplicationStatus.TESTING)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
+        long pendingApplicationsCount = applicationRepository.count(
+                ApplicationSpecification.hasStatus(ApplicationStatus.PENDING)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
+        long inProcessApplicationsCount = applicationRepository.count(
+                ApplicationSpecification.hasStatus(ApplicationStatus.IN_PROCESS)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
+        long interviewScheduledApplicationsCount = applicationRepository.count(
+                ApplicationSpecification.hasStatus(ApplicationStatus.INTERVIEW_SCHEDULED)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
 
-            PositionReportDTO positionReport = new PositionReportDTO();
-            positionReport.setPositionName(position.getName());
-            positionReport.setTotalApplications(totalApplications.getTotalElements());
-            positionReport.setPassedApplications(passedApplications.getTotalElements());
-            positionReport.setFailedApplications(failedApplications.getTotalElements());
-            positionReport.setInInterview(inInterviewApplications.getTotalElements());
-            positionReport.setInTesting(inTestingApplications.getTotalElements());
-            positionReport.setInProcess(inProcessApplications.getTotalElements());
+        List<Application> approvedApplications = applicationRepository.findAll(
+                ApplicationSpecification.hasStatus(ApplicationStatus.APPROVED)
+                        .and(ApplicationSpecification.hasPosition(position.getName()))
+        );
+        List<ApplicationSummaryDTO> candidates = approvedApplications.stream()
+                .map(applicationMapper::convertToApplicationSummaryDTO)
+                .collect(Collectors.toList());
 
-            report.add(positionReport);
-        }
-
-        return report;
+        PositionReportDTO positionDetails = new PositionReportDTO();
+        positionDetails.setPositionName(position.getName());
+        positionDetails.setTotalApplications(totalApplicationsCount);
+        positionDetails.setPassedApplications(approvedApplicationsCount);
+        positionDetails.setFailedApplications(rejectedApplicationsCount);
+        positionDetails.setInTesting(testingApplicationsCount);
+        positionDetails.setInPending(pendingApplicationsCount);
+        positionDetails.setInProcess(inProcessApplicationsCount);
+        positionDetails.setInInterview(interviewScheduledApplicationsCount);
+        positionDetails.setCandidates(candidates);
+        return positionDetails;
     }
-
-    public List<PositionCandidatesDTO> getCandidatesByPosition(String status, String search, int offset, int pageSize) {
-        List<Position> positions = positionRepository.findAll();
-        List<PositionCandidatesDTO> candidatesByPosition = new ArrayList<>();
-
-        for (Position position : positions) {
-            Page<ApplicationSummaryDTO> applications = applicationService.getAllApplicationWithPagination(status, position.getName(), search, offset, pageSize);
-            PositionCandidatesDTO positionCandidates = new PositionCandidatesDTO();
-            positionCandidates.setPositionName(position.getName());
-            positionCandidates.setCandidates(applications.getContent());
-            candidatesByPosition.add(positionCandidates);
-        }
-
-        return candidatesByPosition;
-    }
-
 }

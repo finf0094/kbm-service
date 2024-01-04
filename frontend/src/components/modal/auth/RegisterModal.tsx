@@ -21,7 +21,6 @@ const RegisterModal: React.FC<{ id: string }> = ({ id }) => {
         data: registerData,
         isSuccess: isRegisterSuccess,
         isLoading: isRegisterLoading,
-        isError: isRegisterError,
         error: errorData
     }] = useRegisterUserMutation()
 
@@ -91,14 +90,11 @@ const RegisterModal: React.FC<{ id: string }> = ({ id }) => {
             handleCloseModal();
             toast.success("Регистрация прошла успешно!")
         }
-        if (isRegisterError) {
-            toast.error("Произошла ошибка")
-        }
         if (errorData && 'data' in errorData && errorData.data) {
             toast.error(`error: ${errorData.data.message}`);
             console.log(`Ошибка: ${errorData}. Покажите эту ошибку разработчикам!`)
         }
-    }, [registerData, isRegisterLoading ,isRegisterSuccess, isRegisterError, errorData, handleCloseModal]);
+    }, [registerData, isRegisterLoading ,isRegisterSuccess, errorData, handleCloseModal]);
 
     return (
         <Modal
