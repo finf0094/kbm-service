@@ -1,4 +1,4 @@
-
+import './UI/PermissionsPage.css'
 
 const PermissionsPage = () => {
 

@@ -13,7 +13,7 @@ public class CuratorDTO {
 
     private String fullName;
     private Date dateOfBirth;
-    private String identityNumber;
+    private String itin;
     private String curatorNumber;
     private String workPhoneNumber;
     private String personalPhoneNumber;

@@ -1,0 +1,90 @@
+
+.admin-panel {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-panel h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.permissions-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.available-permissions,
+.selected-permissions {
+    width: 48%;
+}
+
+.available-permissions h2,
+.selected-permissions h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Стили для списка разрешений */
+.permissions-list {
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: 150px;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.permissions-list li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.permissions-list li:last-child {
+    border-bottom: none;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003d82;
+}

@@ -26,7 +26,10 @@ public class Curator {
     private String curatorNumber;
 
     @Column(name = "work_phone_number")
-    private String phoneNumber;
+    private String workPhoneNumber;
+
+    @Column(name = "personal_phone_number")
+    private String personalPhoneNumber;
 
     @Column(name = "email")
     private String email;
