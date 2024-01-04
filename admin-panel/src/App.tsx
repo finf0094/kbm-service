@@ -125,7 +125,7 @@ function App() {
                             mutationFn={useCreateLocationMutation}
                             onItemAdded={(item) => {
                                 console.log('Location added:', item);
-                                navigate('http://localhost:5173/integration/locations')
+                                navigate(`${window.location.origin}/integration/positions`);
                             }}
                             queryFn={useGetAllLocationsQuery}
                             transformInput={(name) => name}
@@ -137,7 +137,7 @@ function App() {
                             mutationFn={useCreateDepartmentMutation}
                             onItemAdded={(item) => {
                                 console.log('Department added:', item);
-                                navigate('http://localhost:5173/integration/departments');
+                                navigate(`${window.location.origin}/integration/positions`);
                             }}
                             queryFn={useGetAllLocationsQuery} // Для создания департамента, выбираем локацию
                             transformInput={(name, parentId) => ({name, locationId: parentId})}
@@ -149,7 +149,7 @@ function App() {
                             mutationFn={useCreatePositionMutation}
                             onItemAdded={(item) => {
                                 console.log('Position added:', item);
-                                navigate('http://localhost:5173/integration/positions');
+                                navigate(`${window.location.origin}/integration/positions`);
                             }}
                             queryFn={useGetAllDepartmentsQuery} // Для создания позиции, выбираем департамент
                             transformInput={(name, parentId) => ({name, departmentId: parentId})}
