@@ -4,6 +4,7 @@ import {IScheduleInterviewDetailsDTO} from "../../../models/application/ISchedul
 import Modal from "../Modal.tsx";
 import {closeModal} from "../../../redux/slices/modalSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks/useAppDispatch.ts";
+import { useGetAllCuratorsQuery } from '../../../redux/api/curatorApi';
 
 interface IScheduleInterviewModalProps {
     id: string;
@@ -12,6 +13,7 @@ interface IScheduleInterviewModalProps {
 
 const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, applicationId}) => {
     const dispatch = useAppDispatch();
+    const { data: curators } = useGetAllCuratorsQuery();
     const isOpen = useAppSelector((state) =>
         state.modal.modals.some(modal => modal.id === id && modal.isOpen)
     );
@@ -91,6 +93,12 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
                     onChange={handleChange}
                     required
                 />
+                <select name="curatorId" className='modal__input' value={scheduleDetails.curatorId} onChange={handleChange} required>
+                    <option value="">Выберите куратора</option>
+                    {curators && curators.content.map(curator => (
+                        <option key={curator.id} value={curator.id}>{curator.fullName}</option>
+                    ))}
+                </select>
             </div>
         </Modal>
     );
