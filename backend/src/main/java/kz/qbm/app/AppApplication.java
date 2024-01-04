@@ -27,7 +27,7 @@ public class AppApplication {
 		};
 	}
 
-	@Value("cors.allowed_origins")
+	@Value("${cors.allowed_origins}")
 	private String ALLOWED_ORIGINS;
 
 	@Bean
