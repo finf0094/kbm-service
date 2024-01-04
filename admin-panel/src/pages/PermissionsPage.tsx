@@ -1,28 +1,55 @@
-import './UI/PermissionsPage.css'
+import React from 'react';
+import './UI/PermissionsPage.css';
 
 const PermissionsPage = () => {
 
+    const rolesWithPermissions = [
+        {
+            role: 'ROLE_USER',
+            permissions: [
+                'Может изменять свой профиль',
+                'Может загружать видео',
+                'Может проходить заявку',
+                'Может проходить quiz',
+                'Может загружать резюме',
+                'Может скачивать политику',
+            ],
+        },
+        {
+            role: 'ROLE_MODERATOR',
+            permissions: [
+                'Может создавать квиз',
+                'Может смотреть отчет',
+                'Может approve заявки',
+                'Может reject заявки',
+                'Может назначать собеседование',
+                'Может скачивать видео пользователя',
+                'Может скачивать резюме пользователя',
+            ],
+        },
+        {
+            role: 'ROLE_ADMIN',
+            permissions: [
+                'Может добавлять локацию',
+                // Дополнительные разрешения для админа
+            ],
+        },
+    ];
+
     return (
         <div className="admin-panel">
-            <h1>Add Group</h1>
-            <div className="form-container">
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="groupName">Name:</label>
-                        <input type="text" id="groupName" name="groupName" />
+            <h1>Permissions by Role</h1>
+            <div className="permissions-container">
+                {rolesWithPermissions.map((roleWithPermissions) => (
+                    <div key={roleWithPermissions.role} className="role-permissions">
+                        <h2>{roleWithPermissions.role}</h2>
+                        <ul className="permissions-list">
+                            {roleWithPermissions.permissions.map((permission, index) => (
+                                <li key={index}>{permission}</li>
+                            ))}
+                        </ul>
                     </div>
-                    <div className="permissions-container">
-                        <div className="available-permissions">
-                            <h2>Available Permissions</h2>
-                            {/* Здесь будет список доступных разрешений */}
-                        </div>
-                        <div className="selected-permissions">
-                            <h2>Chosen Permissions</h2>
-                            {/* Здесь будет список выбранных разрешений */}
-                        </div>
-                    </div>
-                    <button type="submit">Save</button>
-                </form>
+                ))}
             </div>
         </div>
     );

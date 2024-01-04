@@ -41,7 +41,7 @@ public class CuratorController {
 
     @GetMapping
     public ResponseEntity<Page<Curator>> getAllCurators(
-            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "search", defaultValue = "") String search,
             Pageable pageable) {
         Page<Curator> curators = curatorService.getAllCurators(search, pageable);
         return ResponseEntity.ok(curators);
