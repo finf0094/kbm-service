@@ -27,7 +27,7 @@ services:
     environment:
       - KAFKA_SERVER=kafka-server:29092
       - DATABASE=postgresql
-      - ALLOWED_ORIGIN=frontend
+      - ALLOWED_ORIGIN=http://185.125.91.161:3000,http://185.125.91.161:3001,localhost:5173
     networks:
       - app-network
     depends_on:
@@ -39,9 +39,23 @@ services:
       context: frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:80"
     environment:
-      - API_URL=backend
+      - VITE_API_URL=backend
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+  admin-panel:
+    container_name: admin-panel
+    build:
+      context: admin-panel
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    environment:
+      - VITE_API_URL=backend
     networks:
       - app-network
     depends_on:

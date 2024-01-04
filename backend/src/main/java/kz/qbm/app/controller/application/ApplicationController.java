@@ -26,7 +26,7 @@ public class ApplicationController {
     @GetMapping
     public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(
             @RequestParam(name = "status", required = false) String status,
-            @RequestParam(name = "status", required = false) String positionName,
+            @RequestParam(name = "position", required = false) String positionName,
             @RequestParam(name = "search", defaultValue = "") String search,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {

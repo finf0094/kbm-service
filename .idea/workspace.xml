@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/AppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/AppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/config/AuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/config/AuthConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/controller/report/ApplicationReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/controller/report/ApplicationReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/application/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/application/ApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +140,9 @@
       <workItem from="1703439964431" duration="110000" />
       <workItem from="1703558802665" duration="60000" />
       <workItem from="1704309007859" duration="682000" />
+      <workItem from="1704310032618" duration="2245000" />
+      <workItem from="1704320067406" duration="223000" />
+      <workItem from="1704324314064" duration="4323000" />
     </task>
     <servers />
   </component>
