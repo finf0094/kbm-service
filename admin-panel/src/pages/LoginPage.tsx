@@ -1,7 +1,6 @@
-import {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './UI/LoginPage.css';
 import {useLoginUserMutation} from "../redux/api/authApi.ts";
-import Loader from "../components/utils/Loader.tsx";
 import {useAppDispatch} from "../hooks/useAppDispatch.ts";
 import {loginSuccess} from "../redux/store/authSlice.ts";
 import {useNavigate} from "react-router-dom";
@@ -14,19 +13,21 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [loginUser, { data, isSuccess, isLoading, error }] = useLoginUserMutation();
 
-    const handleLogin = async () => {
+    const handleLogin = async (e: React.FormEvent) => {
         if (itin && password) {
+            e.preventDefault();
             await loginUser({itin, password})
         } else {
             alert("Please fill all input")
         }
     };
 
-    if (isLoading) return <div className="center"><Loader /></div>
-    if (isSuccess && data) {
-        dispatch(loginSuccess(data))
-        navigate("/")
-    }
+    useEffect(() => {
+        if (isSuccess && data) {
+            dispatch(loginSuccess(data));
+            navigate("/");
+        }
+    }, [isSuccess, data, dispatch, navigate]);
 
     return (
         <div className="login-container">

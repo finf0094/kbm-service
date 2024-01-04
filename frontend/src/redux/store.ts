@@ -22,6 +22,8 @@ import { quizApi } from "./api/quizApi.ts";
 import { quizSessionApi } from "./api/quizSessionApi.ts";
 import { moderatorApi } from "./api/moderatorApi.ts";
 import { reportApi } from './api/reportApi.ts';
+import { policyApi } from './api/policyApi.ts';
+import { curatorApi } from './api/curatorApi.ts';
 
 
 // Конфигурация Redux Persist
@@ -47,6 +49,8 @@ const rootReducer = combineReducers({
     [quizSessionApi.reducerPath]: quizSessionApi.reducer,
     [moderatorApi.reducerPath]: moderatorApi.reducer,
     [reportApi.reducerPath]: reportApi.reducer,
+    [policyApi.reducerPath]: policyApi.reducer,
+    [curatorApi.reducerPath]: curatorApi.reducer,
 });
 
 // Создание хранилища
@@ -59,7 +63,7 @@ const store = configureStore({
             authApi.middleware, userApi.middleware, applicationApi.middleware,
             locationApi.middleware, departmentApi.middleware, positionApi.middleware,
             quizApi.middleware, quizSessionApi.middleware, moderatorApi.middleware,
-            reportApi.middleware,
+            reportApi.middleware, policyApi.middleware, curatorApi.middleware, 
         ),
 });
 

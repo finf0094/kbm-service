@@ -48,7 +48,7 @@ const AddCuratorPage: React.FC = () => {
                 academicDegree: '',
                 academicTitle: '',
             });
-            navigate('/integration/curators');
+            navigate('/integration/curators', { replace: true });
         } catch (error) {
             // Handle the error, e.g., display an error message
             console.error('Error creating curator:', error);

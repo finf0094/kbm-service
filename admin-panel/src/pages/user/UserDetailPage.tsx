@@ -57,35 +57,41 @@ const UserDetailPage: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="user-edit">
-            <label className="user-edit__item">
-                Имя:
-                <input type="text" name="firstname" value={editedUser.firstname} onChange={handleInputChange} />
-            </label>
-            <label className="user-edit__item">
-                Фамилия:
-                <input type="text" name="lastname" value={editedUser.lastname} onChange={handleInputChange} />
-            </label>
-            <label className="user-edit__item">
-                Email:
-                <input type="email" name="email" value={editedUser.email} onChange={handleInputChange} />
-            </label>
-            <label className="user-edit__item">
-                Номер телефона:
-                <input type="tel" name="phoneNumber" value={editedUser.phoneNumber} onChange={handleInputChange} />
-            </label>
-            <label className="user-edit__item">
-                ИИН:
-                <input type="text" name="itin" value={editedUser.itin} onChange={handleInputChange} />
-            </label>
-            <label className="user-edit__item">
-                Позиция:
-                <select name="position" value={editedUser.position?.id} onChange={handleSelectChange}>
-                    {positions.content.map((position) => (
-                        <option key={position.id} value={position.id}>{position.name}</option>
-                    ))}
-                </select>
-            </label>
-            <label className="user-edit__item">
+            <div className="user-edit__row">
+                <label className="user-edit__item">
+                    Имя:
+                    <input type="text" name="firstname" value={editedUser.firstname} onChange={handleInputChange} />
+                </label>
+                <label className="user-edit__item">
+                    Фамилия:
+                    <input type="text" name="lastname" value={editedUser.lastname} onChange={handleInputChange} />
+                </label>
+            </div>
+            <div className="user-edit__row">
+                <label className="user-edit__item">
+                    Email:
+                    <input type="email" name="email" value={editedUser.email} onChange={handleInputChange} />
+                </label>
+                <label className="user-edit__item">
+                    Номер телефона:
+                    <input type="tel" name="phoneNumber" value={editedUser.phoneNumber} onChange={handleInputChange} />
+                </label>
+            </div>
+            <div className="user-edit__row">
+                <label className="user-edit__item">
+                    ИИН:
+                    <input type="text" name="itin" value={editedUser.itin} onChange={handleInputChange} />
+                </label>
+                <label className="user-edit__item">
+                    Позиция:
+                    <select name="position" value={editedUser.position?.id} onChange={handleSelectChange}>
+                        {positions.content.map((position) => (
+                            <option key={position.id} value={position.id}>{position.name}</option>
+                        ))}
+                    </select>
+                </label>
+            </div>
+            <label className="user-edit__item" style={{width: '100%'}}>
                 Роль:
                 <select name="role" value={editedUser.roles[0]?.name} onChange={handleRoleChange}>
                     {roles.map((role) => (

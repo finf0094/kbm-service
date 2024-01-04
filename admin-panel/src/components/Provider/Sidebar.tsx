@@ -59,7 +59,7 @@ const mockData = [
             },
             {
                 name: "Политика",
-                redirect: "/integration/policy"
+                redirect: "/integration/policies"
             },
             {
                 name: "Куратора",

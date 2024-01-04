@@ -21,6 +21,13 @@ export const userApi = createApi({
                 params: { search, offset, pageSize },
             }),
         }),
+        createUser: builder.mutation<IUserDetail, IUpdateUser>({
+            query: (user) => ({
+                url: `/users/create`,
+                method: 'POST',
+                body: user,
+            }),
+        }),
         updateUser: builder.mutation<IUserDetail, { userId: number, user: IUpdateUser }>({
             query: ({ userId, user }) => ({
                 url: `/users/${userId}`,
@@ -40,6 +47,7 @@ export const userApi = createApi({
 export const {
     useGetUserQuery,
     useGetAllUsersQuery,
+    useCreateUserMutation,
     useUpdateUserMutation,
     useDeleteUserMutation,
 } = userApi;

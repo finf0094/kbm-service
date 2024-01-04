@@ -65,13 +65,14 @@ tr, th {
     text-align: left;
 }
 
-.content__table a {
+.content__table a, .content__table-link {
     color: #63ceff;
+    cursor: pointer;
     font-weight: 600;
     font-size: 15px;
 }
 
-.content__table a:hover {
+.content__table a:hover, .content__table-link:hover {
     text-decoration: underline;
 }
 

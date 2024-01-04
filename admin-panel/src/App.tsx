@@ -37,6 +37,8 @@ import './App.css'
 import AddCuratorPage from "./pages/item/AddCuratorPage.tsx";
 import CuratorEditPage from "./pages/item/CuratorEditPage.tsx";
 import { useGetAllCuratorsQuery } from "./redux/api/curatorApi.ts";
+import PolicyPage from "./pages/PolicyPage.tsx";
+import UserAddPage from "./pages/user/UserAddPage.tsx";
 
 
 
@@ -64,6 +66,7 @@ function App() {
                             title="локации"
                         />}
                     />
+                    <Route path="/integration/policies/" element={ <PolicyPage /> }/>
                     <Route path="/integration/departments/" element={
                         <ItemListPage
                             key="departments"
@@ -119,7 +122,7 @@ function App() {
                         <CuratorEditPage />}
                     />
 
-
+                    <Route path="/auth/users/add" element={ <UserAddPage /> } />
                     <Route path="/integration/locations/add" element={
                         <AddItemPage
                             mutationFn={useCreateLocationMutation}
