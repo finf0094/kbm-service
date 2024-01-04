@@ -1,4 +1,3 @@
-import React from 'react';
 import './UI/PermissionsPage.css';
 
 const PermissionsPage = () => {
