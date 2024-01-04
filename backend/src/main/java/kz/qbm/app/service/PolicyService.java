@@ -37,7 +37,7 @@ public class PolicyService {
     }
 
     @Transactional
-    public Policy deletePolicy(Long id) {
+    public void deletePolicy(Long id) {
         Policy policy = policyRepository.findById(id).orElseThrow(
                 () -> new NotFoundException(String.format("Policy with id: %s not found", id))
         );
@@ -46,10 +46,9 @@ public class PolicyService {
         if (policyUrl.startsWith("storage/")) {
             String filename = policyUrl.substring("storage/".length());
             storageService.delete(filename);
-            policy.setPolicyUrl(null);
         }
 
-        return policyRepository.save(policy);
+        policyRepository.delete(policy);
     }
 
     public List<Policy> getAllPolicies() {

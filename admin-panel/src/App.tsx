@@ -5,21 +5,24 @@ import {
     useDeleteLocationMutation,
     useGetAllLocationsQuery,
     useGetLocationByIdQuery,
-    useUpdateLocationMutation
+    useUpdateLocationMutation,
+    util as locationApiUtil
 } from "./redux/api/locationApi.ts";
 import {
     useCreateDepartmentMutation,
     useDeleteDepartmentMutation,
     useGetAllDepartmentsQuery,
     useGetDepartmentByIdQuery,
-    useUpdateDepartmentMutation
+    useUpdateDepartmentMutation,
+    util as departmentApiUtil
 } from "./redux/api/departmentApi.ts";
 import {
     useCreatePositionMutation,
     useDeletePositionMutation,
     useGetAllPositionsQuery,
     useGetPositionByIdQuery,
-    useUpdatePositionMutation
+    useUpdatePositionMutation,
+    util as positionApiUtil
 } from "./redux/api/positionApi.ts";
 
 import AddItemPage from "./pages/item/AddItemPage.tsx";
@@ -95,6 +98,7 @@ function App() {
                             updateMutationFn={useUpdateLocationMutation}
                             title="локации"
                             relatedTitle="Департаменты"
+                            apiUtil={locationApiUtil}
                         />}
                     />
                     <Route path="/integration/departments/:id" element={
@@ -105,6 +109,7 @@ function App() {
                             updateMutationFn={useUpdateDepartmentMutation}
                             title="департамент"
                             relatedTitle="Позиции"
+                            apiUtil={departmentApiUtil}
                         />}
                     />
                     <Route path="/integration/positions/:id" element={
@@ -113,6 +118,7 @@ function App() {
                             delQueryFn={useDeletePositionMutation}
                             updateMutationFn={useUpdatePositionMutation}
                             title="позиции"
+                            apiUtil={positionApiUtil}
                         />}
                     />
                     <Route path="/integration/curators/:id" element={
@@ -125,11 +131,12 @@ function App() {
                             mutationFn={useCreateLocationMutation}
                             onItemAdded={(item) => {
                                 console.log('Location added:', item);
-                                navigate(`${window.location.origin}/integration/positions`);
+                                navigate(`${window.location.origin}/integration/locations`);
                             }}
                             queryFn={useGetAllLocationsQuery}
                             transformInput={(name) => name}
                             title="Локация"
+                            apiUtil={locationApiUtil}
                         />}
                     />
                     <Route path="/integration/departments/add" element={
@@ -137,11 +144,12 @@ function App() {
                             mutationFn={useCreateDepartmentMutation}
                             onItemAdded={(item) => {
                                 console.log('Department added:', item);
-                                navigate(`${window.location.origin}/integration/positions`);
+                                navigate(`${window.location.origin}/integration/departments`);
                             }}
                             queryFn={useGetAllLocationsQuery} // Для создания департамента, выбираем локацию
                             transformInput={(name, parentId) => ({name, locationId: parentId})}
                             title="Департамент" // Для департаментов преобразуем parentId в locationId
+                            apiUtil={departmentApiUtil}
                         />}
                     />
                     <Route path="/integration/positions/add" element={
@@ -154,6 +162,7 @@ function App() {
                             queryFn={useGetAllDepartmentsQuery} // Для создания позиции, выбираем департамент
                             transformInput={(name, parentId) => ({name, departmentId: parentId})}
                             title="Позиции" // Для позиций преобразуем parentId в departmentId
+                            apiUtil={positionApiUtil}
                         />}
                     />
                     <Route path="/integration/curators/add" element={ <AddCuratorPage />} />

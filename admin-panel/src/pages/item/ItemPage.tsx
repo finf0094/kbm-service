@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import './UI/ItemPage.css'
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/utils/Loader.tsx";
@@ -10,9 +10,10 @@ interface IItemPageProps {
     updateMutationFn: any;
     title: string;
     relatedTitle?: string;
+    apiUtil: any
 }
 
-const ItemPage: React.FC<IItemPageProps> = ({ queryFn, relatedQueryFn, delQueryFn, updateMutationFn, title, relatedTitle }) => {
+const ItemPage: React.FC<IItemPageProps> = ({ queryFn, relatedQueryFn, delQueryFn, updateMutationFn, title, relatedTitle, apiUtil }) => {
     const { id } = useParams();
     const navigate = useNavigate();
     const {
@@ -29,10 +30,18 @@ const ItemPage: React.FC<IItemPageProps> = ({ queryFn, relatedQueryFn, delQueryF
         isError: relatedError,
     } = relatedQueryFn ? relatedQueryFn({ id, search: '', offset: 0, pageSize: 10 }) : { data: null, isLoading: false, isError: false };
 
+
     // Mutation for deleting item
-    const [deleteItem, { isLoading: deleteLoading, isError: deleteError, error: deleteErrorData }] = delQueryFn ? delQueryFn() : [null, { isLoading: false, isError: false, error: null }];
-    const [updateItem, { isLoading: updateLoading, isError: updateError, error: updateErrorData }] = updateMutationFn();
-    
+    const [deleteItem, { isLoading: deleteLoading, isSuccess: deleteSuccess, isError: deleteError, error: deleteErrorData }] = delQueryFn ? delQueryFn() : [null, { isLoading: false, isSuccess: false, isError: false, error: null }];
+    const [updateItem, { isLoading: updateLoading, isSuccess: updateSuccess, isError: updateError, error: updateErrorData }] = updateMutationFn();
+
+    useEffect(() => {
+        if (deleteSuccess || updateSuccess) {
+            // Инвалидируйте тег после успешного удаления или обновления элемента
+            apiUtil.invalidateTags([{ type: 'Item' }]);
+        }
+    }, [deleteSuccess, updateSuccess, apiUtil]);
+
     const [editedName, setEditedName] = useState("");
 
     if (deleteError) return <div>{deleteErrorData.data.message}</div>
