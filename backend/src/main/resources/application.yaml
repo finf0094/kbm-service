@@ -30,4 +30,4 @@ springdoc:
     path: /api/docs
 
 cors:
-  allowed_origins: ${ALLOWED_ORIGIN:localhost:5432}
+  allowed_origins: ${ALLOWED_ORIGIN:localhost:5173}
