@@ -2,7 +2,7 @@ import {BaseQueryApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {RootState} from "../store.ts";
 import {loginSuccess, logout} from "../slices/authSlice.ts";
 
-export const baseUrl = import.meta.env.VITE_API_URL
+export const baseUrl = import.meta.env.VITE_API_URL + "/api"
 
 export const baseQuery = fetchBaseQuery({
     baseUrl,
