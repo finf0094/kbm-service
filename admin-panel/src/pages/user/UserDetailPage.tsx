@@ -9,6 +9,7 @@ import { useGetAllPositionsQuery } from "../../redux/api/positionApi.ts";
 const roles = [
     { id: 1, name: "ROLE_USER" },
     { id: 2, name: "ROLE_MODERATOR" },
+    { id: 3, name: "ROLE_ADMIN" }
 ];
 
 const UserDetailPage: React.FC = () => {
@@ -24,7 +25,7 @@ const UserDetailPage: React.FC = () => {
         if (isUpdateSuccess) {
             navigate("/auth/users");
         }
-    }, [isUpdateSuccess, history]);
+    }, [isUpdateSuccess]);
 
     useEffect(() => {
         setEditedUser(user);
