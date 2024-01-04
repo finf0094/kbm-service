@@ -39,6 +39,7 @@ public class UserService {
 
     // UTILS
     private final PasswordEncoder passwordEncoder;
+    private final NullAwareBeanUtilsBean nullAwareBeanUtilsBean;
 
     public Page<UserSummaryDTO> getAllUsers(String roleName, String search, int offset, int pageSize) {
         Specification<User> spec = Specification.where(null);
@@ -85,10 +86,8 @@ public class UserService {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id: %s not found", userId)));
 
-        // Update the fields with values from UserUpdateDTO
-        NullAwareBeanUtilsBean beanUtils = new NullAwareBeanUtilsBean();
         try {
-            beanUtils.copyProperties(existingUser, userUpdateDTO);
+            nullAwareBeanUtilsBean.copyProperties(existingUser, userUpdateDTO);
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new BadRequestException("Updating user failed: " + e.getMessage());
         }
