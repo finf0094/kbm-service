@@ -1,0 +1,30 @@
+.report__items-list {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.report__item {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(-45deg, #8baefa, #5c90ff);
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.report__item-info {
+    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 700;
+    text-shadow: 3px 3px 10px #0000007a;
+}
+
+.report__item-desc {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.report__item p {
+    color: #fff;
+}

@@ -81,7 +81,7 @@ const HeaderList: React.FC<HeaderListProps> = ({ data }) => {
                         </li>
                         {data.roles && data.roles.includes('ROLE_MODERATOR') &&
                             (<li className="list__items-content">
-                                <Link to="/moderation" className="list__item" onClick={handleToggleList}>
+                                <Link to="/" className="list__item" onClick={handleToggleList}>
                                     <i className="uil uil-user-md list__icon"></i>
                                     <div className="list__item-link">Модерация</div>
                                 </Link>

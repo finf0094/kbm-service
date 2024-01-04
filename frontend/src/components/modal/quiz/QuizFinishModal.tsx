@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import {useSpring, animated} from "react-spring";
-import {redirect} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
+import { redirect } from "react-router-dom";
 import "../UI/modal.css";
 import "./UI/QuizFinishModal.css";
 
@@ -11,10 +11,10 @@ interface QuizModalProps {
 }
 
 const QuizFinishModal: React.FC<QuizModalProps> = ({
-                                                       score,
-                                                       isOpen,
-                                                       onClose,
-                                                   }) => {
+    score,
+    isOpen,
+    onClose,
+}) => {
     const [animationClass, setAnimationClass] = useState("");
 
     const handleToggleModal = () => {
@@ -34,7 +34,7 @@ const QuizFinishModal: React.FC<QuizModalProps> = ({
     };
 
     const getScales = () => {
-        const {clientWidth: A, clientHeight: e} = document.documentElement;
+        const { clientWidth: A, clientHeight: e } = document.documentElement;
         return (A + e) / 2800;
     };
 
@@ -45,14 +45,13 @@ const QuizFinishModal: React.FC<QuizModalProps> = ({
     // Используем useSpring для анимации изменения значения score
     const scoreAnimation = useSpring({
         score: score || 0,
-        from: {score: 0},
-        config: {duration: 1000},
+        from: { score: 0 },
+        config: { duration: 1000 },
     });
 
     useEffect(() => {
-        // Обновляем score внутри анимации
         scoreAnimation.score.start(score || 0);
-    }, [score]);
+    }, [scoreAnimation, score]);
 
     return (
         <>
@@ -60,10 +59,10 @@ const QuizFinishModal: React.FC<QuizModalProps> = ({
                 <div
                     className={`modal__wrapper quizModal__wrapper ${modalClass} ${animationClass}`}
                     onClick={(e) => e.stopPropagation()}
-                    style={{transform: `scale(${getScales()})`}}
+                    style={{ transform: `scale(${getScales()})` }}
                 >
                     <div className="quizModal__icon"
-                         style={isPassed ? {background: "#00E933"} : {background: "#ED1212"}}>
+                        style={isPassed ? { background: "#00E933" } : { background: "#ED1212" }}>
                         {isPassed ? <i className="uil uil-check"></i> : <span>&times;</span>}
                     </div>
 
@@ -77,20 +76,18 @@ const QuizFinishModal: React.FC<QuizModalProps> = ({
 
                     <animated.div className="quizModal__score">
                         <animated.span className="quizModal__score-value"
-                                       style={isPassed ? {color: "#46F66D"} : {color: "red"}}>
+                            style={isPassed ? { color: "#46F66D" } : { color: "red" }}>
                             {scoreAnimation.score.to((val: number) => Math.floor(val))}
                         </animated.span>
                         <animated.span
                             className="quizModal__score-bg"
-                            style={isPassed ? {color: "rgba(91, 240, 123, .2)"} : {color: "rgba(249, 162, 162, .2)"}}
+                            style={isPassed ? { color: "rgba(91, 240, 123, .2)" } : { color: "rgba(249, 162, 162, .2)" }}
                         >
                             %
                         </animated.span>
                     </animated.div>
 
-                    <button className="modal__button" onClick={handleToggleModal}>
-                        Закрыть
-                    </button>
+                    <button className="modal__button" onClick={handleToggleModal}>Закрыть</button>
                 </div>
             </div>
         </>

@@ -14,9 +14,13 @@ import './App.css'
 import QuizPage from "./pages/quiz-session/QuizPage.tsx";
 import ModerationPage from "./pages/moderator/ModerationPage.tsx";
 import ApplicationProfilePage from "./pages/moderator/ApplicationProfilePage.tsx";
+import useAuth from "./hooks/useAuth.ts";
+import ReportPage from "./pages/ReportPage.tsx";
 
 
 function App() {
+
+    const auth = useAuth()
 
     return (
         <Routes>
@@ -25,7 +29,6 @@ function App() {
 
                 {/* default user */}
                 <Route element={<RequireAuth allowedRoles={['ROLE_USER']} />}>
-                    <Route path="/" element={<MainPage />} />
                     <Route path="/policy" element={<PolicyPage />} />
                     <Route path="/application-page" element={<ApplicationPage />}/>
                     <Route path="/quiz-sessions" element={<QuizSessionsPage />}/>
@@ -34,6 +37,7 @@ function App() {
 
                 {/* for all who has profile */}
                 <Route element={<RequireAuth allowedRoles={['ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR']} />}>
+                    {auth?.user?.roles?.find((role: string) => role === 'ROLE_USER') ? <Route path="/" element={<MainPage />}/> : <Route path="/" element={<ModerationPage />}/>}
                     <Route path="/profile" element={<ProfilePage />} />
                 </Route>
 
@@ -42,7 +46,7 @@ function App() {
                     <Route path="/quiz/:quizId/update" element={<QuizCreateOrUpdatePage />} />
                     <Route path="/quiz/create" element={<QuizCreateOrUpdatePage />} />
                     <Route path="/quizzes" element={<QuizListPage />}/>
-                    <Route path="/moderation" element={<ModerationPage />}/>
+                    <Route path="/report" element={<ReportPage />}/>
                     <Route path="/application/:applicationId" element={<ApplicationProfilePage/>}/>
                 </Route>
             </Route>

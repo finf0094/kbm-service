@@ -18,7 +18,7 @@ const QuizItem: FC<QuizItemProps>= ({ quiz, handleDelete }) => {
                     <h2 className="quizList__name">{quiz.title}</h2>
                     <p className="quizList__desc">{quiz.description}</p>
                     <p className="quizList__duration">Duration: {formatDuration(quiz.duration)}</p>
-                    <p className="quizList__position">Position: {quiz.position.name}</p>
+                    <p className="quizList__position">Позиция: {quiz.position.name}</p>
                 </Link>
             </div>
             <button className="quizList__delete" onClick={() => handleDelete(quiz.quizId)}>

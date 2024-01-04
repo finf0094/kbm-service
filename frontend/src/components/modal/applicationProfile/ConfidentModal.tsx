@@ -33,8 +33,6 @@ const ConfidentModal: React.FC<{ id: string, selectedOption: string, resetSelect
         resetSelectedOption();
     };
 
-
-
     const handleCloseModal = () => {
         dispatch(closeModal({ id }))
     }

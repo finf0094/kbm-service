@@ -23,11 +23,8 @@ const ProfilePage: React.FC = () => {
     } = useGetUserWithItinQuery(itin);
 
     useEffect(() => {
-        if (userData) console.log("user data", userData);
-        if (isUserSuccess) console.log("success");
-        if (isUserLoading) console.log("Loading...");
-        if (isUserError) console.log(isUserError);
-        if (userError) console.log(userError);
+        if (isUserError) console.log(`Ошибка: ${isUserError} Покажите эту ошибку разработчикам!`);
+        if (userError) console.log(`Ошибка: ${userError} Покажите эту ошибку разработчикам!`);
     }, [userData, isUserSuccess, isUserLoading, isUserError, userError]);
 
     if (isUserLoading) {
@@ -39,7 +36,7 @@ const ProfilePage: React.FC = () => {
         return <div className="page">{userError.data.message}</div>;
     }
 
-    if (!isUserSuccess) return <div className="page">Error</div>
+    if (!isUserSuccess) return <div className="page">Ошибка!</div>
 
     return (
         <div className="page">

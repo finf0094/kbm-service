@@ -11,15 +11,15 @@ const QuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, onConfirm }) => 
     return (
         <Modal
             id="startTestModal"
-            title="Start Test"
+            title="Начать тест"
             button={true}
-            buttonText="Start Test"
+            buttonText="Готов"
             buttonDisabled={false}
             isOpen={isOpen}
             onClose={onClose}
             onConfirm={onConfirm}
         >
-            <h1>Are you ready to start the test?</h1>
+            <h1>Вы готовы начать нест?</h1>
         </Modal>
     );
 };

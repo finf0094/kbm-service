@@ -36,13 +36,13 @@ const QuizListPage: React.FC = () => {
     useEffect(() => {
         if (isDeleteSuccess) {
             refetch();
-            toast.success("Quiz successfully deleted");
+            toast.success("Тест успешно удален!");
         }
         if (isDeleteError && deleteError && 'data' in deleteError && deleteError.data) {
-            toast.error(`Error: ${deleteError.data.message}`);
-            console.log(deleteError)
+            toast.error(`Ошибка: ${deleteError.data.message}`);
+            console.log(`Ошибка: ${deleteError}. Покажите эту ошибку разработчикам!`)
         }
-    }, [isDeleteSuccess, isDeleteError]);
+    }, [isDeleteSuccess, isDeleteError, deleteError, refetch]);
 
     useEffect(() => {
         if (isSuccess && quizzes) {
@@ -68,10 +68,10 @@ const QuizListPage: React.FC = () => {
                         <div className="quizList__item quizList__create">
                             <span className="text">Создать тест</span> <Link to="/quiz/create" className="plus">+</Link>
                         </div>
-                        {isError ? <div>Get quizzes failed</div> : ""}
+                        {isError ? <span>Не удалось получить тесты</span> : ""}
                         {isSuccess && quizzes ? quizzes.content.map(quiz => (
                             <QuizItem key={quiz.quizId} quiz={quiz} handleDelete={handleDelete} />
-                        )) : <h2>Error to get quiz item</h2>}
+                        )) : <span>Ошибка с получением теста</span>}
                     </ul>
                     <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
                 </div>

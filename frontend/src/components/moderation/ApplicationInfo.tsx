@@ -12,8 +12,6 @@ const ApprovalRequestInfo: React.FC<ApprovalRequestInfoProps> = ({application}) 
 
     const applicationState = useSelector((state: RootState) => state.application);
     const { interviewDetails } = applicationState;
-    console.log(application.status);
-    console.log(applicationState);
     const isInterview = application.status === "INTERVIEW_SCHEDULED"
 
     const formattedDate = new Date(interviewDetails.time).toLocaleString();

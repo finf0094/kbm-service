@@ -44,19 +44,19 @@ const ApplicaitonTable: React.FC<ApprovalRequestTableProps> = React.memo(({ isCh
         }
         if (isSetDesiredPositionError && setDesiredPositionError && 'data' in setDesiredPositionError && setDesiredPositionError.data) {
             toast.error(`error: ${setDesiredPositionError.data.message}`);
-            console.log(setDesiredPositionError);
+            console.log(`Ошибка: ${setDesiredPositionError} Покажите эту ошибку разработчикам!`);
         }
-    }, [isSetDesiredPositionSuccess, isSetDesiredPositionError]);
+    }, [isSetDesiredPositionSuccess, isSetDesiredPositionError, applicationData, dispatch, setDesiredPositionError]);
 
     useEffect(() => {
         if (isDeleteDesiredPositionSuccess && afterDeletedDesiredPositionMessage) {
             toast.success(afterDeletedDesiredPositionMessage.message)
         }
         if (isDeleteDesiredPositionError && deleteDesiredPositionError && 'data' in deleteDesiredPositionError && deleteDesiredPositionError.data) {
-            toast.error(`error: ${deleteDesiredPositionError.data.message}`);
-            console.log(deleteDesiredPositionError);
+            toast.error(`Ошибка: ${deleteDesiredPositionError.data.message}`);
+            console.log(`Ошибка: ${deleteDesiredPositionError} Покажите эту ошибку разработчикам!`);
         }
-    }, [isDeleteDesiredPositionSuccess, isDeleteDesiredPositionError]);
+    }, [isDeleteDesiredPositionSuccess, isDeleteDesiredPositionError, afterDeletedDesiredPositionMessage, deleteDesiredPositionError]);
 
     return (
         <div className="approvalrequesttable">

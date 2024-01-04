@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './UI/modal.css';
 import { useDispatch } from 'react-redux';
 import {closeModal} from "../../redux/slices/modalSlice.ts";
@@ -47,11 +47,11 @@ const Modal: React.FC<ModalProps> = ({ id, title, button, buttonText, buttonDisa
         setIsModalVisible(isOpen);
     }, [isOpen]);
 
-    const handleEscapeKey = (event: KeyboardEvent) => {
+    const handleEscapeKey = useCallback((event: KeyboardEvent) => {
         if (event.key === 'Escape') {
             dispatch(closeModal({ id }));
         }
-    };
+    }, [dispatch, id]);
 
     useEffect(() => {
         setIsModalVisible(isOpen);
@@ -65,7 +65,7 @@ const Modal: React.FC<ModalProps> = ({ id, title, button, buttonText, buttonDisa
         return () => {
             document.removeEventListener('keydown', handleEscapeKey);
         };
-    }, [isOpen, id]);
+    }, [isOpen, id, handleEscapeKey]);
 
     return (
         isModalVisible ? (

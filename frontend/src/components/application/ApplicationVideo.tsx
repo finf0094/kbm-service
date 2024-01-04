@@ -79,7 +79,7 @@ const ApprovalRequestVideo: React.FC = () => {
         if (isError && error && 'data' in error && error.data) {
             toast.error(error.data.message)
         }
-    }, [isSuccess, isError])
+    }, [isSuccess, isError, applicationData, error, navigate])
 
 
 
@@ -120,7 +120,7 @@ const ApprovalRequestVideo: React.FC = () => {
                                 onChange={handleFileChange}
                             />
                         )}
-                        {loading && <div>Upload progress: {uploadProgress}%</div>}
+                        {loading && <div>Прогресс загрузки: {uploadProgress}%</div>}
                         {selectedFile && <button onClick={handleFinishClick}>Завершить</button>}
                     </div>
                 </div>

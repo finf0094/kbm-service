@@ -15,12 +15,13 @@ import { authApi } from './api/authApi.ts';
 import { userApi } from './api/userApi.ts';
 import { applicationApi } from './api/applicationApi.ts';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
-import {locationApi} from "./api/position/locationApi.ts";
-import {departmentApi} from "./api/position/departmentApi.ts";
-import {positionApi} from "./api/position/positionApi.ts";
-import {quizApi} from "./api/quizApi.ts";
-import {quizSessionApi} from "./api/quizSessionApi.ts";
-import {moderatorApi} from "./api/moderatorApi.ts";
+import { locationApi } from "./api/position/locationApi.ts";
+import { departmentApi } from "./api/position/departmentApi.ts";
+import { positionApi } from "./api/position/positionApi.ts";
+import { quizApi } from "./api/quizApi.ts";
+import { quizSessionApi } from "./api/quizSessionApi.ts";
+import { moderatorApi } from "./api/moderatorApi.ts";
+import { reportApi } from './api/reportApi.ts';
 
 
 // Конфигурация Redux Persist
@@ -44,7 +45,8 @@ const rootReducer = combineReducers({
     [positionApi.reducerPath]: positionApi.reducer,
     [quizApi.reducerPath]: quizApi.reducer,
     [quizSessionApi.reducerPath]: quizSessionApi.reducer,
-    [moderatorApi.reducerPath]: moderatorApi.reducer
+    [moderatorApi.reducerPath]: moderatorApi.reducer,
+    [reportApi.reducerPath]: reportApi.reducer,
 });
 
 // Создание хранилища
@@ -56,7 +58,8 @@ const store = configureStore({
         }).concat(
             authApi.middleware, userApi.middleware, applicationApi.middleware,
             locationApi.middleware, departmentApi.middleware, positionApi.middleware,
-            quizApi.middleware, quizSessionApi.middleware, moderatorApi.middleware
+            quizApi.middleware, quizSessionApi.middleware, moderatorApi.middleware,
+            reportApi.middleware,
         ),
 });
 

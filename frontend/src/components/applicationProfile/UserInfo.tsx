@@ -18,8 +18,6 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user, status }) => {
     const { t } = useTranslation();
     const { id: applicationId } = useAppSelector((state) => state.application);
     const dispatch = useAppDispatch();
-
-    console.log(user);
     
 
     const formattedTime = new Date(user.createdAt).toLocaleString();
@@ -29,7 +27,6 @@ const UserInfo: React.FC<IUserInfoProps> = React.memo(({ user, status }) => {
     const handleConfidentModal = (e: ChangeEvent<HTMLSelectElement>) => {
         const selectedOptionValue = e.target.value;
         setSelectedOption(selectedOptionValue);
-        console.log(selectedOptionValue);
         if (selectedOptionValue === "INTERVIEW_SCHEDULED") {
             dispatch(openModal({ id: 'scheduleInterviewModal' }));
         } else {

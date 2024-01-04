@@ -63,7 +63,6 @@ const PositionSelectModal: React.FC<PositionSelectModalProps> = ({ isOpen, onClo
 
     const handleSubmit = () => {
         if (selectedPosition) {
-            console.log(selectedPosition)
             onSubmit(selectedPosition);
             onClose();
         }

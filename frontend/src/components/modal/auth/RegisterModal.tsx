@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 
 // ANOTHER LIBRARIES
 import InputMask from "react-input-mask";
@@ -27,9 +27,9 @@ const RegisterModal: React.FC<{ id: string }> = ({ id }) => {
 
     const dispatch = useAppDispatch();
 
-    const handleCloseModal = () => {
+    const handleCloseModal = useCallback(() => {
         dispatch(closeModal({ id }));
-    };
+    }, [dispatch, id]);
 
     const [itin, setITIN] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -87,24 +87,18 @@ const RegisterModal: React.FC<{ id: string }> = ({ id }) => {
     };
 
     useEffect(() => {
-        if (registerData) {
-            console.log("user data: ", registerData)
-        }
         if (isRegisterSuccess) {
-            dispatch(closeModal)
-            toast.success("User registered successfully")
-        }
-        if (isRegisterLoading) {
-            console.log("Loading...")
+            handleCloseModal();
+            toast.success("Регистрация прошла успешно!")
         }
         if (isRegisterError) {
-            console.log("Error...")
+            toast.error("Произошла ошибка")
         }
         if (errorData && 'data' in errorData && errorData.data) {
             toast.error(`error: ${errorData.data.message}`);
-            console.log(errorData)
+            console.log(`Ошибка: ${errorData}. Покажите эту ошибку разработчикам!`)
         }
-    }, [registerData, isRegisterLoading ,isRegisterSuccess, isRegisterError, errorData]);
+    }, [registerData, isRegisterLoading ,isRegisterSuccess, isRegisterError, errorData, handleCloseModal]);
 
     return (
         <Modal
