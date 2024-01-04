@@ -61,9 +61,6 @@ const mockData = [
                 name: "Куратора",
                 redirect: "/"
             },
-            {
-
-            }
         ]
     }
 ]
