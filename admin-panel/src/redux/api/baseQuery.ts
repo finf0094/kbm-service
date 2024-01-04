@@ -18,7 +18,7 @@ export const baseQuery = fetchBaseQuery({
 })
 
 export const baseQueryWithReauth = async (
-    args: any,
+    args: any,  
     api: BaseQueryApi,
     extraOptions: any,
 ) => {

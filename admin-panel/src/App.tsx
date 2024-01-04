@@ -33,6 +33,9 @@ import Layout from "./components/Provider/Layout.tsx";
 import './App.css'
 import UserListPage from "./pages/user/UserListPage.tsx";
 import UserDetailPage from "./pages/user/UserDetailPage.tsx";
+import { useGetAllCuratorsQuery } from "./redux/api/curatorApi.ts";
+import AddCuratorPage from "./pages/item/AddCuratorPage.tsx";
+import CuratorEditPage from "./pages/item/CuratorEditPage.tsx";
 
 
 function App() {
@@ -73,6 +76,13 @@ function App() {
                             title="позиции"
                         />}
                     />
+                    <Route path="/integration/curators/" element={
+                        <ItemListPage
+                            key="curators"
+                            queryFn={useGetAllCuratorsQuery}
+                            title="кураторов"
+                        />}
+                    />
 
 
                     <Route path="/integration/locations/:id" element={
@@ -102,6 +112,9 @@ function App() {
                             updateMutationFn={useUpdatePositionMutation}
                             title="позиции"
                         />}
+                    />
+                    <Route path="/integration/curators/:id" element={
+                        <CuratorEditPage />}
                     />
 
 
@@ -141,6 +154,7 @@ function App() {
                             title="Позиции" // Для позиций преобразуем parentId в departmentId
                         />}
                     />
+                    <Route path="/integration/curators/add" element={ <AddCuratorPage />} />
 
                     <Route path="/auth/users" element={<UserListPage/>}/>
                     <Route path="/auth/users/:id" element={<UserDetailPage/>}/>

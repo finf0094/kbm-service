@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 
-import {useGetAllLocationsQuery} from "../../redux/api/locationApi.ts";
-import {useGetAllDepartmentsQuery} from "../../redux/api/departmentApi.ts";
-import {useGetAllPositionsQuery} from "../../redux/api/positionApi.ts";
-
 import List from "../../components/List.tsx";
 import Loader from "../../components/utils/Loader.tsx";
 import Pagination from "../../components/Pagination.tsx";
+import CuratorList from "../../components/CuratorList.tsx";
 
 
 const ItemListPage: React.FC<{
-    queryFn: typeof useGetAllLocationsQuery | typeof useGetAllDepartmentsQuery | typeof useGetAllPositionsQuery,
+    queryFn: any,
     title: string
 }> = ({ queryFn, title }) => {
     const [search, setSearch] = useState("");
@@ -30,9 +27,18 @@ const ItemListPage: React.FC<{
         setCurrentPage(0); // Сбросить текущую страницу при поиске
     }
 
+    let itemsComponent;
+    switch (title) {
+        case 'кураторов':
+            itemsComponent = <CuratorList items={items.content} onSearch={handleSearch} />;
+            break;
+        default:
+            itemsComponent = <List title={title} items={items.content} onSearch={handleSearch} />;
+    }
+
     return (
         <div>
-            <List title={title} items={items.content} onSearch={handleSearch} />
+            {itemsComponent}
             {items.totalPages > 1 && <Pagination totalPages={items.totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
         </div>
     );

@@ -9,11 +9,9 @@ import {locationApi} from "./api/locationApi.ts";
 import {departmentApi} from "./api/departmentApi.ts";
 import {positionApi} from "./api/positionApi.ts";
 import {userApi} from "./api/userApi.ts";
+import { curatorApi } from './api/curatorApi.ts';
 
 // API
-
-
-
 
 // Объединение редьюсеров с поддержкой Redux Persist
 const rootReducer = combineReducers({
@@ -22,7 +20,8 @@ const rootReducer = combineReducers({
     [locationApi.reducerPath]: locationApi.reducer,
     [departmentApi.reducerPath]: departmentApi.reducer,
     [positionApi.reducerPath]: positionApi.reducer,
-    [userApi.reducerPath]: userApi.reducer
+    [userApi.reducerPath]: userApi.reducer,
+    [curatorApi.reducerPath]: curatorApi.reducer
 });
 
 // Создание хранилища
@@ -33,7 +32,7 @@ const store = configureStore({
             serializableCheck: false
         }).concat(
             authApi.middleware,locationApi.middleware, departmentApi.middleware, positionApi.middleware,
-            userApi.middleware
+            userApi.middleware,curatorApi.middleware
         ),
 });
 

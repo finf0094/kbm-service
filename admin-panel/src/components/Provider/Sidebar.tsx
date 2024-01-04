@@ -55,11 +55,11 @@ const mockData = [
             },
             {
                 name: "Политика",
-                redirect: "/"
+                redirect: "/integration/policy"
             },
             {
                 name: "Куратора",
-                redirect: "/"
+                redirect: "/integration/curators"
             },
         ]
     }
