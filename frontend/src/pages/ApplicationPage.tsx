@@ -33,17 +33,16 @@ const ApplicationPage: React.FC = () => {
 
     useEffect(() => {
         if (isApplicationError) {
-            console.log("Error", isApplicationError)
+            console.log(`Ошибка!`)
         }
         if (applicationError) {
-            console.log("application error", applicationError)
+            console.log(`Ошибка: ${applicationError} Покажите эту ошибку разработчикам!`)
         }
         if (isApplicationSuccess) {
-            console.log(applicationData)
             dispatch(setApplicationData(applicationData));
         }
 
-    }, [isApplicationError, applicationError]);
+    }, [isApplicationError, applicationError, applicationData, dispatch, isApplicationSuccess]);
 
     const handleNextStep = () => {
         setStep(step + 1);
@@ -91,7 +90,7 @@ const ApplicationPage: React.FC = () => {
                 ) : isApplicationSuccess ? (
                     currentComponent
                 ) : (
-                    <div>Error loading application data</div>
+                    <div>Ошибка при загрузке данных</div>
                 )}
                 {step === 1 ? (
                     ""

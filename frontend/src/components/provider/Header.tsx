@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import HeaderList from "./HeaderList";
 import { useTranslation } from "react-i18next";
 import NavList from "./NavList";
-import {openModal} from "../../redux/slices/modalSlice.ts";
+import { openModal } from "../../redux/slices/modalSlice.ts";
 import PhoneNumberFormatter from "../utils/PhoneNumberFormatter.tsx";
 
 interface HeaderProps {
@@ -88,27 +88,15 @@ const Header: React.FC<HeaderProps> = ({ data }) => {
                         />
                     </div>
                     <ul className="nav__list">
-                        {data.roles && data.roles.includes("ROLE_USER") && (
-                            <div className="header__user-links">
-                                <li className="nav__item">
-                                    <Link to="/" className="nav__link">
-                                        {t("header_about_link")}
-                                    </Link>
-                                </li>
-                                <li className="nav__item">
-                                    <Link to="/policy" className="nav__link">
-                                        {t("header_police_link")}
-                                    </Link>
-                                </li>
+                        {data.roles && data.roles.includes("ROLE_USER") ? (
+                            <div className="header__links">
+                                <li className="nav__item"><Link to="/" className="nav__link"> {t("header_about_link")}</Link></li>
+                                <li className="nav__item"><Link to="/policy" className="nav__link">{t("header_police_link")}</Link></li>
                             </div>
-                        )}
-                        {data.roles && data.roles.includes("ROLE_MODERATOR") && (
-                            <div className="header__moderator-links">
-                                <li className="nav__item">
-                                    <Link to="/quizzes" className="nav__link">
-                                        Тесты
-                                    </Link>
-                                </li>
+                        ) : (
+                            <div className="header__links">
+                                <li className="nav__item"><Link to="/quizzes" className="nav__link">Тесты</Link></li>
+                                <li className="nav__item"><Link to="/report" className="nav__link">Отчет</Link></li>
                             </div>
                         )}
                     </ul>
@@ -204,7 +192,7 @@ const Header: React.FC<HeaderProps> = ({ data }) => {
                     />
                 )}
             </div>
-        </header>
+        </header >
     );
 };
 

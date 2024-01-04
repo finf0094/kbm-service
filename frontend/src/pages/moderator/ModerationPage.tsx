@@ -87,7 +87,7 @@ const ModerationPage: React.FC = () => {
                             (application) => (
                                 <li key={application.id} className="admin__claims-item">
                                     <ApplicationWrapper application={application}>
-                                        
+
                                         <Link to={`/application/${application.id}`}
                                               className="admin__claims-button">Открыть</Link>
                                     </ApplicationWrapper>

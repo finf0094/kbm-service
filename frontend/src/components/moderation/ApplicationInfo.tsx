@@ -8,7 +8,6 @@ interface ApprovalRequestInfoProps {
 
 const ApprovalRequestInfo: React.FC<ApprovalRequestInfoProps> = ({application}) => {
     const interviewDetails = application.interviewDetails;
-    console.log(application.status);
     const isInterview = application.status === "INTERVIEW_SCHEDULED"
 
     const formattedDate = interviewDetails?.time

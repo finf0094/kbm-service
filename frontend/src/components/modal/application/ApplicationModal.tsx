@@ -51,26 +51,20 @@ const ApplicationModal: React.FC<{ id: string }> = ({id}) => {
     };
 
     useEffect(() => {
-        if (applicationData) {
-            console.log("application data: ", applicationData)
-        }
         if (isApplicationSuccess && applicationData) {
             dispatch(setApplicationData(applicationData))
             dispatch(closeModal)
             navigate("/application-page")
             toast.success("application successfully created")
         }
-        if (isApplicationLoading) {
-            console.log("Loading...")
-        }
         if (isApplicationError) {
-            console.log("Error...")
+            toast.error("Произошла ошибка...")
         }
         if (applicationError && 'data' in applicationError && applicationError.data) {
-            toast.error(`error: ${applicationError.data.message}`);
-            console.log(applicationError)
+            toast.error(`Ошибка: ${applicationError.data.message}`);
+            console.log(`Ошибка: ${applicationError}. Покажите эту ошибку разработчикам!`)
         }
-    }, [applicationData, isApplicationSuccess, isApplicationLoading, isApplicationError, applicationError]);
+    }, [applicationData, isApplicationSuccess, isApplicationLoading, isApplicationError, applicationError, dispatch]);
 
     return (
         <Modal

@@ -1,4 +1,4 @@
-import {BaseQueryApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import {BaseQueryApi, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {RootState} from "../store.ts";
 import {loginSuccess, logout} from "../slices/authSlice.ts";
 
@@ -18,18 +18,15 @@ export const baseQuery = fetchBaseQuery({
 })
 
 export const baseQueryWithReauth = async (
-    args: any,
+    args: string | FetchArgs,
     api: BaseQueryApi,
-    extraOptions: any,
+    extraOptions: object,
 ) => {
     let result = await baseQuery(args, api, extraOptions)
-    console.log(result)
 
     if (result?.error?.status === 401) {
-        console.log("sending refresh token")
         // send refresh token to get accessToken
         const refreshResult = await baseQuery('/auth/refresh', api, extraOptions)
-        console.log(refreshResult);
         if (refreshResult?.data) {
             const state = api.getState() as RootState
             const user = state.auth
