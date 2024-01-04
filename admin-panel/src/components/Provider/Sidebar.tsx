@@ -52,6 +52,17 @@ const mockData = [
             {
                 name: "Позиции",
                 redirect: "/integration/positions/"
+            },
+            {
+                name: "Политика",
+                redirect: "/"
+            },
+            {
+                name: "Куратора",
+                redirect: "/"
+            },
+            {
+
             }
         ]
     }
