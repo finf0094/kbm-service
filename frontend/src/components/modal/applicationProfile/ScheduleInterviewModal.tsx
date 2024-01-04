@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useScheduleAnInterviewMutation} from "../../../redux/api/applicationApi.ts";
-import {IScheduleInterviewDetails} from "../../../models/application/IScheduleInterviewDetails.ts";
+import {IScheduleInterviewDetailsDTO} from "../../../models/application/IScheduleInterviewDetails.ts";
 import Modal from "../Modal.tsx";
 import {closeModal} from "../../../redux/slices/modalSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks/useAppDispatch.ts";
@@ -15,28 +15,12 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
     const isOpen = useAppSelector((state) =>
         state.modal.modals.some(modal => modal.id === id && modal.isOpen)
     );
-    const [scheduleDetails, setScheduleDetails] = useState<IScheduleInterviewDetails>({
+    const [scheduleDetails, setScheduleDetails] = useState<IScheduleInterviewDetailsDTO>({
         time: new Date(),
         format: '',
         venue: '',
         position: '',
-        curator: {
-            id: 0,
-            fullName: '',
-            birthDate: '',
-            itin: '',
-            curatorNumber: '',
-            personalPhoneNumber: '',
-            workPhoneNumber: '',
-            email: '',
-            education: '',
-            certificateNumber: '',
-            totalWorkExperience: 0,
-            curatorWorkExperience: 0,
-            workExperienceInCurrentPosition: 0,
-            academicDegree: '',
-            academicTitle: '',
-        }
+        curatorId: 0,
     });
 
     const [scheduleInterview, {isLoading}] = useScheduleAnInterviewMutation();

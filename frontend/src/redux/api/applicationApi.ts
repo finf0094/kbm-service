@@ -7,7 +7,7 @@ import {IEmployee} from "../../models/employee/IEmployee.ts";
 import {IMessageResponse} from "../../models/information/IMessageResponse.ts";
 import {IEducationWithoutId} from "../../models/application/IEducation.ts";
 import {IExperienceWithoutId} from "../../models/application/IExperience.ts";
-import {IScheduleInterviewDetails} from "../../models/application/IScheduleInterviewDetails.ts";
+import {IScheduleInterviewDetailsDTO} from "../../models/application/IScheduleInterviewDetails.ts";
 
 
 export const applicationApi = createApi({
@@ -97,7 +97,7 @@ export const applicationApi = createApi({
                 method: 'POST',
             }),
         }),
-        scheduleAnInterview: builder.mutation<IApplication, { applicationId: string, scheduleInterviewDetails: IScheduleInterviewDetails }>({
+        scheduleAnInterview: builder.mutation<IApplication, { applicationId: string, scheduleInterviewDetails: IScheduleInterviewDetailsDTO }>({
             query: ({applicationId, scheduleInterviewDetails}) => ({
                 url: `/applications/${applicationId}/scheduleAnInterview`,
                 method: 'POST',
