@@ -38,8 +38,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtService.getUsername(jwt);
             } catch (ExpiredJwtException ex) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
+                filterChain.doFilter(request, response);
+                throw ex;
             }
         }
 
