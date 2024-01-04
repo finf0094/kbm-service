@@ -44,10 +44,11 @@ function App() {
     return (
         <Routes>
 
+
+            <Route path="/auth" element={<LoginPage/>}/>
+
             {/* ADMIN */}
             <Route element={<RequireAuth allowedRoles={['ROLE_ADMIN']}/>}>
-
-                <Route path="/auth" element={<LoginPage/>}/>
 
                 <Route path="/" element={<Layout/>}>
 
