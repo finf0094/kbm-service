@@ -21,6 +21,9 @@ FROM nginx:stable-alpine as production-stage
 # Копирование сбилженных файлов из предыдущего этапа
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
+# Копирование файла конфигурации nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Открытие порта 80 для доступа к серверу
 EXPOSE 80
 
