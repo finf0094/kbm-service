@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class UserUpdateDTO {
+public class UserDTO {
     private String itin;
     private String firstname;
     private String lastname;

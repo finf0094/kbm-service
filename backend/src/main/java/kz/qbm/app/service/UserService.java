@@ -1,6 +1,6 @@
 package kz.qbm.app.service;
 
-import kz.qbm.app.dto.user.UserUpdateDTO;
+import kz.qbm.app.dto.user.UserDTO;
 import kz.qbm.app.exception.BadRequestException;
 import kz.qbm.app.repository.UserRepository;
 import kz.qbm.app.dto.auth.CreateUserRequest;
@@ -60,29 +60,29 @@ public class UserService {
         return userRepository.findByItin(itin);
     }
 
-    public User createUser(CreateUserRequest createUserRequest) {
-        if (userRepository.existsByItin(createUserRequest.getItin())) {
-            throw new RequestExistException("User with ITIN " + createUserRequest.getItin() + " already exists");
+    public User createUser(UserDTO userDTO) {
+        if (userRepository.existsByItin(userDTO.getItin())) {
+            throw new RequestExistException("User with ITIN " + userDTO.getItin() + " already exists");
         }
-        if (userRepository.existsByEmail(createUserRequest.getEmail())) {
-            throw new RequestExistException("User with EMAIL " + createUserRequest.getEmail() + " already exists");
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new RequestExistException("User with EMAIL " + userDTO.getEmail() + " already exists");
         }
 
         User user = User.builder()
-                .itin(createUserRequest.getItin())
-                .email(createUserRequest.getEmail())
-                .roles(List.of(roleService.findByName("ROLE_USER")))
-                .firstname("")
-                .lastname("")
-                .phoneNumber("")
+                .itin(userDTO.getItin())
+                .email(userDTO.getEmail())
+                .roles(userDTO.getRoles())
+                .firstname(userDTO.getFirstname())
+                .lastname(userDTO.getLastname())
+                .phoneNumber(userDTO.getPhoneNumber())
                 .aboutMe("")
-                .password(passwordEncoder.encode(createUserRequest.getPassword()))
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
 
         return userRepository.save(user);
     }
 
-    public User updateUser(Long userId, UserUpdateDTO userUpdateDTO) {
+    public User updateUser(Long userId, UserDTO userUpdateDTO) {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id: %s not found", userId)));
 

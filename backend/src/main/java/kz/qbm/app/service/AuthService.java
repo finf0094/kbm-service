@@ -1,5 +1,6 @@
 package kz.qbm.app.service;
 
+import kz.qbm.app.dto.user.UserDTO;
 import kz.qbm.app.repository.UserRepository;
 import kz.qbm.app.config.CustomUserDetails;
 import kz.qbm.app.config.CustomUserDetailsService;
@@ -41,6 +42,7 @@ public class AuthService {
     // SERVICES
     private final JwtService jwtService;
     private final UserService userService;
+    private final RoleService roleService;
     private final CustomUserDetailsService customUserDetailsService;
 
     // UTILS
@@ -52,7 +54,20 @@ public class AuthService {
 
 
     public ResponseEntity<?> registerUser(CreateUserRequest registerRequest) {
-        User createdUser = userService.createUser(registerRequest);
+
+        UserDTO userDTO = UserDTO.builder()
+                .password(registerRequest.getPassword())
+                .itin(registerRequest.getItin())
+                .email(registerRequest.getEmail())
+                .firstname("")
+                .lastname("")
+                .aboutMe("")
+                .phoneNumber("")
+                .roles(List.of(roleService.findByName("ROLE_USER")))
+                .position(null)
+                .build();
+
+        User createdUser = userService.createUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 new Message(201, String.format("User with itin %s successfully created", createdUser.getItin()))
         );
