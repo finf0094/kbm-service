@@ -62,12 +62,7 @@ public class ApplicationService {
     }
 
     public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(String status, String positionName, String search, int offset, int pageSize) {
-        ApplicationStatus applicationStatus;
-        try {
-            applicationStatus = ApplicationStatus.valueOf(status);
-        } catch (IllegalArgumentException e) {
-            throw new UnknownParameterException(String.format("Unknown parameters: %s", status));
-        }
+        ApplicationStatus applicationStatus = status != null ? ApplicationStatus.valueOf(status) : null;
 
         Specification<Application> spec = Specification.where(ApplicationSpecification.search(search));
 

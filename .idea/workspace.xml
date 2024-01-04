@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/AppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/AppApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/config/AuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/config/AuthConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/controller/report/ApplicationReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/controller/report/ApplicationReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/application/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/service/application/ApplicationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
