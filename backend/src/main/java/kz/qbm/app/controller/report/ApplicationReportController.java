@@ -1,34 +1,26 @@
 package kz.qbm.app.controller.report;
 
-import kz.qbm.app.dto.report.PositionCandidatesDTO;
 import kz.qbm.app.dto.report.PositionReportDTO;
 import kz.qbm.app.service.report.ApplicationReportService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/report")
+@RequestMapping("/api/position-report")
+@RequiredArgsConstructor
 public class ApplicationReportController {
 
-    @Autowired
-    private ApplicationReportService applicationReportService;
+    private final ApplicationReportService applicationReportService;
 
-    @GetMapping("/position")
-    public List<PositionReportDTO> getPositionReport() {
-        return applicationReportService.generatePositionReport();
-    }
-
-    @GetMapping("/candidates")
-    public List<PositionCandidatesDTO> getCandidatesByPosition(
-            @RequestParam(required = false) String status,
-            @RequestParam(required = false) String search,
-            @RequestParam(defaultValue = "0") int offset,
-            @RequestParam(defaultValue = "10") int pageSize) {
-        return applicationReportService.getCandidatesByPosition(status, search, offset, pageSize);
+    @GetMapping("/{positionId}")
+    public PositionReportDTO getPositionReport(@PathVariable Long positionId,
+                                               @RequestParam(required = false) String status,
+                                               @RequestParam(required = false) String search,
+                                               @RequestParam(defaultValue = "0") int offset,
+                                               @RequestParam(defaultValue = "10") int pageSize) {
+        return applicationReportService.getPositionReport(positionId, status, search, offset, pageSize);
     }
 }
