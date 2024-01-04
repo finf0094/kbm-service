@@ -31,7 +31,6 @@ const LoginModal: React.FC<{ id: string }> = ({ id }) => {
         {
             data: userData,
             isSuccess: isLoginSuccess,
-            isError: isLoginError,
             error: errorData
         }] = useLoginUserMutation();
 
@@ -77,14 +76,11 @@ const LoginModal: React.FC<{ id: string }> = ({ id }) => {
             handleCloseModal();
             toast.success("Авторизация успешно пройдена!")
         }
-        if (isLoginError) {
-            toast.error("Произошла ошибка при авторизации...")
-        }
         if (errorData && 'data' in errorData && errorData.data) {
             toast.error(`Ошибка: ${errorData.data.message}`);
             console.log(`Ошибка: ${errorData}. Покажите эту ошибку разработчикам!`)
         }
-    }, [userData, isLoginSuccess, isLoginError, dispatch, errorData, handleCloseModal])
+    }, [userData, isLoginSuccess, dispatch, errorData, handleCloseModal])
 
 
     return (
