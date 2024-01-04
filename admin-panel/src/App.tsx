@@ -33,7 +33,6 @@ import Layout from "./components/Provider/Layout.tsx";
 import './App.css'
 import UserListPage from "./pages/user/UserListPage.tsx";
 import UserDetailPage from "./pages/user/UserDetailPage.tsx";
-import PermissionsPage from "./pages/PermissionsPage.tsx";
 
 
 function App() {
