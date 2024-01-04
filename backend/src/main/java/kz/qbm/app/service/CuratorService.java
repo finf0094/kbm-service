@@ -8,6 +8,7 @@ import kz.qbm.app.specification.CuratorSpecification;
 import kz.qbm.app.utils.NullAwareBeanUtilsBean;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -45,9 +46,9 @@ public class CuratorService {
                 .orElseThrow(() -> new RuntimeException("Curator not found"));
     }
 
-    public Page<Curator> getAllCurators(String search, Pageable pageable) {
+    public Page<Curator> getAllCurators(String search, int offset, int pageSize) {
         Specification<Curator> spec = Specification.where(CuratorSpecification.search(search));
-        return curatorRepository.findAll(spec, pageable);
+        return curatorRepository.findAll(spec, PageRequest.of(offset, pageSize));
     }
 
     public void deleteCurator(Long id) {

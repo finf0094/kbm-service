@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="" />
+    <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/entity/Curator.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/kz/qbm/app/entity/Curator.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +136,7 @@
       <workItem from="1704309007859" duration="682000" />
       <workItem from="1704310032618" duration="2245000" />
       <workItem from="1704320067406" duration="223000" />
-      <workItem from="1704324314064" duration="9841000" />
+      <workItem from="1704324314064" duration="10463000" />
     </task>
     <servers />
   </component>
