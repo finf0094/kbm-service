@@ -3,7 +3,9 @@ package kz.qbm.app.service.application;
 import jakarta.transaction.Transactional;
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
+import kz.qbm.app.dto.application.ScheduleInterviewDetailsDTO;
 import kz.qbm.app.dto.kafka.interview.InterviewEmployeeEmail;
+import kz.qbm.app.entity.Curator;
 import kz.qbm.app.entity.application.ScheduleInterviewDetails;
 import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import kz.qbm.app.entity.User;
@@ -12,6 +14,7 @@ import kz.qbm.app.entity.position.Position;
 import kz.qbm.app.entity.quiz.Quiz;
 import kz.qbm.app.exception.*;
 import kz.qbm.app.mapper.applicaiton.ApplicationMapper;
+import kz.qbm.app.repository.CuratorRepository;
 import kz.qbm.app.repository.application.ApplicationRepository;
 import kz.qbm.app.repository.application.EmployeeRepository;
 import kz.qbm.app.service.UserService;
@@ -37,6 +40,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ApplicationService {
     // REPOSITORIES
+    private final CuratorRepository curatorRepository;
     private final EmployeeRepository employeeRepository;
     private final ApplicationRepository applicationRepository;
 
@@ -269,10 +273,22 @@ public class ApplicationService {
         return applicationRepository.save(application);
     }
 
-    public Application scheduleAnInterview(String applicationId, ScheduleInterviewDetails scheduleInterviewDetails) {
+    public Application scheduleAnInterview(String applicationId, ScheduleInterviewDetailsDTO scheduleInterviewDetailsDTO) {
         Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new NotFoundException("Application not found"));
         application.setStatus(ApplicationStatus.INTERVIEW_SCHEDULED);
+
+        // Получаем куратора по ID
+        Curator curator = curatorRepository.findById(scheduleInterviewDetailsDTO.getCuratorId())
+                .orElseThrow(() -> new NotFoundException("Curator not found"));
+
+        // Создаем объект ScheduleInterviewDetails и заполняем его данными из DTO
+        ScheduleInterviewDetails scheduleInterviewDetails = new ScheduleInterviewDetails();
+        scheduleInterviewDetails.setTime(scheduleInterviewDetailsDTO.getTime());
+        scheduleInterviewDetails.setFormat(scheduleInterviewDetailsDTO.getFormat());
+        scheduleInterviewDetails.setVenue(scheduleInterviewDetailsDTO.getVenue());
+        scheduleInterviewDetails.setPosition(scheduleInterviewDetailsDTO.getPosition());
+        scheduleInterviewDetails.setCurator(curator);
 
         InterviewEmployeeEmail interviewEmployeeEmail =
                 new InterviewEmployeeEmail(
@@ -284,7 +300,8 @@ public class ApplicationService {
                         scheduleInterviewDetails.getPosition(),
                         scheduleInterviewDetails.getFormat(),
                         scheduleInterviewDetails.getVenue(),
-                        scheduleInterviewDetails.getTime()
+                        scheduleInterviewDetails.getTime(),
+                        scheduleInterviewDetails.getCurator().getFullName()
                 );
 
         producerService.sendInterviewEmail(interviewEmployeeEmail);

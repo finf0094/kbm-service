@@ -2,6 +2,7 @@ package kz.qbm.app.controller.application;
 
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
+import kz.qbm.app.dto.application.ScheduleInterviewDetailsDTO;
 import kz.qbm.app.entity.application.ScheduleInterviewDetails;
 import kz.qbm.app.entity.application.Application;
 import kz.qbm.app.entity.application.Education;
@@ -101,8 +102,8 @@ public class ApplicationController {
     }
 
     @PostMapping("/{applicationId}/scheduleAnInterview")
-    public Application scheduleAnInterview(@PathVariable String applicationId, @RequestBody ScheduleInterviewDetails scheduleInterviewDetails) {
-        return applicationService.scheduleAnInterview(applicationId, scheduleInterviewDetails);
+    public Application scheduleAnInterview(@PathVariable String applicationId, @RequestBody ScheduleInterviewDetailsDTO scheduleInterviewDetailsDTO) {
+        return applicationService.scheduleAnInterview(applicationId, scheduleInterviewDetailsDTO);
     }
 
     @PostMapping("{applicationId}/approve")

@@ -6,46 +6,46 @@ const PermissionsPage = () => {
         {
             role: 'ROLE_USER',
             permissions: [
-                'Can modify their profile',
-                'Can upload videos',
-                'Can process applications',
-                'Can take quizzes',
-                'Can upload resumes',
-                'Can download policy',
+                'Может изменять свой профиль',
+                'Может загружать видео',
+                'Может проходить заявку',
+                'Может проходить тесты',
+                'Может загружать резюме',
+                'Может скачивать политику',
             ],
         },
         {
             role: 'ROLE_MODERATOR',
             permissions: [
-                'Can create quizzes',
-                'Can view reports',
-                'Can approve applications',
-                'Can reject applications',
-                'Can schedule interviews',
-                'Can download user videos',
-                'Can download user resumes',
+                'Может создавать тесты',
+                'Может просматривать отчеты',
+                'Может одобрять заявки',
+                'Может отклонять заявки',
+                'Может назначать собеседования',
+                'Может скачивать видео пользователей',
+                'Может скачивать резюме пользователей',
             ],
         },
         {
             role: 'ROLE_ADMIN',
             permissions: [
-                'Can add curators',
-                'Can add departments',
-                'Can add locations',
-                'Can add positions',
-                'Can add policy',
-                'Can delete positions',
-                'Can delete locations',
-                'Can delete departments',
-                'Can delete policy',
-                'Can delete curators'
+                'Может добавлять кураторов',
+                'Может добавлять отделы',
+                'Может добавлять места',
+                'Может добавлять позиции',
+                'Может добавлять политику',
+                'Может удалять позиции',
+                'Может удалять места',
+                'Может удалять отделы',
+                'Может удалять политику',
+                'Может удалять кураторов'
             ],
         },
     ];
 
     return (
         <div className="admin-panel">
-            <h1>Permissions by Role</h1>
+            <h1>Права по ролям</h1>
             <div className="permissions-container">
                 {rolesWithPermissions.map((roleWithPermissions) => (
                     <div key={roleWithPermissions.role} className="role-permissions">

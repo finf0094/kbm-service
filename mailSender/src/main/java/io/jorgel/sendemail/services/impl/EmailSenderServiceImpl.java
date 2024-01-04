@@ -71,6 +71,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         context.setVariable("position", interviewEmployeeEmail.getPosition()); // Set the position variable
         context.setVariable("format", interviewEmployeeEmail.getFormat()); // Set the format variable
         context.setVariable("venue", interviewEmployeeEmail.getVenue()); // Set the venue variable
+        context.setVariable("curatorName", interviewEmployeeEmail.getCuratorName());
         LocalDateTime time = LocalDateTime.ofInstant(interviewEmployeeEmail.getTime().toInstant(), ZoneId.systemDefault());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         String formattedDateTime = time.format(formatter);
