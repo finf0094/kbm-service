@@ -1,7 +1,7 @@
 package kz.qbm.app.dto.user;
 
+import kz.qbm.app.dto.position.PositionDTO;
 import kz.qbm.app.entity.Role;
-import kz.qbm.app.entity.position.Position;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,7 +16,7 @@ public class UserDTO {
     private String lastname;
     private String password;
     private String phoneNumber;
-    private Position position;
+    private PositionDTO position;
     private String aboutMe;
     private List<Role> roles;
     private String email;

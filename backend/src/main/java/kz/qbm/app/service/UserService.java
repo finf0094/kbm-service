@@ -1,6 +1,7 @@
 package kz.qbm.app.service;
 
 import kz.qbm.app.dto.user.UserDTO;
+import kz.qbm.app.entity.position.Position;
 import kz.qbm.app.exception.BadRequestException;
 import kz.qbm.app.repository.UserRepository;
 import kz.qbm.app.dto.auth.CreateUserRequest;
@@ -9,6 +10,7 @@ import kz.qbm.app.entity.User;
 import kz.qbm.app.exception.NotFoundException;
 import kz.qbm.app.exception.RequestExistException;
 import kz.qbm.app.mapper.UserMapper;
+import kz.qbm.app.repository.position.PositionRepository;
 import kz.qbm.app.service.storage.StorageService;
 import kz.qbm.app.specification.UserSpecification;
 import kz.qbm.app.utils.NullAwareBeanUtilsBean;
@@ -28,11 +30,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     // SERVICES
-    private final RoleService roleService;
     private final StorageService storageService;
 
     // REPOSITORIES
     private final UserRepository userRepository;
+    private final PositionRepository positionRepository;
 
     // MAPPERS
     private final UserMapper userMapper;
@@ -68,6 +70,14 @@ public class UserService {
             throw new RequestExistException("User with EMAIL " + userDTO.getEmail() + " already exists");
         }
 
+        Position position = null;
+
+        if (userDTO.getPosition() != null) {
+            position = positionRepository.findById(userDTO.getPosition().getId()).orElseThrow(
+                    () -> new NotFoundException(String.format("position with id %s not found", userDTO.getPosition().getId()))
+            );
+        }
+
         User user = User.builder()
                 .itin(userDTO.getItin())
                 .email(userDTO.getEmail())
@@ -75,6 +85,7 @@ public class UserService {
                 .firstname(userDTO.getFirstname())
                 .lastname(userDTO.getLastname())
                 .phoneNumber(userDTO.getPhoneNumber())
+                .position(position)
                 .aboutMe("")
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
