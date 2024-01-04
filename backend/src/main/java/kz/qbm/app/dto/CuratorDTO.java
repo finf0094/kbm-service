@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class CuratorDTO {
     private String fullName;
-    private String dateOfBirth;
+    private String birthDate;
     private String itin;
     private String curatorNumber;
     private String workPhoneNumber;
