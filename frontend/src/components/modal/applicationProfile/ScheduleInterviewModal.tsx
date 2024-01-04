@@ -22,8 +22,6 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
         position: '',
     });
 
-    
-
     const [scheduleInterview, {isLoading}] = useScheduleAnInterviewMutation();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -39,15 +37,14 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
             });
         }
     };
-    
-    const formattedTime = scheduleDetails.time.toLocaleString();
 
     const handleClose = () => {
         dispatch(closeModal({ id }))
     }
+    console.log(scheduleDetails.time)
 
     const handleSubmit = () => {
-        scheduleInterview({applicationId, scheduleInterviewDetails: {...scheduleDetails, time: formattedTime}});
+        scheduleInterview({applicationId, scheduleInterviewDetails: scheduleDetails});
     };
 
     return (
@@ -66,7 +63,7 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
                     type="datetime-local"
                     className='modal__input'
                     name="time"
-                    value={formattedTime.substring(0,16)}
+                    value={scheduleDetails.time.toISOString().substring(0,16)}
                     onChange={handleChange}
                     required
                 />

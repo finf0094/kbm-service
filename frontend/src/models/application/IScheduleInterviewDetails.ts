@@ -1,7 +1,7 @@
 
 
 export interface IScheduleInterviewDetails {
-    time: Date | string;
+    time: Date;
     format: string;
     venue: string;
     position: string;

@@ -10,6 +10,7 @@ import {ApplicationStatus} from "../../models/application/ApplicationStatus.ts";
 
 import './UI/ModerationPage.css'
 import Loader from "../../components/utils/Loader.tsx";
+import NavigationButton from "../../components/moderation/NavigationButton.tsx";
 
 
 
@@ -52,66 +53,10 @@ const ModerationPage: React.FC = () => {
             <div className="admin">
                 <div className="admin__nav">
                     <ul className="admin__nav-list">
-                        <li className="admin__nav-item">
-                            <button
-                                className="admin__nav-button"
-                                onClick={() => handleButtonClick(ApplicationStatus.PENDING)}
-                            >
-                                <span
-                                    className={
-                                        showingStatus == ApplicationStatus.PENDING
-                                            ? "admin__nav-navbar active-nav"
-                                            : "admin__nav-navbar"
-                                    }
-                                ></span>
-                                <p className="admin__nav-name">Заявки</p>
-                            </button>
-                        </li>
-                        <li className="admin__nav-item">
-                            <button
-                                className="admin__nav-button"
-                                onClick={() => handleButtonClick(ApplicationStatus.APPROVED)}
-                            >
-                                <span
-                                    className={
-                                        showingStatus == ApplicationStatus.APPROVED
-                                            ? "admin__nav-navbar active-nav"
-                                            : "admin__nav-navbar"
-                                    }
-                                ></span>
-                                <p className="admin__nav-name">Принятые</p>
-                            </button>
-                        </li>
-                        <li className="admin__nav-item">
-                            <button
-                                className="admin__nav-button"
-                                onClick={() => handleButtonClick(ApplicationStatus.REJECTED)}
-                            >
-                                <span
-                                    className={
-                                        showingStatus == ApplicationStatus.REJECTED
-                                            ? "admin__nav-navbar active-nav"
-                                            : "admin__nav-navbar"
-                                    }
-                                ></span>
-                                <p className="admin__nav-name">Отклонённые</p>
-                            </button>
-                        </li>
-                        <li className="admin__nav-item">
-                            <button
-                                className="admin__nav-button"
-                                onClick={() => handleButtonClick(ApplicationStatus.INTERVIEW_SCHEDULED)}
-                            >
-                                <span
-                                    className={
-                                        showingStatus == ApplicationStatus.INTERVIEW_SCHEDULED
-                                            ? "admin__nav-navbar active-nav"
-                                            : "admin__nav-navbar"
-                                    }
-                                ></span>
-                                <p className="admin__nav-name">Собеседование</p>
-                            </button>
-                        </li>
+                        <NavigationButton currentStatus={showingStatus} status={ApplicationStatus.PENDING} onClick={handleButtonClick}>Заявки</NavigationButton>
+                        <NavigationButton currentStatus={showingStatus} status={ApplicationStatus.APPROVED} onClick={handleButtonClick}>Принятые</NavigationButton>
+                        <NavigationButton currentStatus={showingStatus} status={ApplicationStatus.REJECTED} onClick={handleButtonClick}>Отклонённые</NavigationButton>
+                        <NavigationButton currentStatus={showingStatus} status={ApplicationStatus.INTERVIEW_SCHEDULED} onClick={handleButtonClick}>Собеседование</NavigationButton>
                     </ul>
                     <div className="admin-second">
                         <div className="admin__sort">
