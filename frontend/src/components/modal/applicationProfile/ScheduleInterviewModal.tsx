@@ -4,7 +4,6 @@ import {IScheduleInterviewDetails} from "../../../models/application/IScheduleIn
 import Modal from "../Modal.tsx";
 import {closeModal} from "../../../redux/slices/modalSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../../hooks/useAppDispatch.ts";
-import { useGetAllCuratorsQuery } from '../../../redux/api/curatorApi.ts';
 
 interface IScheduleInterviewModalProps {
     id: string;
@@ -21,8 +20,24 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
         format: '',
         venue: '',
         position: '',
+        curator: {
+            id: 0,
+            fullName: '',
+            birthDate: '',
+            itin: '',
+            curatorNumber: '',
+            personalPhoneNumber: '',
+            workPhoneNumber: '',
+            email: '',
+            education: '',
+            certificateNumber: '',
+            totalWorkExperience: 0,
+            curatorWorkExperience: 0,
+            workExperienceInCurrentPosition: 0,
+            academicDegree: '',
+            academicTitle: '',
+        }
     });
-    const { data: curators } = useGetAllCuratorsQuery();
 
     const [scheduleInterview, {isLoading}] = useScheduleAnInterviewMutation();
 
@@ -43,6 +58,7 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
     const handleClose = () => {
         dispatch(closeModal({ id }))
     }
+    console.log(scheduleDetails.time)
 
     const handleSubmit = () => {
         scheduleInterview({applicationId, scheduleInterviewDetails: scheduleDetails});
@@ -91,13 +107,6 @@ const ScheduleInterviewModal: React.FC<IScheduleInterviewModalProps> = ({id, app
                     onChange={handleChange}
                     required
                 />
-                {curators && (
-                    <select name="format" className='modal__input' value={scheduleDetails.format} onChange={handleChange} required>
-                        {curators.content.map((curator) => (
-                            <option value={curator.id}>{curator.fullName}</option>
-                        ))}
-                    </select>
-                )}
             </div>
         </Modal>
     );

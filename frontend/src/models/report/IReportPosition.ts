@@ -1,4 +1,4 @@
-import { ICandidate } from "./ICandidate"
+import { IApplicationSummary } from "../application/IApplicationSummary"
 
 export interface IReportPosition {
     positionName: string,
@@ -9,5 +9,5 @@ export interface IReportPosition {
     inInterview: number,
     inTesting: number,
     inProcess: number
-    candidates: ICandidate[]
+    candidates: IApplicationSummary[]
 }

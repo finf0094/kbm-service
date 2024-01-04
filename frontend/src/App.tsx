@@ -15,7 +15,7 @@ import QuizPage from "./pages/quiz-session/QuizPage.tsx";
 import ModerationPage from "./pages/moderator/ModerationPage.tsx";
 import ApplicationProfilePage from "./pages/moderator/ApplicationProfilePage.tsx";
 import useAuth from "./hooks/useAuth.ts";
-import ReportPage from "./pages/ReportPage.tsx";
+// import ReportPage from "./pages/ReportPage.tsx";
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
                     <Route path="/quiz/:quizId/update" element={<QuizCreateOrUpdatePage />} />
                     <Route path="/quiz/create" element={<QuizCreateOrUpdatePage />} />
                     <Route path="/quizzes" element={<QuizListPage />}/>
-                    <Route path="/report" element={<ReportPage />}/>
+                    {/* <Route path="/report" element={<ReportPage />}/> */}
                     <Route path="/application/:applicationId" element={<ApplicationProfilePage/>}/>
                 </Route>
             </Route>

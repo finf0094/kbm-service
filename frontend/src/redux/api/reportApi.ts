@@ -13,10 +13,10 @@ export const reportApi = createApi({
     CustomError
   >,
   endpoints: (builder) => ({
-    getPositions: builder.query<IReportPosition[], void>({
+    getReport: builder.query<IReportPosition, void>({
       query: (positionId) => `report/${positionId}`,
     }),
   }),
 });
 
-export const { useGetPositionsQuery } = reportApi;
+export const { useGetReportQuery } = reportApi;
