@@ -10,9 +10,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CuratorDTO {
-
     private String fullName;
-    private Date dateOfBirth;
+    private String dateOfBirth;
     private String itin;
     private String curatorNumber;
     private String workPhoneNumber;
@@ -25,5 +24,4 @@ public class CuratorDTO {
     private Integer workExperienceInCurrentPosition;
     private String academicDegree;
     private String academicTitle;
-
 }

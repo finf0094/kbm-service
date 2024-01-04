@@ -2,7 +2,7 @@ package kz.qbm.app.controller;
 
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.user.UserSummaryDTO;
-import kz.qbm.app.dto.user.UserUpdateDTO;
+import kz.qbm.app.dto.user.UserDTO;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.exception.NotFoundException;
 import kz.qbm.app.exception.UnknownParameterException;
@@ -46,8 +46,13 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable Long userId, @RequestBody UserUpdateDTO userUpdateDTO) {
+    public User updateUser(@PathVariable Long userId, @RequestBody UserDTO userUpdateDTO) {
         return userService.updateUser(userId, userUpdateDTO);
+    }
+
+    @PostMapping("/create")
+    public User createUser(@RequestBody UserDTO userDTO) {
+       return userService.createUser(userDTO);
     }
 
     @DeleteMapping("/{userId}")

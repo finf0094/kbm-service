@@ -26,16 +26,18 @@ import AddItemPage from "./pages/item/AddItemPage.tsx";
 import ItemListPage from "./pages/item/ItemListPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ItemPage from "./pages/item/ItemPage.tsx";
+import UserListPage from "./pages/user/UserListPage.tsx";
+import UserDetailPage from "./pages/user/UserDetailPage.tsx";
+import PermissionsPage from "./pages/PermissionsPage.tsx";
 
 import RequireAuth from "./components/auth/RequireAuth.tsx";
 import Layout from "./components/Provider/Layout.tsx";
 
 import './App.css'
-import UserListPage from "./pages/user/UserListPage.tsx";
-import UserDetailPage from "./pages/user/UserDetailPage.tsx";
-import { useGetAllCuratorsQuery } from "./redux/api/curatorApi.ts";
 import AddCuratorPage from "./pages/item/AddCuratorPage.tsx";
 import CuratorEditPage from "./pages/item/CuratorEditPage.tsx";
+import { useGetAllCuratorsQuery } from "./redux/api/curatorApi.ts";
+
 
 
 function App() {
@@ -158,7 +160,7 @@ function App() {
 
                     <Route path="/auth/users" element={<UserListPage/>}/>
                     <Route path="/auth/users/:id" element={<UserDetailPage/>}/>
-                    {/*<Route path="/auth/permissions" element={<PermissionsPage/>}/>*/}
+                    <Route path="/auth/permissions" element={<PermissionsPage/>}/>
 
                 </Route>
             </Route>

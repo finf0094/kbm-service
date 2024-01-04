@@ -68,9 +68,10 @@ public class ConsumerService {
         String format = object.getAsJsonObject().get("format").getAsString();
         String venue = object.getAsJsonObject().get("venue").getAsString();
         long timeMillis = object.getAsJsonObject().get("time").getAsLong();
+        String curatorName = object.getAsJsonObject().get("curatorName").getAsString();
         Date time = new Date(timeMillis);
 
-        InterviewEmployeeEmail interviewEmail = new InterviewEmployeeEmail(to, from, subject, content, employeeName, position, format, venue, time);
+        InterviewEmployeeEmail interviewEmail = new InterviewEmployeeEmail(to, from, subject, content, employeeName, position, format, venue, time, curatorName);
 
         LOGGER.log(Level.INFO, () -> String.format("Email content: %s", interviewEmail.getContent()));
         emailSenderService.sendInterviewEmail(interviewEmail);
