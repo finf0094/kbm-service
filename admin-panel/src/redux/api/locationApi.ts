@@ -7,6 +7,7 @@ import {ILocation} from "../../models/position/ILocation.ts";
 export const locationApi = createApi({
     reducerPath: 'locationApi',
     baseQuery: baseQueryWithReauth as BaseQueryFn<string | FetchArgs, unknown, CustomError>,
+    tagTypes: ['Item'],
     endpoints: (builder) => ({
         getLocationById: builder.query<ILocation, number>({
             query: (id) => `/locations/getLocation?id=${id}`
@@ -26,6 +27,8 @@ export const locationApi = createApi({
                 url: `/locations/${name}`,
                 method: 'POST',
             }),
+            // invalidate cache
+            invalidatesTags: [{ type: 'Item' }],
         }),
         updateLocation: builder.mutation<ILocation, { id: number, newName: string }>({
             query: ({ id, newName }) => ({
@@ -33,12 +36,16 @@ export const locationApi = createApi({
                 method: 'PUT',
                 body: newName
             }),
+            // invalidate cache
+            invalidatesTags: [{ type: 'Item' }],
         }),
         deleteLocation: builder.mutation<{ success: boolean }, number>({
             query: (id) => ({
                 url: `/locations/${id}`,
                 method: 'DELETE',
             }),
+            // invalidate cache
+            invalidatesTags: [{ type: 'Item' }],
         }),
     }),
 });
@@ -49,4 +56,8 @@ export const {
     useCreateLocationMutation,
     useUpdateLocationMutation,
     useDeleteLocationMutation
+} = locationApi;
+
+export const {
+    util
 } = locationApi;

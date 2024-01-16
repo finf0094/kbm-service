@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Поздравляем с успешным прохождением!</title>
+    <title>Поздравляем с успешным прохождением тестирование!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,12 +12,14 @@
             background-color: #f4f4f4;
         }
         .container {
-            width: 80%;
+            max-width: 600px;
+            width: 100%;
             margin: auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 15px;
             margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         h1, h2 {
             color: #446699;
@@ -25,17 +28,31 @@
             font-size: 18px;
             line-height: 1.6;
         }
+
+        /* Media query for mobile devices */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h1 th:text="${'Поздравляем, ' + userName + '!'}">Поздравляем, Имя пользователя!</h1>
-    <p>Вы успешно прошли тестирование на позицию <span th:text="${position}">Java разработчик</span>, и вам назначено интервью <span th:text="${#dates.format(testDate)}">28-12-2023</span>.</p>
+    <p>Вы успешно прошли тестирование на позицию <span th:text="${position}">Java разработчик</span>, и вам назначено интервью <span th:text="${time}">28-12-2023</span>.</p>
+    <p>Ваш куратор <span th:text="${curatorName}">Имя Куратора</span></p>
     <p th:if="${format == 'online'}">Интервью будет проводиться в формате онлайн.</p>
-    <p th:if="${format == 'offline'}">Интервью будет проводиться в <span th:text="${location}">Москва</span>.</p>
+    <p th:if="${format == 'offline'}">Интервью будет проводиться в <span th:text="${venue}">Москва</span>.</p>
     <p>Благодарим вас за участие и желаем удачи на интервью!</p>
     <p>С уважением,</p>
-    <p>A pro Studio</p>
+    <p>KBM CORP.</p>
 </div>
 </body>
 </html>

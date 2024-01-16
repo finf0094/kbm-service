@@ -30,4 +30,5 @@ kafka:
   mechanism: PLAIN
   protocol: SASL_PLAINTEXT
   topics:
-    data: send.email
+    test: send.email.test
+    interview: send.email.interview

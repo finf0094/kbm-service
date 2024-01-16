@@ -1,7 +1,7 @@
 package kz.qbm.app.controller.kafka;
 
-import kz.qbm.app.dto.kafka.Email;
-import kz.qbm.app.dto.kafka.TestEmployeeEmail;
+import kz.qbm.app.dto.kafka.interview.InterviewEmployeeEmail;
+import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import kz.qbm.app.service.kafka.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +21,15 @@ public class EmailController {
         this.producerService = producerService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> sendEmail(@RequestBody TestEmployeeEmail testEmployeeEmail) {
-        producerService.sendEmail("send.email", testEmployeeEmail);
+    @PostMapping("/test")
+    public ResponseEntity<Void> sendTestEmail(@RequestBody TestEmployeeEmail testEmployeeEmail) {
+        producerService.sendTestEmail(testEmployeeEmail);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/interview")
+    public ResponseEntity<Void> sendInterviewEmail(@RequestBody InterviewEmployeeEmail interviewEmployeeEmail) {
+        producerService.sendInterviewEmail(interviewEmployeeEmail);
         return ResponseEntity.ok().build();
     }
 }

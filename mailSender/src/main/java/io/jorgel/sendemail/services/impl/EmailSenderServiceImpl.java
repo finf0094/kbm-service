@@ -1,5 +1,6 @@
 package io.jorgel.sendemail.services.impl;
 
+import io.jorgel.sendemail.models.InterviewEmployeeEmail;
 import io.jorgel.sendemail.models.TestEmployeeEmail;
 import io.jorgel.sendemail.services.EmailSenderService;
 import org.apache.logging.log4j.Level;
@@ -16,6 +17,10 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Service
 public class EmailSenderServiceImpl implements EmailSenderService {
@@ -41,15 +46,43 @@ public class EmailSenderServiceImpl implements EmailSenderService {
                 StandardCharsets.UTF_8.name());
 
         Context context = new Context();
-        context.setVariables(testEmployeeEmail.getProps());
         context.setVariable("employeeName", testEmployeeEmail.getEmployeeName()); // Set the employeeName variable
-        context.setVariable("testLinks", testEmployeeEmail.getTestLinks()); // Set the testLinks variable
-        String html = templateEngine.process("confirmation", context);
+        context.setVariable("testLinks", testEmployeeEmail.getTestLink()); // Set the testLinks variable
+        String html = templateEngine.process("test", context);
 
         helper.setTo(testEmployeeEmail.getTo());
         helper.setText(html, true);
         helper.setSubject(testEmployeeEmail.getSubject());
         helper.setFrom(testEmployeeEmail.getFrom());
+
+        javaMailSender.send(message);
+    }
+
+    @Override
+    public void sendInterviewEmail(InterviewEmployeeEmail interviewEmployeeEmail) throws MessagingException, IOException {
+        LOGGER.log(Level.INFO, () -> String.format("» sendInterviewEmail(%s)", interviewEmployeeEmail.getTo()));
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,
+                MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+                StandardCharsets.UTF_8.name());
+
+        Context context = new Context();
+        context.setVariable("userName", interviewEmployeeEmail.getEmployeeName()); // Set the userName variable
+        context.setVariable("position", interviewEmployeeEmail.getPosition()); // Set the position variable
+        context.setVariable("format", interviewEmployeeEmail.getFormat()); // Set the format variable
+        context.setVariable("venue", interviewEmployeeEmail.getVenue()); // Set the venue variable
+        context.setVariable("curatorName", interviewEmployeeEmail.getCuratorName());
+        LocalDateTime time = LocalDateTime.ofInstant(interviewEmployeeEmail.getTime().toInstant(), ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        String formattedDateTime = time.format(formatter);
+        context.setVariable("time", formattedDateTime);
+
+        String html = templateEngine.process("interview", context); // "interview" is the template name
+
+        helper.setTo(interviewEmployeeEmail.getTo());
+        helper.setText(html, true);
+        helper.setSubject(interviewEmployeeEmail.getSubject());
+        helper.setFrom(interviewEmployeeEmail.getFrom());
 
         javaMailSender.send(message);
     }

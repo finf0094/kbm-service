@@ -2,6 +2,8 @@ package kz.qbm.app.controller.application;
 
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
+import kz.qbm.app.dto.application.ScheduleInterviewDetailsDTO;
+import kz.qbm.app.entity.application.ScheduleInterviewDetails;
 import kz.qbm.app.entity.application.Application;
 import kz.qbm.app.entity.application.Education;
 import kz.qbm.app.entity.application.Employee;
@@ -24,11 +26,12 @@ public class ApplicationController {
 
     @GetMapping
     public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(
-            @RequestParam(name = "status") String status,
+            @RequestParam(name = "status", required = false) String status,
+            @RequestParam(name = "position", required = false) String positionName,
             @RequestParam(name = "search", defaultValue = "") String search,
             @RequestParam(name = "offset", defaultValue = "0") int offset,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-        return applicationService.getAllApplicationWithPagination(status, search, offset, pageSize);
+        return applicationService.getAllApplicationWithPagination(status, positionName, search, offset, pageSize);
     }
 
     @GetMapping("/getApplication")
@@ -98,6 +101,11 @@ public class ApplicationController {
         return applicationService.startTesting(userId);
     }
 
+    @PostMapping("/{applicationId}/scheduleAnInterview")
+    public Application scheduleAnInterview(@PathVariable String applicationId, @RequestBody ScheduleInterviewDetailsDTO scheduleInterviewDetailsDTO) {
+        return applicationService.scheduleAnInterview(applicationId, scheduleInterviewDetailsDTO);
+    }
+
     @PostMapping("{applicationId}/approve")
     public Application approve(@PathVariable String applicationId) {
         
@@ -108,4 +116,5 @@ public class ApplicationController {
     public Application reject(@PathVariable String applicationId) {
         return applicationService.reject(applicationId);
     }
+
 }

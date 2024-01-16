@@ -15,10 +15,17 @@ export const userApi = createApi({
                 params: {id, itin },
             }),
         }),
-        getAllUsers: builder.query<IPage<IUserSummary>, { search: string, offset: number, pageSize: number }>({
+        getAllUsers: builder.query<IPage<IUserSummary>, { search?: string, offset: number, pageSize: number }>({
             query: ({ search, offset, pageSize }) => ({
                 url: `/users`,
                 params: { search, offset, pageSize },
+            }),
+        }),
+        createUser: builder.mutation<IUserDetail, IUpdateUser>({
+            query: (user) => ({
+                url: `/users/create`,
+                method: 'POST',
+                body: user,
             }),
         }),
         updateUser: builder.mutation<IUserDetail, { userId: number, user: IUpdateUser }>({
@@ -40,6 +47,7 @@ export const userApi = createApi({
 export const {
     useGetUserQuery,
     useGetAllUsersQuery,
+    useCreateUserMutation,
     useUpdateUserMutation,
     useDeleteUserMutation,
 } = userApi;

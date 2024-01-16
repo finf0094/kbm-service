@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './UI/AddItemPage.css'
 
-import {useCreateLocationMutation, useGetAllLocationsQuery} from "../../redux/api/locationApi.ts";
-import {useCreateDepartmentMutation, useGetAllDepartmentsQuery} from "../../redux/api/departmentApi.ts";
-import {useCreatePositionMutation} from "../../redux/api/positionApi.ts";
+import { useCreateLocationMutation, useGetAllLocationsQuery, util as locationApiUtil } from "../../redux/api/locationApi.ts";
+import { useCreateDepartmentMutation, useGetAllDepartmentsQuery, util as departmentApiUtil } from "../../redux/api/departmentApi.ts";
+import { useCreatePositionMutation, util as positionApiUtil } from "../../redux/api/positionApi.ts";
 
 const AddItemPage: React.FC<{
     mutationFn: typeof useCreateLocationMutation | typeof useCreateDepartmentMutation | typeof useCreatePositionMutation,
     onItemAdded: (item: any) => void,
     queryFn: typeof useGetAllLocationsQuery | typeof useGetAllDepartmentsQuery,
     transformInput: (name: string, parentId?: number | null) => any,
-    title: string
-}> = ({ mutationFn, onItemAdded, queryFn, transformInput, title }) => {
+    title: string,
+    apiUtil: typeof locationApiUtil | typeof departmentApiUtil | typeof positionApiUtil
+}> = ({ mutationFn, onItemAdded, queryFn, transformInput, title, apiUtil }) => {
     const [itemName, setItemName] = useState<string>('');
     const [parentId, setParentId] = useState<number | null>(null);
-    const [createItem] = mutationFn();
+    const [createItem, {isSuccess}] = mutationFn();
     const { data: parents } = queryFn({ search: '', offset: 0, pageSize: 100 });
+
+    useEffect(() => {
+        if (isSuccess) {
+            // Инвалидируйте тег после успешного создания элемента
+            apiUtil.invalidateTags([{ type: 'Item' }]);
+        }
+    }, [isSuccess, apiUtil]);
 
     const handleAddItem = async () => {
         try {

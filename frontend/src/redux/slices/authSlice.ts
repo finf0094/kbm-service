@@ -23,7 +23,6 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         loginSuccess: (state, action: PayloadAction<IAuthResponse>) => {
-            console.log(action)
             state.isAuthenticated = true;
             state.access_token = action.payload.access_token;
             state.refresh_token = action.payload.refresh_token;

@@ -13,6 +13,13 @@ public class ApplicationSpecification {
         return (application, cq, cb) -> cb.equal(application.get("status"), status);
     }
 
+    public static Specification<Application> hasPosition(String positionName) {
+        return (root, query, cb) -> {
+            Join<Application, Position> positionJoin = root.join("desiredPositions");
+            return cb.equal(positionJoin.get("name"), positionName);
+        };
+    }
+
     public static Specification<Application> search(String search) {
         return (root, query, cb) -> {
             Join<Application, User> userJoin = root.join("user");

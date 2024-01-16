@@ -19,6 +19,7 @@ public class ApplicationMapper {
         applicationSummaryDTO.setId(application.getId());
         applicationSummaryDTO.setStatus(application.getStatus());
         applicationSummaryDTO.setUser(userMapper.convertToUserSummaryDTO(application.getUser()));
+        applicationSummaryDTO.setInterviewDetails(application.getInterviewDetails());
         return applicationSummaryDTO;
     }
 

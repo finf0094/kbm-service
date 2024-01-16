@@ -1,19 +1,20 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 // MODELS
-import {IUserDetail} from "../../models/user/IUserDetail.ts";
+import { IUserDetail } from "../../models/user/IUserDetail.ts";
 
 // CSS
 import './UI/UserCard.css'
-import {useUpdateUserMutation} from "../../redux/api/userApi.ts";
+import { useUpdateUserMutation } from "../../redux/api/userApi.ts";
+import { toast } from "react-toastify";
 
 interface UserCardProps {
     data: IUserDetail
 }
 
-const UserCard: React.FC<UserCardProps> = ({data}) => {
+const UserCard: React.FC<UserCardProps> = ({ data }) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedData, setEditedData] = useState({
@@ -46,11 +47,13 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
 
     useEffect(() => {
         if (userUpdateData) console.log("user data", userUpdateData);
-        if (isUserUpdateSuccess) console.log("success");
+        if (isUserUpdateSuccess) toast.success('Профиль успешно сохранен!');
         if (isUserUpdateLoading) console.log("Loading...");
-        if (isUserUpdateError) console.log("user update error: ", isUserUpdateError);
-        if (userUpdateError) console.log(userUpdateError);
+        if (isUserUpdateError) toast.error(`Ошибка при редактировании профиля: ${isUserUpdateError}`);
+        if (userUpdateError) toast.error(`Ошибка при редактировании профиля: ${userUpdateError}`);
     }, [userUpdateData, isUserUpdateSuccess, isUserUpdateLoading, isUserUpdateError, userUpdateError]);
+
+    const formattedTime = new Date(data.createdAt).toLocaleString();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -70,18 +73,18 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
                                 <label htmlFor="firstName">Имя</label>
                                 <input
                                     type="text"
-                                    name="firstName"
+                                    name="firstname"
                                     value={editedData.firstname}
-                                    onChange={handleInputChange}
+                                    onChange={(e) => handleInputChange(e)}
                                 />
                             </div>
                             <div className="edit-card__lastName edit-card__item">
                                 <label htmlFor="lastName">Фамилия</label>
                                 <input
                                     type="text"
-                                    name="lastName"
+                                    name="lastname"
                                     value={editedData.lastname}
-                                    onChange={handleInputChange}
+                                    onChange={(e) => handleInputChange(e)}
                                 />
                             </div>
                         </div>
@@ -90,8 +93,8 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
                             <input
                                 type="text"
                                 name="job"
-                                value={editedData.position.name}
-                                onChange={handleInputChange}
+                                value={editedData.position?.name}
+                                onChange={(e) => handleInputChange(e)}
                             />
                         </div>
                         <div className="edit-card__aboutMe edit-card__item">
@@ -101,7 +104,7 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
                                 rows={7}
                                 cols={4}
                                 value={editedData.aboutMe}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e)}
                             />
                         </div>
 
@@ -114,25 +117,26 @@ const UserCard: React.FC<UserCardProps> = ({data}) => {
                         <div className="edited-card__wrapper">
                             <>
                                 <div className="edited-card__head">
-                                         <span
-                                             className="edited-card__name">{data.firstname} {data.lastname}</span>
-                                    <span className="edited-card__job">{data.position.name}</span>
+                                {data.firstname && data.lastname
+                                    ? <span className="user-info__name">{data.firstname} {data.lastname}</span>
+                                    : <span className="user-info__name" style={{color: 'gray'}}>Пусто</span>}
+                                    <span className="edited-card__job">{data.position?.name}</span>
                                 </div>
                                 <div className="edited-card__info">
-                                    <span>{data.position.name}</span>
-                                    <span>"ТУТ НУЖЕН JOB EXPERIENCE TIME</span><span>{data.phoneNumber}</span>
-                                    <span>{data.email}</span>
+                                {data.position?.name ? <span>{data.position?.name}</span> : <span style={{color: 'gray'}}>Пусто</span>}
+                                {data.phoneNumber ? <span>{data.phoneNumber}</span> : <span style={{color: 'gray'}}>Пусто</span>}
+                                {data.email ? <span>{data.email}</span> : <span style={{color: 'gray'}}>Пусто</span>}
                                 </div>
                                 <div className="edited-card__aboutMe">
                                     <div className="edited-card__aboutMe_title">{t("About_me")}</div>
-                                    <p className="edited-card__aboutMe_desc">
-                                        {data.aboutMe}
-                                    </p>
+                                    {data.aboutMe 
+                                        ? <p className="user-info__aboutMe_desc">{data.aboutMe}</p>
+                                        : <p className="user-info__aboutMe_desc">Добавьте информацию о себе в редактировании профиля.</p>}
                                 </div>
                                 <button onClick={handleEditClick}
-                                        className="edited-card__button card__button">{t("profile_edit")}</button>
+                                    className="edited-card__button card__button">{t("profile_edit")}</button>
                                 <span
-                                    className="edited-card__date">Дата регистрации: {data.createdAt}</span>
+                                    className="edited-card__date">Дата регистрации: {formattedTime}</span>
                             </>
                         </div>
                     </div>

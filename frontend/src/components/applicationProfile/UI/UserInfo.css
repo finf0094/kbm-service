@@ -39,13 +39,13 @@
     padding-top: 15px;
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(115, 158, 253, .5);
+    text-align: center;
 }
 
 .user-info__aboutMe_title {
     font-size: 16px;
     color: rgba(57, 57, 57, .5);
     margin-bottom: 7px;
-    text-align: center;
 }
 
 .user-info__aboutMe_desc {
@@ -64,6 +64,7 @@
 }
 
 .user-info__status-text {
+    width: 60%;
     color: #39393980;
 }
 

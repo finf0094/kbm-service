@@ -22,7 +22,7 @@ const UserResume: React.FC<{resumeUrl: string}> = ({resumeUrl}) => {
             setResumeId(resumeUrl);
             setIsHaveResume(true);
         }
-    }, []);
+    }, [resumeUrl]);
 
     const [uploadResume] = useUploadResumeMutation();
     const [deleteResume] = useDeleteResumeMutation();

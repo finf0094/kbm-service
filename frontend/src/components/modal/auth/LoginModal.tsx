@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 
 
 // ANOTHER LIBRARIES
@@ -31,8 +31,6 @@ const LoginModal: React.FC<{ id: string }> = ({ id }) => {
         {
             data: userData,
             isSuccess: isLoginSuccess,
-            isLoading: isLoginLoading,
-            isError: isLoginError,
             error: errorData
         }] = useLoginUserMutation();
 
@@ -41,9 +39,9 @@ const LoginModal: React.FC<{ id: string }> = ({ id }) => {
         return iin.length === 12 && !isNaN(Number(iin));
     };
 
-    const handleCloseModal = () => {
+    const handleCloseModal = useCallback(() => {
         dispatch(closeModal({ id }));
-    };
+    }, [dispatch, id]);
 
     const handleIINChange = (event: ChangeEvent<HTMLInputElement>) => {
         setITIN(event.target.value);
@@ -73,25 +71,16 @@ const LoginModal: React.FC<{ id: string }> = ({ id }) => {
     };
 
     useEffect(() => {
-        if (userData) {
-            console.log("user data: ", userData)
-        }
         if (isLoginSuccess) {
             dispatch(loginSuccess(userData))
-            dispatch(closeModal)
-            toast.success("User login successfully")
-        }
-        if (isLoginLoading) {
-            console.log("Loading...")
-        }
-        if (isLoginError) {
-            console.log("Error...")
+            handleCloseModal();
+            toast.success("Авторизация успешно пройдена!")
         }
         if (errorData && 'data' in errorData && errorData.data) {
-            toast.error(`error: ${errorData.data.message}`);
-            console.log(errorData)
+            toast.error(`Ошибка: ${errorData.data.message}`);
+            console.log(`Ошибка: ${errorData}. Покажите эту ошибку разработчикам!`)
         }
-    }, [userData, isLoginSuccess, isLoginLoading, isLoginError])
+    }, [userData, isLoginSuccess, dispatch, errorData, handleCloseModal])
 
 
     return (

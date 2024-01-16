@@ -1,5 +1,6 @@
-package kz.qbm.app.dto.kafka;
+package kz.qbm.app.dto.kafka.test;
 
+import kz.qbm.app.dto.kafka.Email;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -10,7 +11,7 @@ import java.util.Map;
 @Getter
 @Setter
 @ToString
-public class TestEmployeeEmail extends Email{
+public class TestEmployeeEmail extends Email {
     private String employeeName;
     private List<String> testLinks;
 

@@ -27,7 +27,11 @@ const Status: React.FC<StatusProps> = ({ status }) => {
         case ApplicationStatus.IN_PROCESS:
             statusClass = 'status-in_process';
             status = t("profile_status_pending");
-            break
+            break;
+        case ApplicationStatus.INTERVIEW_SCHEDULED:
+            statusClass = 'status-interview_scheduled';
+            status = t("profile_status_interview_scheduled");
+            break;
         default:
             statusClass = 'status-unknown';
             break;

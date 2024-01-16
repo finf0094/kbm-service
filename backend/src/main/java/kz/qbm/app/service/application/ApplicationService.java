@@ -3,13 +3,18 @@ package kz.qbm.app.service.application;
 import jakarta.transaction.Transactional;
 import kz.qbm.app.dto.Message;
 import kz.qbm.app.dto.application.ApplicationSummaryDTO;
-import kz.qbm.app.dto.kafka.TestEmployeeEmail;
+import kz.qbm.app.dto.application.ScheduleInterviewDetailsDTO;
+import kz.qbm.app.dto.kafka.interview.InterviewEmployeeEmail;
+import kz.qbm.app.entity.Curator;
+import kz.qbm.app.entity.application.ScheduleInterviewDetails;
+import kz.qbm.app.dto.kafka.test.TestEmployeeEmail;
 import kz.qbm.app.entity.User;
 import kz.qbm.app.entity.application.*;
 import kz.qbm.app.entity.position.Position;
 import kz.qbm.app.entity.quiz.Quiz;
 import kz.qbm.app.exception.*;
 import kz.qbm.app.mapper.applicaiton.ApplicationMapper;
+import kz.qbm.app.repository.CuratorRepository;
 import kz.qbm.app.repository.application.ApplicationRepository;
 import kz.qbm.app.repository.application.EmployeeRepository;
 import kz.qbm.app.service.UserService;
@@ -35,6 +40,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ApplicationService {
     // REPOSITORIES
+    private final CuratorRepository curatorRepository;
     private final EmployeeRepository employeeRepository;
     private final ApplicationRepository applicationRepository;
 
@@ -59,17 +65,14 @@ public class ApplicationService {
         return applicationRepository.findByUserId(userId);
     }
 
-    public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(String status, String search, int offset, int pageSize) {
-        ApplicationStatus applicationStatus;
+    public Page<ApplicationSummaryDTO> getAllApplicationWithPagination(String status, String positionName, String search, int offset, int pageSize) {
+        ApplicationStatus applicationStatus = status != null ? ApplicationStatus.valueOf(status) : null;
 
-        try {
-            applicationStatus = ApplicationStatus.valueOf(status);
-        } catch (IllegalArgumentException e) {
-            throw new UnknownParameterException(String.format("Unknown parameters: %s", status));
-        }
+        Specification<Application> spec = Specification.where(ApplicationSpecification.search(search));
 
-        Specification<Application> spec = Specification.where(ApplicationSpecification.hasStatus(applicationStatus))
-                .and(ApplicationSpecification.search(search));
+        if (status != null && !status.isEmpty()) spec = spec.and(ApplicationSpecification.hasStatus(applicationStatus));
+        if (positionName != null && !positionName.isEmpty()) spec = spec.and(ApplicationSpecification.hasPosition(positionName));
+
 
         Page<Application> applications = applicationRepository.findAll(spec, PageRequest.of(offset, pageSize));
 
@@ -235,14 +238,14 @@ public class ApplicationService {
 
         TestEmployeeEmail testEmployeeEmail = new TestEmployeeEmail(
                 application.getUser().getEmail(),
-                "QBM",
+                "KBM",
                 "subject",
                 "content",
                 application.getUser().getFirstname(),
                 List.of("185.125.91.161:3000/quiz-sessions")
         );
 
-        producerService.sendEmail("send.email", testEmployeeEmail);
+        producerService.sendTestEmail(testEmployeeEmail);
 
         application.setStatus(ApplicationStatus.TESTING);
         application = applicationRepository.save(application);
@@ -270,6 +273,42 @@ public class ApplicationService {
         return applicationRepository.save(application);
     }
 
+    public Application scheduleAnInterview(String applicationId, ScheduleInterviewDetailsDTO scheduleInterviewDetailsDTO) {
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new NotFoundException("Application not found"));
+        application.setStatus(ApplicationStatus.INTERVIEW_SCHEDULED);
+
+        // Получаем куратора по ID
+        Curator curator = curatorRepository.findById(scheduleInterviewDetailsDTO.getCuratorId())
+                .orElseThrow(() -> new NotFoundException("Curator not found"));
+
+        // Создаем объект ScheduleInterviewDetails и заполняем его данными из DTO
+        ScheduleInterviewDetails scheduleInterviewDetails = new ScheduleInterviewDetails();
+        scheduleInterviewDetails.setTime(scheduleInterviewDetailsDTO.getTime());
+        scheduleInterviewDetails.setFormat(scheduleInterviewDetailsDTO.getFormat());
+        scheduleInterviewDetails.setVenue(scheduleInterviewDetailsDTO.getVenue());
+        scheduleInterviewDetails.setPosition(scheduleInterviewDetailsDTO.getPosition());
+        scheduleInterviewDetails.setCurator(curator);
+
+        InterviewEmployeeEmail interviewEmployeeEmail =
+                new InterviewEmployeeEmail(
+                        application.getUser().getEmail(),
+                        "KBM-CORP.",
+                        "Congratulations",
+                        "content",
+                        application.getUser().getFirstname(),
+                        scheduleInterviewDetails.getPosition(),
+                        scheduleInterviewDetails.getFormat(),
+                        scheduleInterviewDetails.getVenue(),
+                        scheduleInterviewDetails.getTime(),
+                        scheduleInterviewDetails.getCurator().getFullName()
+                );
+
+        producerService.sendInterviewEmail(interviewEmployeeEmail);
+
+        application.setInterviewDetails(scheduleInterviewDetails);
+        return applicationRepository.save(application);
+    }
 
     // Extract key value from the error message
     private String extractKeyValueFromErrorMessage(String errorMessage) {

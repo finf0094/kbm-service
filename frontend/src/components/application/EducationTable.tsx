@@ -71,6 +71,7 @@ const EducationTable: React.FC<{
         <div className="educationtable">
             <div className="educationtable__wrapper">
                 <form className="educationtable__form">
+                    <div className="table__title">Образование</div>
                     <div className="educationtable__content">
                         <table>
                             <thead>

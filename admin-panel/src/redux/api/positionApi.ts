@@ -8,6 +8,7 @@ import { IPage } from "../../models/IPage.ts";
 export const positionApi = createApi({
     reducerPath: 'positionApi',
     baseQuery: baseQueryWithReauth as BaseQueryFn<string | FetchArgs, unknown, CustomError>,
+    tagTypes: ['Item'],
     endpoints: (builder) => ({
         getPositionById: builder.query<IPosition, number>({
             query: (id) => `/positions/getPosition?id=${id}`
@@ -29,19 +30,25 @@ export const positionApi = createApi({
                 method: 'POST',
                 body: { name, departmentId }
             }),
+            // invalidate cache
+            invalidatesTags: [{ type: 'Item' }],
         }),
         updatePosition: builder.mutation<IPosition, { id: number, newName: string }>({
             query: ({ id, newName }) => ({
                 url: `/positions/${id}`,
                 method: 'PUT',
-                body: { name: newName }
+                body: newName
             }),
+            // invalidate cache
+            invalidatesTags: [{ type: 'Item' }],
         }),
         deletePosition: builder.mutation<{ success: boolean }, number>({
             query: (id) => ({
                 url: `/positions/${id}`,
                 method: 'DELETE',
             }),
+            // invalidate cache
+            invalidatesTags: [{ type: 'Item' }],
         }),
     }),
 });
@@ -52,4 +59,8 @@ export const {
     useCreatePositionMutation,
     useUpdatePositionMutation,
     useDeletePositionMutation
+} = positionApi;
+
+export const {
+    util
 } = positionApi;

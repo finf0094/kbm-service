@@ -1,9 +1,8 @@
 package kz.qbm.app.service;
 
-import kz.qbm.app.dto.user.UserUpdateDTO;
+import kz.qbm.app.dto.user.UserDTO;
 import kz.qbm.app.entity.position.Position;
 import kz.qbm.app.exception.BadRequestException;
-import kz.qbm.app.exception.InvalidVideoFileException;
 import kz.qbm.app.repository.UserRepository;
 import kz.qbm.app.dto.auth.CreateUserRequest;
 import kz.qbm.app.dto.user.UserSummaryDTO;
@@ -16,7 +15,6 @@ import kz.qbm.app.service.storage.StorageService;
 import kz.qbm.app.specification.UserSpecification;
 import kz.qbm.app.utils.NullAwareBeanUtilsBean;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -32,24 +30,24 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     // SERVICES
-    private final RoleService roleService;
     private final StorageService storageService;
 
     // REPOSITORIES
     private final UserRepository userRepository;
+    private final PositionRepository positionRepository;
 
     // MAPPERS
     private final UserMapper userMapper;
 
     // UTILS
     private final PasswordEncoder passwordEncoder;
+    private final NullAwareBeanUtilsBean nullAwareBeanUtilsBean;
 
     public Page<UserSummaryDTO> getAllUsers(String roleName, String search, int offset, int pageSize) {
-        Specification<User> spec = Specification.where(UserSpecification.search(search));
+        Specification<User> spec = Specification.where(null);
 
-        if (roleName != null && !roleName.isEmpty()) {
-            spec = spec.and(UserSpecification.hasRole(roleName));
-        }
+        if (search != null && !search.isEmpty()) spec = spec.and(UserSpecification.search(search));
+        if (roleName != null && !roleName.isEmpty()) spec = spec.and(UserSpecification.hasRole(roleName));
 
         Page<User> users = userRepository.findAll(spec, PageRequest.of(offset, pageSize));
 
@@ -64,36 +62,43 @@ public class UserService {
         return userRepository.findByItin(itin);
     }
 
-    public User createUser(CreateUserRequest createUserRequest) {
-        if (userRepository.existsByItin(createUserRequest.getItin())) {
-            throw new RequestExistException("User with ITIN " + createUserRequest.getItin() + " already exists");
+    public User createUser(UserDTO userDTO) {
+        if (userRepository.existsByItin(userDTO.getItin())) {
+            throw new RequestExistException("User with ITIN " + userDTO.getItin() + " already exists");
         }
-        if (userRepository.existsByEmail(createUserRequest.getEmail())) {
-            throw new RequestExistException("User with EMAIL " + createUserRequest.getEmail() + " already exists");
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new RequestExistException("User with EMAIL " + userDTO.getEmail() + " already exists");
+        }
+
+        Position position = null;
+
+        if (userDTO.getPosition() != null) {
+            position = positionRepository.findById(userDTO.getPosition().getId()).orElseThrow(
+                    () -> new NotFoundException(String.format("position with id %s not found", userDTO.getPosition().getId()))
+            );
         }
 
         User user = User.builder()
-                .itin(createUserRequest.getItin())
-                .email(createUserRequest.getEmail())
-                .roles(List.of(roleService.findByName("ROLE_USER")))
-                .firstname("")
-                .lastname("")
-                .phoneNumber("")
+                .itin(userDTO.getItin())
+                .email(userDTO.getEmail())
+                .roles(userDTO.getRoles())
+                .firstname(userDTO.getFirstname())
+                .lastname(userDTO.getLastname())
+                .phoneNumber(userDTO.getPhoneNumber())
+                .position(position)
                 .aboutMe("")
-                .password(passwordEncoder.encode(createUserRequest.getPassword()))
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
 
         return userRepository.save(user);
     }
 
-    public User updateUser(Long userId, UserUpdateDTO userUpdateDTO) {
+    public User updateUser(Long userId, UserDTO userUpdateDTO) {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id: %s not found", userId)));
 
-        // Update the fields with values from UserUpdateDTO
-        NullAwareBeanUtilsBean beanUtils = new NullAwareBeanUtilsBean();
         try {
-            beanUtils.copyProperties(existingUser, userUpdateDTO);
+            nullAwareBeanUtilsBean.copyProperties(existingUser, userUpdateDTO);
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new BadRequestException("Updating user failed: " + e.getMessage());
         }
@@ -142,9 +147,10 @@ public class UserService {
         if (resumeUrl.startsWith("storage/")) {
             String filename = resumeUrl.substring("storage/".length());
             storageService.delete(filename);
+            user.setResumeUrl(null);
         }
 
-        user.setResumeUrl(null);
         return userRepository.save(user);
     }
+
 }

@@ -14,12 +14,12 @@ import java.util.Map;
 @ToString
 public class TestEmployeeEmail extends Email{
     private String employeeName;
-    private List<String> testLinks;
+    private String testLink;
 
-    public TestEmployeeEmail(String to, String from, String subject, String content, Map<String, Object> props, String employeeName, List<String> testLinks) {
-        super(to, from, subject, content, props);
+    public TestEmployeeEmail(String to, String from, String subject, String content, String employeeName, String testLink) {
+        super(to, from, subject, content);
         this.employeeName = employeeName;
-        this.testLinks = testLinks;
+        this.testLink = testLink;
     }
 
 }

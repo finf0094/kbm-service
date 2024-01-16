@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {useForm, SubmitHandler} from "react-hook-form";
 import {useAppDispatch, useAppSelector} from "../../hooks/useAppDispatch.ts";
 import {IEmployee} from "../../models/employee/IEmployee.ts";
@@ -33,7 +33,7 @@ const ApplicationForm: React.FC<ApprovalRequestFormProps> = ({isChangble, onNext
     const application = useAppSelector(state => state.application);
     const {employee} = application
 
-    const setEmployeeDataToHookForm = async () => {
+    const setEmployeeDataToHookForm = useCallback(async () => {
         if (employee) {
             if (employee.birthDate !== undefined && employee.birthDate !== null) {
                 const birthDate = new Date(employee.birthDate);
@@ -43,7 +43,7 @@ const ApplicationForm: React.FC<ApprovalRequestFormProps> = ({isChangble, onNext
                 reset(employee);
             }
         }
-    };
+    }, [employee, reset]);
 
     const onSubmit: SubmitHandler<IEmployee> = (data) => {
         const applicationId = application.id;
@@ -52,7 +52,7 @@ const ApplicationForm: React.FC<ApprovalRequestFormProps> = ({isChangble, onNext
 
     useEffect(() => {
         setEmployeeDataToHookForm();
-    }, [])
+    }, [setEmployeeDataToHookForm])
 
     useEffect(() => {
         if (isEmployeeSuccess && applicationData) {
@@ -62,10 +62,10 @@ const ApplicationForm: React.FC<ApprovalRequestFormProps> = ({isChangble, onNext
             dispatch(setApplicationData(applicationData));
         }
         if (employeeError && 'data' in employeeError && employeeError.data) {
-            toast.error(`error: ${employeeError.data.message}`);
-            console.log(employeeError);
+            toast.error(`Ошибка: ${employeeError.data.message}`);
+            console.log(`Ошибка: ${employeeError} Покажите эту ошибку разработчикам!`);
         }
-    }, [isEmployeeSuccess, isEmployeeError, applicationData, employeeError, dispatch]);
+    }, [isEmployeeSuccess, isEmployeeError, applicationData, employeeError, dispatch, onNext]);
 
     if (isEmployeeLoading) {
         return <Loader/>

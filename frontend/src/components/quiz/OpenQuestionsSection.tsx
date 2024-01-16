@@ -35,7 +35,7 @@ const OpenQuestionsSection: React.FC = () => {
                     />
                 </div>
             ))}
-            <button onClick={handleAddOpenQuestion}>Add Open Question</button>
+            <button onClick={handleAddOpenQuestion}>Добавить открытый вопрос</button>
         </div>
     );
 };

@@ -55,9 +55,7 @@ public class DepartmentService {
     public Page<DepartmentSummaryDTO> getAllDepartmentsWithPaginationAndSearch(Long locationId, String search, int offset, int pageSize) {
         Specification<Department> spec = DepartmentSpecification.search(search);
 
-        if (locationId != null) {
-            spec = spec.and(DepartmentSpecification.hasLocation(locationId));
-        }
+        if (locationId != null) spec = spec.and(DepartmentSpecification.hasLocation(locationId));
 
         Page<Department> departments = departmentRepository.findAll(spec, PageRequest.of(offset, pageSize));
 

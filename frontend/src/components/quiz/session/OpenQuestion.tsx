@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from 'react';
+import "../UI/OpenQuestion.css"
 import {IOpenQuestion} from "../../../models/quiz/IOpenQuestion.ts";
 
 interface OpenQuestionProps {
@@ -13,12 +14,9 @@ const OpenQuestion: FC<OpenQuestionProps> = ({ question, selectedAnswers, onAnsw
     };
 
     return (
-        <div>
-            <h2>{question.name}</h2>
-            <textarea
-                value={selectedAnswers[question.id || ''] || ''}
-                onChange={handleAnswerChange}
-            />
+        <div className='open-question'>
+            <h2 className='open-question__title'>{question.name}</h2>
+            <textarea className='open-question__textarea' rows={10} cols={50} value={selectedAnswers[question.id || ''] || ''} onChange={handleAnswerChange} />
         </div>
     );
 };

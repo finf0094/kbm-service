@@ -2,11 +2,10 @@ import {BaseQueryApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {RootState} from "../store.ts";
 import {loginSuccess, logout} from "../store/authSlice.ts";
 
-export const baseUrl = 'http://185.125.91.161:3002/api'
+export const baseUrl = import.meta.env.VITE_API_URL + "/api"
 
 export const baseQuery = fetchBaseQuery({
     baseUrl,
-    credentials: 'include',
     prepareHeaders: (headers: Headers, { getState }) => {
         const state = getState() as RootState;
 
@@ -19,7 +18,7 @@ export const baseQuery = fetchBaseQuery({
 })
 
 export const baseQueryWithReauth = async (
-    args: any,
+    args: any,  
     api: BaseQueryApi,
     extraOptions: any,
 ) => {

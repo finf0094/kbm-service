@@ -39,14 +39,14 @@ const QuizCreateOrUpdatePage: React.FC = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            toast.success(`Quiz ${quizId ? 'updated' : 'created'} successfully`)
+            toast.success(`Тест успешно ${quizId ? 'обновлён' : 'создан'}!`)
         }
         if (isError && error && 'data' in error && error.data) {
-            toast.error(`Error: ${error.data.message}`);
-            console.log(error);
+            toast.error(`Ошибка: ${error.data.message}`);
+            console.log(`Ошибка: ${error}. Покажите эту ошибку разработчикам!`);
         }
 
-    }, [isSuccess, isError, quizId]);
+    }, [isSuccess, isError, quizId, error]);
 
     return (
         <div className="page">
@@ -54,9 +54,7 @@ const QuizCreateOrUpdatePage: React.FC = () => {
             <QuestionsSection />
             <OpenQuestionsSection />
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-                <button onClick={handleCreateOrUpdateClick} disabled={isLoading}>
-                    {isLoading ? 'Processing...' : quizId ? 'Update' : 'Create'}
-                </button>
+                <button onClick={handleCreateOrUpdateClick} disabled={isLoading}>{isLoading ? 'Загрузка...' : quizId ? 'Сохранить' : 'Создать'}</button>
             </div>
         </div>
     );

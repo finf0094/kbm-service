@@ -8,7 +8,7 @@
     color: #393939;
     font-size: 30px;
     font-weight: 400;
-    margin-bottom: 22px;
+    margin-bottom: 15px;
 }
 
 .status__text {
@@ -29,4 +29,8 @@
 
 .status-in_process {
     color: var(--first-color);
+}
+
+.status-interview_scheduled {
+    color: #416EEA;
 }

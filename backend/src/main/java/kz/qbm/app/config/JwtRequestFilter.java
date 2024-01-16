@@ -38,14 +38,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtService.getUsername(jwt);
             } catch (ExpiredJwtException ex) {
-                String requestOrigin = request.getHeader("Origin");
-                response.setHeader("Access-Control-Allow-Origin", requestOrigin);
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
+                filterChain.doFilter(request, response);
+                throw ex;
             }
-
         }
-
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             log.info("Setting authentication for user: {}", username);

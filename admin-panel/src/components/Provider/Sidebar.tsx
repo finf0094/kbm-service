@@ -35,6 +35,10 @@ const mockData = [
             {
                 name: "Пользователи",
                 redirect: "/auth/users/"
+            },
+            {
+                name: "Разрешение",
+                redirect: "/auth/permissions",
             }
         ]
     },
@@ -52,7 +56,15 @@ const mockData = [
             {
                 name: "Позиции",
                 redirect: "/integration/positions/"
-            }
+            },
+            {
+                name: "Политика",
+                redirect: "/integration/policies"
+            },
+            {
+                name: "Куратора",
+                redirect: "/integration/curators"
+            },
         ]
     }
 ]

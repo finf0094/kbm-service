@@ -23,6 +23,4 @@ public class Email implements Serializable {
     private String from;
     private String subject;
     private String content;
-
-    private Map<String, Object> props;
 }

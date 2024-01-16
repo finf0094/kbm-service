@@ -5,5 +5,6 @@ public enum ApplicationStatus {
     REJECTED,
     TESTING,
     PENDING,
-    IN_PROCESS
+    IN_PROCESS,
+    INTERVIEW_SCHEDULED
 }
