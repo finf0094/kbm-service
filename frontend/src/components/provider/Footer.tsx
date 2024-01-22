@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="footer__company">
                     {/*<img src="https://i.imgur.com/dZHVCmo.png" alt="" className="footer__icon" />*/}
                     <p className="footer__desc">
-                        Конкурс на включение в кадровый <br /> резерв АО "Каражанбасмунай"
+                        Конкурс на включение в кадровый <br /> резерв
                     </p>
                 </div>
                 <div className="footer__info">

@@ -10,11 +10,11 @@ i18n.use(initReactI18next).init({
         header_police_link: "Политика",
         header_tests_link: "Тесты",
         profile:'Профиль',
-        competetion_hr: `Конкурс на включение в кадровый резерв АО "Каражанбасмунай"`,
+        competetion_hr: `Конкурс на включение в кадровый резерв АО ""`,
         take_part : "Принять участие",
         who_can_take_part: "Кто может принять участие?",
         education_level: "С высшим образованием.",
-        has_one_year_experience: `Работники АО "Каражанбасмунай"
+        has_one_year_experience: `Работники АО ""
         С опытом работы в компании не менее 1 года.`,
         profile_status_approved: "Одобрено",
         profile_status_rejected: "Не одобрено",
@@ -28,7 +28,7 @@ i18n.use(initReactI18next).init({
         profile_edit: "Редактировать",
         About_me: "Обо мне",
         with_higher_education: "С высшим Образованием",
-        Employees_of_JSC: `Работники АО "Каражанбасмунай"`,
+        Employees_of_JSC: `Работники АО ""`,
         With_at_least_1_year_of_experience_in_the_company: `С опытом работы в компании не менее 1 года.`,
         Without_disciplinary_penalties: `Без дисциплинарных взысканий`,
         During_the_last_3_years_of_work_in_the_Company: `В течение последних 3-х лет работы в Компании.`,
