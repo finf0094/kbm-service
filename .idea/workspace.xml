@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/KBM.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/918b97ae-86b1-465b-a70e-19c491467283.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/918b97ae-86b1-465b-a70e-19c491467283.xml" afterDir="false" />
+    <list default="true" id="8e140de4-1712-447f-aca5-ed3fa0dbd0ee" name="Changes" comment="without logo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/src/pages/user/UserAddPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/src/pages/user/UserAddPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-panel/src/pages/user/UserDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-panel/src/pages/user/UserDetailPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/mainPage/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/mainPage/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/provider/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/provider/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ApplicationPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ApplicationPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,11 +140,24 @@
       <workItem from="1704320067406" duration="223000" />
       <workItem from="1704324314064" duration="10840000" />
       <workItem from="1704368615660" duration="7519000" />
-      <workItem from="1705905859028" duration="1127000" />
+      <workItem from="1705905859028" duration="2587000" />
     </task>
+    <task id="LOCAL-00001" summary="without logo">
+      <option name="closed" value="true" />
+      <created>1705907296099</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705907296099</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="without logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="without logo" />
   </component>
 </project>

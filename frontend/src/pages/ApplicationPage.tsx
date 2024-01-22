@@ -3,19 +3,18 @@ import React, {useEffect, useState} from 'react';
 import useCurrentUser from "../hooks/useCurrentUser.ts";
 import {useAppDispatch} from "../hooks/useAppDispatch.ts";
 
-
 import {setApplicationData} from "../redux/slices/applicationSlice.ts";
 import {useGetApplicationByUserIdQuery} from "../redux/api/applicationApi.ts";
 
 import ApplicationTable from "../components/application/ApplicationTable.tsx";
 import ApplicationForm from "../components/application/ApplicationForm.tsx";
+import EducationTable from "../components/application/EducationTable.tsx";
+import ExperienceTable from "../components/application/ExperienceTable.tsx";
+import ApplicationVideo from "../components/application/ApplicationVideo.tsx";
 
 import Loader from "../components/utils/Loader.tsx";
 
 import './UI/ApplicationPage.css'
-import EducationTable from "../components/application/EducationTable.tsx";
-import ExperienceTable from "../components/application/ExperienceTable.tsx";
-import ApplicationVideo from "../components/application/ApplicationVideo.tsx";
 
 const ApplicationPage: React.FC = () => {
     const [step, setStep] = useState<number>(1);
@@ -41,7 +40,6 @@ const ApplicationPage: React.FC = () => {
         if (isApplicationSuccess) {
             dispatch(setApplicationData(applicationData));
         }
-
     }, [isApplicationError, applicationError, applicationData, dispatch, isApplicationSuccess]);
 
     const handleNextStep = () => {
