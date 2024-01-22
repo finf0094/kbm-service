@@ -81,11 +81,11 @@ const Header: React.FC<HeaderProps> = ({ data }) => {
             <div className="header__wrapper">
                 <nav className="nav">
                     <div className="header__logo">
-                        <img
-                            src="https://i.imgur.com/dZHVCmo.png"
-                            alt=""
-                            className="header__logo-img"
-                        />
+                        {/*<img*/}
+                        {/*    src="https://i.imgur.com/dZHVCmo.png"*/}
+                        {/*    alt=""*/}
+                        {/*    className="header__logo-img"*/}
+                        {/*/>*/}
                     </div>
                     <ul className="nav__list">
                         {data.roles && data.roles.includes("ROLE_USER") ? (

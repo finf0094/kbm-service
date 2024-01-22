@@ -97,7 +97,7 @@ const UserAddPage: React.FC = () => {
         ],
         aboutMe: "",
       });
-      navigate("/integration/curators", { replace: true });
+      navigate("/auth/users", { replace: true });
     } catch (error) {
       // Handle the error, e.g., display an error message
       console.error("Error creating curator:", error);
@@ -156,6 +156,15 @@ const UserAddPage: React.FC = () => {
             onChange={handleInputChange}
           />
         </label>
+        <label className="user-edit__item">
+          Пароль:
+          <input
+              type="text"
+              name="itin"
+              value={userData.password}
+              onChange={handleInputChange}
+          />
+        </label>
         {positions && (
           <label className="user-edit__item">
             Позиция:{" "}
@@ -189,11 +198,13 @@ const UserAddPage: React.FC = () => {
           ))}
         </select>
       </label>
+
       <div className="user-edit__buttons">
         <button type="submit" className="user-edit__button">
           Создать
         </button>
       </div>
+
     </form>
   );
 };

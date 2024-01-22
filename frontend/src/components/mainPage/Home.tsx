@@ -8,8 +8,6 @@ const Home: React.FC = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-
-
     const handleOpenModal = () => {
         dispatch(openModal({ id: 'infoModal' }));
     };

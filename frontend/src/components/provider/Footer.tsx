@@ -11,7 +11,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer__wrapper">
                 <div className="footer__company">
-                    <img src="https://i.imgur.com/dZHVCmo.png" alt="" className="footer__icon" />
+                    {/*<img src="https://i.imgur.com/dZHVCmo.png" alt="" className="footer__icon" />*/}
                     <p className="footer__desc">
                         Конкурс на включение в кадровый <br /> резерв АО "Каражанбасмунай"
                     </p>

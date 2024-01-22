@@ -83,6 +83,15 @@ const UserDetailPage: React.FC = () => {
                     <input type="text" name="itin" value={editedUser.itin} onChange={handleInputChange} />
                 </label>
                 <label className="user-edit__item">
+                    Пароль:
+                    <input
+                        type="text"
+                        name="itin"
+                        value={editedUser.password}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label className="user-edit__item">
                     Позиция:
                     <select name="position" value={editedUser.position?.id} onChange={handleSelectChange}>
                         {positions.content.map((position) => (
