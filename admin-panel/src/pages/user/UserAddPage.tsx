@@ -160,7 +160,7 @@ const UserAddPage: React.FC = () => {
           Пароль:
           <input
               type="text"
-              name="itin"
+              name="password"
               value={userData.password}
               onChange={handleInputChange}
           />
