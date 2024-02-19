@@ -5,8 +5,7 @@ services:
     container_name: postgresql
     restart: "no"
     ports:
-      - "5432:5432"
-    environment:
+      - "5430:5432"
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12341234
       POSTGRES_DB: test
