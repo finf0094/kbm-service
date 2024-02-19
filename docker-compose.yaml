@@ -27,7 +27,7 @@ services:
     environment:
       - KAFKA_SERVER=kafka-server:29092
       - DATABASE=postgresql
-      - ALLOWED_ORIGIN=http://91.222.237.214:3001,http://91.222.237.214:3003,localhost:5173
+      - ALLOWED_ORIGIN=http://91.222.237.214:3001,http://91.222.237.214:3003,http://localhost:5173
     networks:
       - app-network
     depends_on:
