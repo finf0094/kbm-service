@@ -6,9 +6,9 @@ services:
     restart: "no"
     ports:
       - "5430:5432"
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12341234
-      POSTGRES_DB: test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: 12341234
+    POSTGRES_DB: test
     volumes:
       - /home/root/data/postgresql
     networks:
