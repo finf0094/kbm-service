@@ -1,0 +1,137 @@
+/* Set perspective on a parent element */
+.header__list {
+	perspective: 1000px; /* Adjust the value as needed */
+}
+
+@keyframes listFadeIn {
+	from {
+			opacity: 0;
+			transform: translateY(-10px) rotateX(23deg);
+	}
+	to {
+			opacity: 1;
+			transform: translateY(0) rotateX(0);
+	}
+}
+
+/* Fade-out animation */
+@keyframes listFadeOut {
+	from {
+			opacity: 1;
+			transform: translateY(0) rotateX(0);
+	}
+	to {
+			opacity: 0;
+			transform: translateY(-10px) rotateX(23deg);
+	}
+}
+
+.header__list {
+	width: 300px;
+	height: 320px;
+	background: #fff;
+	color: #000;
+	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+	padding: 20px;
+
+	position: absolute;
+	top: 75px;
+	right: 0;
+	transform: scale(1.1);
+	transform-origin: right top;
+	pointer-events: none;
+}
+
+.header__list.list-open {
+	animation: listFadeIn 0.3s linear forwards;
+	pointer-events: auto;
+	/* Apply fade-in animation when modal is open */
+	animation-direction: alternate; /* Add this line */
+}
+
+.header__list.closing-animation {
+	animation: listFadeOut 0.3s linear forwards;
+	/* Apply fade-out animation when modal is closed */
+	animation-direction: alternate; /* Add this line */
+}
+
+.list__wrapper {
+	position: relative;
+}
+
+.list__profile {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-bottom: 1px solid rgba(115, 158, 253, 0.7);
+	padding-bottom: 10px;
+}
+
+.list__items-content {
+	display: grid;
+	justify-content: flex-start;
+	gap: 5px;
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(115, 158, 253, 0.7);
+}
+
+.list__items-content:last-child {
+	border: 0;
+}
+
+.list__profile-icon {
+	width: 40px;
+}
+
+.list__profile-info {
+	font-size: 14px;
+	
+}
+
+.list__profile-info div {
+	max-width: 210px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.list__close {
+	position: absolute;
+	right: -5px;
+	top: -5px;
+	font-size: 21px;
+	cursor: pointer;
+}
+
+.list__item {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}
+
+.list__icon {
+	font-size: 27px;
+}
+
+.list__icon::before {
+	color: var(--first-color);
+}
+
+.list__icon-logout {
+	font-size: 26px;
+}
+
+.list__icon-logout::before,
+.list__items-link:last-child {
+	color: red;
+}
+
+.list__items-link {
+	font-size: 14px;
+}
+
+.list__items-link:last-child {
+	font-size: 15px;
+}

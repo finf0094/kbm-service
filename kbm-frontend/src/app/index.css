@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Exo:wght@400;700&display=swap');
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  list-style: none;
+  font-family: 'Exo 2', sans-serif;
+  color: #393939;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  --primary-color: #739EFD;
+  --secondary-color: #f9f9f9;
+}
+
+input {
+  height: 55px;
+  outline: none;
+  border: none;
+  background: var(--secondary-color);
+  padding: 0 16px;
+  border-radius: 15px;
+  font-size: 17px;
+}
+
+.app {
+  height: 100vh;
+}
+
+.ui-button {
+  background: var(--primary-color);
+  border-radius: 15px;
+  color: #fff;
+  font-size: 20px;
+  padding: 15px 0;
+}
+
+.page {
+  margin: 35px 0 80px;
+  flex: 1 1 auto;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
+  flex: 10;
+}
+
+.toast__link {
+  color: var(--primary-color);
+  text-decoration: underline !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+}

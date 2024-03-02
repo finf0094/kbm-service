@@ -1,0 +1,11 @@
+.main, .header {
+	width: 100%;
+	max-width: 90%;
+}
+
+.layout {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

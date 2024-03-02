@@ -7,7 +7,7 @@ spring:
       max-file-size: 120MB
       max-request-size: 120MB
   datasource:
-    url: jdbc:postgresql://${DATABASE:localhost:5430}/test
+    url: jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:5432/postgres?user=postgres.opxbumxpthagwcssmzia&password=gRoove48zxcvbnm!
     username: postgres
     password: 12341234
     driver-class-name: org.postgresql.Driver
@@ -30,4 +30,4 @@ springdoc:
     path: /api/docs
 
 cors:
-  allowed_origins: ${ALLOWED_ORIGIN:localhost:5173}
+  allowed_origins: ${ALLOWED_ORIGIN:http://localhost:5173}

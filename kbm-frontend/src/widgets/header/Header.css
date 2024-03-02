@@ -1,0 +1,152 @@
+/* Main */
+
+.header {
+	width: 100%;
+	height: var(--header-height);
+	margin-top: 35px;
+	position: relative;
+}
+
+.header__wrapper, .header__main, .nav__list, .header__controls, .header__profile {
+	display: flex;
+	align-items: center;
+}
+
+.header__wrapper {
+	position: relative;
+	justify-content: space-between;
+}
+
+/* Header Main */
+
+.header__main {
+	gap: 60px;
+}
+
+.header__logo {
+	width: 45px;
+}
+
+.nav__list {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}
+
+.nav__link {
+	font-size: 18px;
+	font-weight: 500;
+	color: inherit;
+	transition: .3s ease-out;
+}
+
+.nav__item {
+	position: relative;
+	padding-bottom: 4px;
+}
+
+.nav__item:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	right: 50%;
+	bottom: 0;
+	background: var(--primary-color);
+	height: 2px;
+	-webkit-transition-property: left, right;
+	transition-property: left, right;
+	transition: .3s ease-out;
+}
+
+.nav__link:hover {
+	color: var(--primary-color) !important;
+}
+
+.nav__item:hover:before,
+.nav__item:focus:before,
+.nav__item:active:before {
+	left: 0;
+	right: 0;
+}
+
+.nav__toggle, .nav__close {
+	display: none;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+/* Header Controls */
+
+.header__controls {
+	gap: 40px;
+}
+
+.header__lang {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.header__lang img {
+	width: 20px;
+}
+
+.header__lang-options {
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	background: none;
+	color: inherit;
+}
+
+.header__lang-options option {
+	color: #000;
+}
+
+.header__number {
+	font-size: 20px;
+	color: #393939;
+}
+
+.header__profile {
+	gap: 10px;
+}
+
+.header__profile-item {
+	text-align: right;
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.header__profile-icon {
+	cursor: pointer;
+}
+
+@media screen and (max-width: 1130px) {
+
+	.header__controls, .nav__close {
+			display: none;
+	}
+
+	.nav__toggle {
+			display: block;
+	}
+}
+
+@media screen and (max-width: 960px) {
+
+	.header {
+			margin-top: 25px;
+	}
+
+}
+
+@media screen and (max-width: 600px) {
+
+	.nav__list {
+			display: none;
+	}
+
+}
