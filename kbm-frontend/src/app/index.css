@@ -5,11 +5,22 @@
 *::before,
 *::after {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
   outline: none;
   list-style: none;
   font-family: 'Exo 2', sans-serif;
+}
+
+body
+ul,
+li,
+button {
+  padding: 0;
+}
+
+
+body,
+a {
   color: #393939;
 }
 
@@ -18,7 +29,7 @@ a {
 }
 
 :root {
-  --primary-color: #739EFD;
+  --first-color: #739EFD;
   --secondary-color: #f9f9f9;
 }
 
@@ -37,7 +48,7 @@ input {
 }
 
 .ui-button {
-  background: var(--primary-color);
+  background: var(--first-color);
   border-radius: 15px;
   color: #fff;
   font-size: 20px;
@@ -64,9 +75,38 @@ button {
 }
 
 .toast__link {
-  color: var(--primary-color);
+  color: var(--first-color);
   text-decoration: underline !important;
 }
+
+/* PRIMEREACT OPTIONS */
+
+.p-dialog-header {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  padding: .5rem .5rem 1.5rem 2rem;
+}
+
+.p-dialog-title {
+  padding-top: 1.3rem;
+  font-size: 1.5rem;
+}
+
+.p-dialog-content {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 2rem;
+  padding-top: 0;
+}
+
+.p-sidebar-content {
+  padding: 1.25rem!important;
+}
+
+.p-sidebar-header +.p-sidebar-content {
+  padding-top: 0!important;
+}
+
 
 @media screen and (max-width: 1200px) {
   .container {

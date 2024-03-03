@@ -1,0 +1,22 @@
+.take-part__desc {
+	width: 100%;
+	background: #f9f9f9;
+	padding: 25px 20px;
+	text-align: center;
+	border-radius: 24px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #393939;
+	margin-bottom: 10px;
+}
+
+.take-part__check {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.take-part__button {
+	margin: 25px auto 0;
+	width: 100%;
+}

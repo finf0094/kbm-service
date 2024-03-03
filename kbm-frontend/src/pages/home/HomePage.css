@@ -27,7 +27,7 @@
 	height: 60px;
 	outline: none;
 	border: none;
-	background: var(--primary-color);
+	background: var(--first-color);
 	color: #fff;
 	border-radius: 20px;
 	font-size: 19px;
@@ -148,7 +148,7 @@
 
 .frames__item-name {
 	font-family: 'Exo', sans-serif;
-	color: var(--primary-color);
+	color: var(--first-color);
 	font-size: 30px;
 	font-weight: 700;
 	margin-bottom: 10px;
@@ -169,7 +169,7 @@
 	font-size: 19px;
 	margin-top: 45px;
 	border-radius: 20px;
-	background: var(--primary-color);
+	background: var(--first-color);
 	outline: none;
 	border: none;
 	color: #fff;

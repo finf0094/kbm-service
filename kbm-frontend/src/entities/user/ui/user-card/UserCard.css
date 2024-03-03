@@ -1,0 +1,129 @@
+.edited-card {
+	width: 400px;
+	height: 500px;
+	border-radius: 24px;
+	background: #F9F9F9;
+	padding: 28px 46px;
+}
+
+.edited-card__head {
+	width: 100%;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border-bottom: 1px solid rgba(115, 158, 253, .5);
+	padding-bottom: 12px;
+}
+
+.edited-card__name {
+	font-size: 24px;
+	text-transform: capitalize;
+	color: #393939;
+	margin-bottom: 5px;
+}
+
+.edited-card__job {
+	font-size: 16px;
+	color: rgba(57, 57, 57, .5);
+}
+
+.edited-card__info {
+	display: grid;
+	grid-gap: 5px;
+	padding: 12px 0;
+	border-bottom: 1px solid rgba(115, 158, 253, .5);
+}
+
+.edited-card__aboutMe {
+	padding-top: 15px;
+	padding-bottom: 28px;
+}
+
+.edited-card__aboutMe_title {
+	font-size: 16px;
+	color: rgba(57, 57, 57, .5);
+	margin-bottom: 7px;
+	text-align: center;
+}
+
+.edited-card__aboutMe_desc {
+	font-size: 16px;
+	color: #393939;
+	line-height: 24px;
+}
+
+.card__button {
+	width: 100%;
+	height: 45px;
+	border-radius: 24px;
+	border: 2px solid var(--first-color);
+	color: var(--first-color);
+	font-size: 16px;
+	cursor: pointer;
+	margin-bottom: 28px;
+	transition: .3s;
+}
+
+.card__button:hover {
+	background: var(--first-color);
+	color: #fff;
+}
+
+.edited-card__date {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgba(57, 57, 57, .5);
+}
+
+.edit-card {
+	width: 600px;
+	height: 510px;
+	border-radius: 24px;
+	background: #F9F9F9;
+	padding: 28px 30px;
+}
+
+.edit-card__form {
+	display: grid;
+	grid-gap: 10px;
+}
+
+.edit-card__name {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 16px;
+}
+
+.edit-card label {
+	display: block;
+	color: rgba(57, 57, 57, 0.50);
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.edit-card input {
+	height: 50px;
+}
+
+.edit-card input, .edit-card textarea {
+	width: 100%;
+	border-radius: 15px;
+	border: 1px solid #d4d4d4;
+	outline: none;
+	background: none;
+	font-size: 16px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	resize: none;
+}
+
+.edit-card__buttons {
+	margin-top: 24px;
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}

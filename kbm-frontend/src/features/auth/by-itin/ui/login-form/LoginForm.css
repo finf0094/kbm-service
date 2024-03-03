@@ -33,10 +33,16 @@
 
 .login-form__link a {
 	text-decoration: underline;
-	color: var(--primary-color);
+	color: var(--first-color);
 }
 
 .login-form__button {
 	width: 100%;
 	margin-top: 45px;
+}
+
+@media screen and (max-width: 450px) {
+	.login-form {
+		border: 0 none;
+	}
 }

@@ -1,10 +1,18 @@
 import { RootState } from '@/app/store'
-import { refreshTokens } from '@/features/auth/by-itin/model/services/authService'
-import { logout } from '@/features/auth/by-itin/model/slice/authSlice'
-import {BaseQueryApi, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import { refreshTokens } from '@/features/auth/by-itin'
+import { logout } from '@/features/auth/by-itin'
+import { BaseQueryApi, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const baseUrl = import.meta.env.VITE_API_URL + "/api"
+export const baseUrl = import.meta.env.VITE_API_URL
 
+export interface CustomError {
+    data: {
+        status: number;
+        message: string;
+        timestamp: string;
+    };
+    status: string;
+}
 
 export const baseQuery = fetchBaseQuery({
     baseUrl,

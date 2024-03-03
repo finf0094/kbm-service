@@ -1,7 +1,10 @@
 import { FC } from 'react'
 import './HomePage.css'
+import { useDispatch } from 'react-redux'
+import { openModal } from '@/app/providers/modal-provider'
 
 export const HomePage: FC = () => {
+	const dispatch = useDispatch()
 
 	const framesData = [
 		{
@@ -21,6 +24,10 @@ export const HomePage: FC = () => {
 			desc: "Исполнители, имеющие потенциал роста (молодые специалисты, рабочий персонал)"
 		},
 	]
+	
+	const handleModal = () => {
+		dispatch(openModal({ id: 'takePart' }))
+	}
 
 	return (
 		<div className="home page">
@@ -29,7 +36,7 @@ export const HomePage: FC = () => {
 			<section className="main-title">
 				<div className="main-title__wrapper">
 					<h1 className="main-title__title">Конкурс на включение в кадровый резерв АО "Каражанбасмунай"</h1>
-					<button className="main-title__button">Принять участие</button>
+					<button className="main-title__button" onClick={handleModal}>Принять участие</button>
 				</div>
 			</section>
 
@@ -76,7 +83,7 @@ export const HomePage: FC = () => {
 							</div>
 						))}
 					</div>
-					<button className="frames__button">Принять участие</button>
+					<button className="frames__button" onClick={handleModal}>Принять участие</button>
 				</div>
 			</section>
 		</div>

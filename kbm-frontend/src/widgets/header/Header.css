@@ -52,7 +52,7 @@
 	left: 50%;
 	right: 50%;
 	bottom: 0;
-	background: var(--primary-color);
+	background: var(--first-color);
 	height: 2px;
 	-webkit-transition-property: left, right;
 	transition-property: left, right;
@@ -60,7 +60,7 @@
 }
 
 .nav__link:hover {
-	color: var(--primary-color) !important;
+	color: var(--first-color) !important;
 }
 
 .nav__item:hover:before,

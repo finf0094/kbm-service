@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
 import headerLogo from '@/shared/assets/header-logo.png'
@@ -6,38 +6,22 @@ import profileIcon from '@/shared/assets/icons/profile-icon.svg'
 import langIcon from '@/shared/assets/icons/lang-icon.svg'
 import useAuth from '@/shared/lib/useAuth'
 import HeaderList from '@/widgets/header-list/HeaderList'
-import NavList from '../nav-list/NavList'
+import HeaderSidebar from '../sidebar/Sidebar'
 
 export const Header: FC = () => {
-	const [fixed, setFixed] = useState<boolean>(false)
-
 	const [isHeaderListOpen, setIsHeaderListOpen] = useState<boolean>(false)
-	const [isNavListOpen, setIsNavListOpen] = useState<boolean>(false)
+	const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
 
 	const auth = useAuth()
-
-	useEffect(() => {
-		const fixedHeader = () => {
-			if (window.scrollY >= 50) setFixed(true)
-			else setFixed(false)
-		}
-
-		window.addEventListener("scroll", fixedHeader)
-		window.removeEventListener("load", fixedHeader)
-
-		return () => {
-			window.removeEventListener("scroll", fixedHeader)
-		}
-	}, [])
 
 	const openHeaderList = () => setIsHeaderListOpen(true)
 	const closeHeaderList = () => setIsHeaderListOpen(false)
 
-	const openNavList = () => setIsNavListOpen(true)
-	const closeNavList = () => setIsNavListOpen(false)
+	const openSidebar = () => setIsSidebarOpen(true)
+	const closeSidebar = () => setIsSidebarOpen(false)
 
 	return (
-		<header className={fixed ? "header fixed" : "header"}>
+		<header className="header">
 			<div className="header__wrapper">
 				<div className="header__main">
 					<img src={headerLogo} alt="" className="header__logo" />
@@ -71,7 +55,7 @@ export const Header: FC = () => {
 					</div>
 				</div>
 
-				<div className="nav__toggle" onClick={openNavList}>
+				<div className="nav__toggle" onClick={openSidebar}>
 					<i className="uil uil-bars nav__toggle-icon"></i>
 				</div>
 
@@ -82,7 +66,7 @@ export const Header: FC = () => {
 			</div>
 			
 			{/* Nav List */}
-			{isNavListOpen && auth.isAuthenticated && <NavList isListOpened={isNavListOpen} closeList={closeNavList} />}
+			{isSidebarOpen && auth.isAuthenticated && <HeaderSidebar isListOpened={isSidebarOpen} closeList={closeSidebar} />}
 		</header>
 	)
 }

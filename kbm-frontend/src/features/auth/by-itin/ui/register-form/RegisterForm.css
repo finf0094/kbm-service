@@ -33,7 +33,7 @@
 
 .register-form__link a {
 	text-decoration: underline;
-	color: var(--primary-color);
+	color: var(--first-color);
 }
 
 .register-form__button {
