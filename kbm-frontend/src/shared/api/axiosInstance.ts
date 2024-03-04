@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { baseUrl } from './baseQuery'
+import { IAuthResponse } from '@/entities/response'
 export const axiosInstance = axios.create();
 
 
@@ -25,11 +26,10 @@ axiosInstance.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 // Попытка получить новый токен
-                const response = await axios.get(`${baseUrl}/refresh-tokens`);
-                const { accessToken } = response.data;
-                localStorage.setItem('accessToken', accessToken);
+                const response = await axios.get<IAuthResponse>(`${baseUrl}/refresh?token=${Cookies.get('refresh_token')}`);
+                localStorage.setItem('token', response.data.access_token);
                 // Установка нового токена в заголовки и повторный запрос
-                originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+                originalRequest.headers['Authorization'] = `Bearer ${response.data.access_token}`;
                 return axiosInstance(originalRequest);
             } catch (refreshError) {
                 console.error('Не удалось обновить токен. Ошибка:', refreshError);

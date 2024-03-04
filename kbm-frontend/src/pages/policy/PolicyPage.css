@@ -1,0 +1,28 @@
+.policy__title {
+	font-size: 36px;
+	font-weight: 700;
+	margin-bottom: 15px;
+	color: #393939;
+}
+
+.policy__download {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid rgba(115, 158, 253, .6);
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+.policy__download:last-child {
+	margin-bottom: 0;
+}
+
+.policy__text {
+	font-size: 18px;
+}
+
+.policy__link {
+	cursor: pointer;
+}

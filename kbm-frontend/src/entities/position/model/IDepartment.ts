@@ -1,4 +1,4 @@
-import { ILocation } from '@/entities/location/model/ILocation.ts'
+import { ILocation } from './ILocation.ts'
 
 export interface IDepartment {
   id: number;

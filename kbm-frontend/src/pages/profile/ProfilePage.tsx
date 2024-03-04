@@ -19,6 +19,7 @@ export const ProfilePage: FC = () => {
 		isLoading: isUserLoading,
 		isError: isUserError,
 		error: userError,
+		refetch,
 	} = useGetUserByItinQuery(itin)
 
 	const [updateUser, {
@@ -46,28 +47,29 @@ export const ProfilePage: FC = () => {
 	}, [isUserError, userError, isUpdateError, updateError, isUpdateSuccess, updatedData])
 
 	if (isUserLoading || isUpdateLoading) {
-		return <div className="page"><ProgressSpinner /></div>
+		return <div className='user-card loader'><ProgressSpinner className='user-card__spinner' /></div>
 	}
 
 
 	if (isUserError && userError && 'data' in userError && userError.data) {
-		return <div className="page">{userError.data.message}</div>
+		return <div className='page'>{userError.data.message}</div>
 	}
 
-	if (!isUserSuccess) return <div className="page">Ошибка!</div>
+	if (!isUserSuccess) return <div className='page'>Ошибка!</div>
 	
-	const handleSave = (data: IUserDetail, e: FormEvent<HTMLFormElement>) => {
+	const handleSave = async (data: IUserDetail, e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
     setIsEditing(false)
 		console.log(data);
 		
-		updateUser(data);
+		await updateUser(data);
+		refetch();
 	}
 
 	return (
 		<div className='profile page'>
 			{isEditing 
-				? <UserEdit data={userData} handleSave={handleSave} />
+				? <UserEdit data={userData} handleSave={handleSave} handleCancel={() => setIsEditing(false)} />
 				: <UserCard data={userData} handleEdit={() => setIsEditing(true)} />
 			}
 		</div>

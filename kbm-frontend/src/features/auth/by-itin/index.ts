@@ -1,6 +1,6 @@
 
 // MODEL
-export { login, register, refreshTokens } from './model/services/authService'
+export { login, register, refreshToken } from './model/services/authService'
 export { logout } from './model/slices/authSlice'
 
 // UI

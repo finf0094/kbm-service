@@ -1,0 +1,60 @@
+.select-modal .modal__wrapper {
+	padding: 30px 34px;
+}
+
+.select-modal .modal__title {
+	font-size: 27px;
+}
+
+.select-modal .modal__button {
+	margin-top: 10px;
+}
+
+.select-modal__content {
+	display: grid;
+	grid-gap: 20px;
+	margin-bottom: 20px;
+}
+
+.select-box select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.modal-buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.modal-buttons .submit-button {
+	padding: 15px 40px;
+	font-size: 16px;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	background: var(--first-color);
+	cursor: pointer;
+	margin-top: 20px;
+	margin-left: auto;
+}
+
+.modal-buttons .close-button {
+	background: #ccc;
+	color: #333;
+}
+
+.modal-slide-in {
+	animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+	from {
+			transform: translateY(-100%);
+	}
+
+	to {
+			transform: translateY(0);
+	}
+}

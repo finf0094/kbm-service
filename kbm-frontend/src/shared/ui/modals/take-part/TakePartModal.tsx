@@ -1,26 +1,57 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, MouseEvent, useEffect, useState } from 'react'
 import './TakePartModal.css'
-import { Dialog } from 'primereact/dialog'
-import { useAppSelector } from '@/app/store/hooks'
-import { closeModal } from '@/app/providers/modal-provider'
-import { useDispatch } from 'react-redux'
 import { Checkbox } from 'primereact/checkbox'
+import { ModalExample } from '../ModalExample'
+import { useNavigate } from 'react-router-dom'
+import { useCreateApplicationMutation } from '@/entities/application/api'
+import useCurrentUser from '@/shared/lib/useCurrentUser'
+import { setApplicationData } from '@/entities/application'
+import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { closeModal } from '@/app/providers/modal-provider'
 
 export const TakePartModal: FC<{ id: string }> = ({ id }) => {
-	const dispatch = useDispatch();
-	const isOpen = useAppSelector((state) =>
-		state.modal.modals.some((modal) => modal.id === id && modal.isOpen)
-	)
+	// STATES
+	const [isChecked, setIsChecked] = useState<boolean | undefined>(false)
 
-	const [isChecked, setIsChecked] = useState<boolean | undefined>(false);
+	// HOOKS
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const { id: userId } = useCurrentUser();
 
-	const handleCloseModal = useCallback(() => {
-		dispatch(closeModal({ id }))
-	}, [dispatch, id])
+	const [createApplication, {
+		data: applicationData,
+		isSuccess: isApplicationSuccess,
+		error: applicationError
+	}] = useCreateApplicationMutation()
+
+	const handleCreateApplication = async (e: MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault()
+		await createApplication(userId)
+	}
+		
+	useEffect(() => {
+		if (isApplicationSuccess && applicationData) {
+			dispatch(setApplicationData(applicationData))
+			dispatch(closeModal({ id }))
+			navigate("/application")
+		}
+		if (applicationError && 'data' in applicationError && applicationError.data) {
+			toast.error(`${applicationError.data.message}`)
+			console.log(`Ошибка: ${applicationError}. Покажите эту ошибку разработчикам!`)
+		}
+	}, [dispatch, id, navigate, applicationData, applicationError, isApplicationSuccess])
 
 	return (
-		<Dialog draggable={false} resizable={false} visible={isOpen} onHide={handleCloseModal} header="Это текст о проекте" style={{ width: '34vw' }}>
-			<p className="take-part__desc">
+		<ModalExample 
+			id={id} 
+			title='Это текст о проекте' 
+			style={{ width: '34vw' }} 
+			buttonText='Принять участие' 
+			buttonDisabled={!isChecked}
+			onConfirm={handleCreateApplication}
+		>
+			<p className='take-part__desc'>
 				Это текст о проекте. Он необходим для дальнейшего продвижения Вашего
 				сайта. Вам будет необходимо предоставить исходные данные, по которым
 				наши копирайтеры составят правильный текст, который будет содержать в
@@ -28,14 +59,12 @@ export const TakePartModal: FC<{ id: string }> = ({ id }) => {
 				данные. Это текст о проекте. Это текст о компании.
 			</p>
 
-			<div className="take-part__check">
+			<div className='take-part__check'>
 				<Checkbox onChange={e => setIsChecked(e.checked)} checked={Boolean(isChecked)} />
-				<label htmlFor="check">
+				<label htmlFor='check'>
 					Я ознакомлен с целью проекта и согласен предоставить свои данные
 				</label>
 			</div>
-
-			<button className="take-part__button ui-button" disabled={!isChecked}>Принять участие</button>
-		</Dialog>
+		</ModalExample>
 	)
 }

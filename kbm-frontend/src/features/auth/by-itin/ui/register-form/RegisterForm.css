@@ -1,15 +1,24 @@
 .register-form {
-	width: 450px;
-	padding: 40px;
+	width: 500px;
+	padding: 35px 40px;
 	border: 1px solid #d9d9d9;
 	border-radius: 20px;
 	text-align: center;
 }
 
+.register-form__head {
+	margin-bottom: 40px;
+}
+
 .register-form__title {
 	font-size: 42px;
 	font-weight: 600;
-	margin-bottom: 20px;
+}
+
+.register-form__subtitle {
+	font-size: 17px;
+	color: #969595;
+	font-weight: 300;
 }
 
 .register-form__fields {

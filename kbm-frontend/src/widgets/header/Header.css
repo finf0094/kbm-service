@@ -46,7 +46,7 @@
 }
 
 .nav__item:before {
-	content: "";
+	content: '';
 	position: absolute;
 	z-index: -1;
 	left: 50%;

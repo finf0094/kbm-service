@@ -1,0 +1,63 @@
+.app-form__fields {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 50px;
+	margin-bottom: 50px;
+}
+
+.app-form__field {
+	width: 48%;
+	display: grid;
+}
+
+.app-form__field:last-child {
+	width: 100%;
+}
+
+.app-form label {
+	font-size: 16px;
+	margin-bottom: 3px;
+}
+
+.app-form input, .input-label {
+	height: 40px;
+	outline: none;
+	border: 0;
+	border-bottom: 1px solid rgba(57, 57, 57, .3);
+	border-radius: 0;
+	padding: 0;
+	background: none;
+	font-size: 20px;
+	color: #000;
+}
+
+.input-label {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+}
+
+.app-form__selectedFile {
+	font-size: 20px;
+	color: #000;
+}
+
+.app-form input::placeholder, .placeholder {
+	font-size: 16px;
+	color: rgba(57, 57, 57, .3);
+}
+
+.app-form__error {
+	margin-top: 5px;
+	color: red;
+}
+
+.app-form__buttons {
+	width: 100%;
+	margin-top: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}

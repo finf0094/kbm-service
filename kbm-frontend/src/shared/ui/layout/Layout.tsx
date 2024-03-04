@@ -6,7 +6,7 @@ import { Footer } from '@/widgets/footer/Footer'
 
 export const Layout: FC = () => {
 	return (
-		<div className="layout">
+		<div className='layout'>
 			<Header />
 
 			<main className='main'>

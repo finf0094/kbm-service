@@ -10,6 +10,8 @@ export const RegisterForm: FC = () => {
 	const navigate = useNavigate()
 
 	const [itin, setItin] = useState<string>('')
+	const [firstname, setFirstname] = useState<string>('')
+	const [lastname, setLastname] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
 
@@ -27,7 +29,7 @@ export const RegisterForm: FC = () => {
 			return
 		} else {
 			try {
-				await dispatch(register({ itin, password, email }))
+				await dispatch(register({ itin, firstname, lastname, password, email }))
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					.then(async (response: any) => {
 						if (response.payload.status === 201) {
@@ -49,15 +51,18 @@ export const RegisterForm: FC = () => {
 
 	return (
 		<div className='register-form'>
-			<h3 className="register-form__title">Регистрация</h3>
+			<div className='register-form__head'>
+				<h3 className='register-form__title'>Регистрация</h3>
+				<p className='register-form__subtitle'>Введите нужные данные для регистрации</p>
+			</div>
 
-			<form className="register-form__form" onSubmit={handleRegister}>
-				<div className="register-form__fields">
-					<div className="register-form__group">
+			<form className='register-form__form' onSubmit={handleRegister}>
+				<div className='register-form__fields'>
+					<div className='register-form__group'>
 						<input
-							type="text"
-							className="register-form__input"
-							placeholder="ИИН"
+							type='text'
+							className='register-form__input'
+							placeholder='ИИН'
 							maxLength={12}
 							minLength={12}
 							required
@@ -65,31 +70,57 @@ export const RegisterForm: FC = () => {
 							onChange={handleItinChange}
 						/>
 					</div>
-					<div className="register-form__group">
+					<div className='register-form__group'>
 						<input
-							type="password"
-							className="register-form__input"
-							placeholder="Пароль"
+							type='text'
+							className='register-form__input'
+							placeholder='Имя'
+							required
+							value={firstname}
+							onChange={(e) => { 
+								if (!/^[a-zA-Zа-яА-Я,.!\s]*$/.test(e.target.value)) return; 
+								setFirstname(e.target.value) 
+							}}
+						/>
+					</div>
+					<div className='register-form__group'>
+						<input
+							type='text'
+							className='register-form__input'
+							placeholder='Фамилия'
+							required
+							value={lastname}
+							onChange={(e) => {
+								if (!/^[a-zA-Zа-яА-Я,.!\s]*$/.test(e.target.value)) return;
+								setLastname(e.target.value)
+							}}
+						/>
+					</div>
+					<div className='register-form__group'>
+						<input
+							type='password'
+							className='register-form__input'
+							placeholder='Пароль'
 							value={password}
 							required
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-					<div className="register-form__group">
+					<div className='register-form__group'>
 						<input
-							type="email"
-							className="register-form__input"
-							placeholder="Email"
+							type='email'
+							className='register-form__input'
+							placeholder='Email'
 							value={email}
 							required
 							onChange={(e) => setEmail(e.target.value)}
 						/>
-						{error && <span className="error">{error}</span>}
+						{error && <span className='error'>{error}</span>}
 					</div>
 				</div>
 
 				<div className='register-form__link'>Уже авторизованы? <Link to='/login'>Войти</Link></div>
-				<button className="register-form__button ui-button">Регистрация</button>
+				<button className='register-form__button ui-button'>Регистрация</button>
 			</form>
 		</div>
 	)

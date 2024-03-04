@@ -1,0 +1,50 @@
+.edit-card {
+	width: 600px;
+	height: 510px;
+	border-radius: 24px;
+	background: #F9F9F9;
+	padding: 28px 30px;
+}
+
+.edit-card__form {
+	display: grid;
+	grid-gap: 10px;
+}
+
+.edit-card__name {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 16px;
+}
+
+.edit-card label {
+	display: block;
+	color: rgba(57, 57, 57, 0.50);
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.edit-card input {
+	height: 50px;
+}
+
+.edit-card input, .edit-card textarea {
+	width: 100%;
+	border-radius: 15px;
+	border: 1px solid #d4d4d4;
+	outline: none;
+	background: none;
+	font-size: 16px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	resize: none;
+}
+
+.edit-card__buttons {
+	margin-top: 24px;
+	display: flex;
+	align-items: center;
+	gap: 30px;
+}

@@ -17,7 +17,7 @@ export const login = createAsyncThunk('auth/login',
 )
 
 export const register = createAsyncThunk('auth/register',
-	async (registerData: { itin: string; password: string; email: string }, { rejectWithValue }) => {
+	async (registerData: { itin: string; firstname: string; lastname: string; password: string; email: string }, { rejectWithValue }) => {
 		try {
 			const response = await axios.post<IAuthResponse>(`${baseUrl}/auth/register`, registerData)
 			return response.data
@@ -29,10 +29,10 @@ export const register = createAsyncThunk('auth/register',
 	}
 )
 
-export const refreshTokens = createAsyncThunk('auth/refresh-tokens',
+export const refreshToken = createAsyncThunk('auth/refresh',
 	async (_, { rejectWithValue }) => {
 		try {
-			const response = await axios.get<IAuthResponse>(`${baseUrl}/auth/refresh-tokens`, { withCredentials: true })
+			const response = await axios.get<IAuthResponse>(`${baseUrl}/auth/refresh`, { withCredentials: true })
 			return response.data
 		} catch (error) {
 			const axiosError = error as AxiosError

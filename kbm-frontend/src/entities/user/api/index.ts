@@ -1,4 +1,4 @@
-import { BaseQueryFn, createApi, FetchArgs } from "@reduxjs/toolkit/query/react"
+import { BaseQueryFn, createApi, FetchArgs } from '@reduxjs/toolkit/query/react'
 import { IUserDetail } from '../model/IUserDetail.ts'
 import { baseQueryWithReauth, CustomError } from '@/shared/api/baseQuery.ts'
 

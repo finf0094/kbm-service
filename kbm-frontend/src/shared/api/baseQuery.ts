@@ -1,7 +1,7 @@
 import { RootState } from '@/app/store'
-import { refreshTokens } from '@/features/auth/by-itin'
+import { refreshToken } from '@/features/auth/by-itin'
 import { logout } from '@/features/auth/by-itin'
-import { BaseQueryApi, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BaseQueryApi, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const baseUrl = import.meta.env.VITE_API_URL
 
@@ -37,8 +37,8 @@ export const baseQueryWithReauth = async (
 
     if (result?.error?.status === 401) {
         // Attempt to refresh tokens
-        const refreshResult = await api.dispatch(refreshTokens());
-        if (refreshTokens.fulfilled.match(refreshResult)) {
+        const refreshResult = await api.dispatch(refreshToken());
+        if (refreshToken.fulfilled.match(refreshResult)) {
             // If the refresh was successful, retry the original request
             result = await baseQuery(args, api, extraOptions);
         } else {

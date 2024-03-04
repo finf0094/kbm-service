@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from '@/entities/user'
-import { login } from '../services/authService'
+import { login, refreshToken } from '../services/authService'
 
 const initializeAuthStateFromCookies = () => {
     const isAuthenticated: boolean = Cookies.get('isAuthenticated') === 'true'
@@ -35,7 +35,7 @@ const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 console.log(action)
 
-                state.isAuthenticated = true
+                state.isAuthenticated = action.payload.access_token && action.payload.user ? true : false
                 state.accessToken = action.payload.access_token
                 state.refreshToken = action.payload.refresh_token
                 state.user = action.payload.user
@@ -44,9 +44,22 @@ const authSlice = createSlice({
                 Cookies.set('access_token', action.payload.access_token) // Исправлено на прямое сохранение строки
                 Cookies.set('refresh_token', action.payload.refresh_token) // Исправлено на прямое сохранение строки
                 Cookies.set('user', JSON.stringify(action.payload.user))
+
+                localStorage.setItem('token', action.payload.access_token)
+            })
+            .addCase(refreshToken.fulfilled, (state, action) => {
+                state.isAuthenticated = true
+                state.accessToken = action.payload.access_token
+                state.user = action.payload.user
+
+                Cookies.set('isAuthenticated', 'true')
+                Cookies.set('access_token', action.payload.access_token)
+                Cookies.set('user', JSON.stringify(action.payload.user))
+
+                localStorage.setItem('token', action.payload.access_token)
             })
     },
 })
 
 export default authSlice.reducer
-export const { logout } = authSlice.actions;
+export const { logout } = authSlice.actions

@@ -1,4 +1,4 @@
-import { IDepartment } from '@/entities/department/model/IDepartment'
+import { IDepartment } from './IDepartment'
 
 export interface IPosition {
 	id: number;

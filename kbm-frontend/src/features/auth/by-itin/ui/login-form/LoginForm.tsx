@@ -31,7 +31,7 @@ export const LoginForm: FC = () => {
 						console.log('response',response)
 						if (response.type === 'auth/login/fulfilled') {
 							navigate('/')
-							toast.success("Авторизация успешно пройдена!")
+							toast.success('Авторизация успешно пройдена!')
 						} else {
 							if (response.payload.status === 404) setError(`Пользователь не найден`)
 							setError(response.payload.message)
@@ -46,15 +46,15 @@ export const LoginForm: FC = () => {
 
 	return (
 		<div className='login-form'>
-			<h3 className="login-form__title">Вход</h3>
+			<h3 className='login-form__title'>Вход</h3>
 
-			<form className="login-form__form" onSubmit={handleLogin}>
-				<div className="login-form__fields">
-					<div className="login-form__group">
+			<form className='login-form__form' onSubmit={handleLogin}>
+				<div className='login-form__fields'>
+					<div className='login-form__group'>
 						<input
-							type="text"
-							className="login-form__input"
-							placeholder="ИИН"
+							type='text'
+							className='login-form__input'
+							placeholder='ИИН'
 							maxLength={12}
 							minLength={12}
 							required
@@ -62,21 +62,21 @@ export const LoginForm: FC = () => {
 							onChange={handleItinChange}
 						/>
 					</div>
-					<div className="login-form__group">
+					<div className='login-form__group'>
 						<input
-							type="password"
-							className="login-form__input"
-							placeholder="Пароль"
+							type='password'
+							className='login-form__input'
+							placeholder='Пароль'
 							value={password}
 							required
 							onChange={(e) => setPassword(e.target.value)}
 						/>
-						{error && <span className="error">{error}</span>}
+						{error && <span className='error'>{error}</span>}
 					</div>
 				</div>
 
 				<div className='login-form__link'>Не авторизованы? <Link to='/register'>Зарегистрироваться</Link></div>
-				<button className="login-form__button ui-button">Войти</button>
+				<button className='login-form__button ui-button'>Войти</button>
 			</form>
 		</div>
 	)
