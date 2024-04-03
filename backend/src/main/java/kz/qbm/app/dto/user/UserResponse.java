@@ -10,6 +10,9 @@ import java.util.List;
 public class UserResponse {
     private Long id;
     private String itin;
+    private String firstname;
+    private String lastname;
+    private String password;
     private String email;
     private List<String> roles;
 }

@@ -59,8 +59,8 @@ public class AuthService {
                 .password(registerRequest.getPassword())
                 .itin(registerRequest.getItin())
                 .email(registerRequest.getEmail())
-                .firstname("")
-                .lastname("")
+                .firstname(registerRequest.getFirstname())
+                .lastname(registerRequest.getLastname())
                 .aboutMe("")
                 .phoneNumber("")
                 .roles(List.of(roleService.findByName("ROLE_USER")))
@@ -110,12 +110,14 @@ public class AuthService {
         if (jwtService.isRefreshTokenValid(refreshToken) && userRefreshTokenMap.containsKey(itin)) {
 
             User user = userRepository.findByItin(itin).orElseThrow(
-                    () -> new NotFoundException(String.format("User with itin %s not found", itin))
+                    () -> new NotFoundException("Пользователь с таким ИИН не найден")
             );
 
             CustomUserDetails userDetails = new CustomUserDetails(
                     user.getId(),
                     user.getItin(),
+                    user.getFirstname(),
+                    user.getLastname(),
                     user.getPassword(),
                     user.getEmail(),
                     user.getRoles().stream()
@@ -148,6 +150,8 @@ public class AuthService {
                 .id(customUserDetails.getId())
                 .email(customUserDetails.getEmail())
                 .itin(customUserDetails.getItin())
+                .firstname(customUserDetails.getFirstname())
+                .lastname(customUserDetails.getLastname())
                 .roles(roleList)
                 .build();
     }

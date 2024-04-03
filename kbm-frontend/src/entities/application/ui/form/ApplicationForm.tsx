@@ -62,41 +62,41 @@ export const ApplicationForm: FC<ApplicationFormProps> = ({ isChangble, onNext }
   if (isEmployeeLoading) return <Loader />;
 
   return (
-    <div className="app-form">
-      <form onSubmit={handleSubmit(onSubmit)} className="app-form__form">
-        <div className="app-form__fields">
-          <div className="app-form__field">
-            <label htmlFor="fullName">Табельный номер*</label>
-            <input type="text" {...register("personnelNumber", { required: true })} disabled={!isChangble} />
-            {errors.personnelNumber && <span className="app-form__error">Это поле обязательно!</span>}
+    <div className='app-form'>
+      <form onSubmit={handleSubmit(onSubmit)} className='app-form__form'>
+        <div className='app-form__fields'>
+          <div className='app-form__field'>
+            <label htmlFor='fullName'>Табельный номер*</label>
+            <input type='text' {...register('personnelNumber', { required: true })} disabled={!isChangble} />
+            {errors.personnelNumber && <span className='app-form__error'>Это поле обязательно!</span>}
           </div>
-          <div className="app-form__field">
-            <label htmlFor="fullName">Гражданство*</label>
-            <input type="text" {...register("citizenship", { required: true })} disabled={!isChangble} />
-            {errors.citizenship && <span className="app-form__error">Это поле обязательно!</span>}
+          <div className='app-form__field'>
+            <label htmlFor='fullName'>Гражданство*</label>
+            <input type='text' {...register('citizenship', { required: true })} disabled={!isChangble} />
+            {errors.citizenship && <span className='app-form__error'>Это поле обязательно!</span>}
           </div>
-          <div className="app-form__field">
-            <label htmlFor="fullName">Информация о детях*</label>
-            <input type="text" {...register("informationAboutChildren", { required: true })} disabled={!isChangble} />
-            {errors.informationAboutChildren && <span className="app-form__error">Это поле обязательно!</span>}
+          <div className='app-form__field'>
+            <label htmlFor='fullName'>Информация о детях*</label>
+            <input type='text' {...register('informationAboutChildren', { required: true })} disabled={!isChangble} />
+            {errors.informationAboutChildren && <span className='app-form__error'>Это поле обязательно!</span>}
           </div>
-          <div className="app-form__field">
-            <label htmlFor="fullName">Дата рождения*</label>
-            <input type="date" {...register("birthDate", { required: true })} disabled={!isChangble} />
-            {errors.birthDate && <span className="app-form__error">Это поле обязательно!</span>}
+          <div className='app-form__field'>
+            <label htmlFor='fullName'>Дата рождения*</label>
+            <input type='date' {...register('birthDate', { required: true })} disabled={!isChangble} />
+            {errors.birthDate && <span className='app-form__error'>Это поле обязательно!</span>}
           </div>
-          <div className="app-form__field">
-            <label htmlFor="fullName">Контактные данные*</label>
-            <input type="text" {...register("phoneNumber", { required: true })} disabled={!isChangble} />
-            {errors.phoneNumber && <span className="app-form__error">Это поле обязательно!</span>}
+          <div className='app-form__field'>
+            <label htmlFor='fullName'>Контактные данные*</label>
+            <input type='text' {...register('phoneNumber', { required: true })} disabled={!isChangble} />
+            {errors.phoneNumber && <span className='app-form__error'>Это поле обязательно!</span>}
           </div>
-          <div className="app-form__field">
-            <label htmlFor="fullName">Семейное положение*</label>
-            <input type="text" {...register("familyStatus", { required: true })} disabled={!isChangble} />
-            {errors.familyStatus && <span className="app-form__error">Это поле обязательно!</span>}
+          <div className='app-form__field'>
+            <label htmlFor='fullName'>Семейное положение*</label>
+            <input type='text' {...register('familyStatus', { required: true })} disabled={!isChangble} />
+            {errors.familyStatus && <span className='app-form__error'>Это поле обязательно!</span>}
           </div>
-          <div className="app__buttons">
-            {onNext && <button type="submit" className="app__next">Далее</button>}
+          <div className='app__buttons'>
+            {onNext && <button type='submit' className='app__next'>Далее</button>}
           </div>
         </div>
       </form>

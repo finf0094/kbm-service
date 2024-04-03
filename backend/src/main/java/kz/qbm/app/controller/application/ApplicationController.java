@@ -67,7 +67,7 @@ public class ApplicationController {
     }
 
     @DeleteMapping("/{applicationId}/deleteDesiredPosition/{positionId}")
-    public Message deleteDesiredPosition(@PathVariable String applicationId, @PathVariable Long positionId) {
+    public Application deleteDesiredPosition(@PathVariable String applicationId, @PathVariable Long positionId) {
         return applicationService.deleteDesiredPosition(applicationId, positionId);
     }
 

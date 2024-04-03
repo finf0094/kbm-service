@@ -28,7 +28,7 @@ export const ModalExample: FC<ModalExampleProps> = ({ id, title, style, buttonTe
 		<Dialog draggable={false} resizable={false} visible={isOpen} onHide={handleCloseModal} header={title} style={style}>
 			{children}
 
-			{buttonText && <button className="modal__button" disabled={buttonDisabled} onClick={onConfirm} style={{
+			{buttonText && <button className='modal__button' disabled={buttonDisabled} onClick={onConfirm} style={{
 				width: '100%',
 				padding: '15px 0',
 				fontSize: 19,

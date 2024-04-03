@@ -9,6 +9,8 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
     private Long id;
     private String itin;
+    private String firstname;
+    private String lastname;
     private String password;
     private String email;
     private Collection<? extends GrantedAuthority> authorities;
@@ -18,9 +20,11 @@ public class CustomUserDetails implements UserDetails {
     private boolean enabled;
 
 
-    public CustomUserDetails(Long id, String itin, String password, String email, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetails(Long id, String itin, String firstname, String lastname, String password, String email, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.itin = itin;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.authorities = authorities;
@@ -40,7 +44,6 @@ public class CustomUserDetails implements UserDetails {
         return password;
     }
 
-    @Override
     public String getUsername() {
         return null;
     }
@@ -53,9 +56,10 @@ public class CustomUserDetails implements UserDetails {
         return email;
     }
 
-    public String getItin() {
-        return itin;
-    }
+    public String getItin() { return itin; }
+    public String getFirstname() { return firstname; }
+    public String getLastname() { return lastname; }
+
     @Override
     public boolean isAccountNonExpired() {
         return accountNonExpired;

@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 import { logout } from '@/features/auth/by-itin'
 import useAuth from '@/shared/lib/useAuth'
 import useCurrentUser from '@/shared/lib/useCurrentUser'
+import { useAppSelector } from '@/app/store/hooks'
+import { ApplicationStatus } from '@/entities/application'
 
 interface HeaderListProps {
 	isListOpened: boolean
@@ -12,7 +14,11 @@ interface HeaderListProps {
 }
 
 const HeaderList: FC<HeaderListProps> = ({ isListOpened, closeList }) => {
+	const { status } = useAppSelector(state => state.application);
 	const [animationClass, setAnimationClass] = useState<string>('')
+
+	console.log(status);
+	
 	
 	const dispatch = useDispatch()
 	const { isAuthenticated } = useAuth();
@@ -67,10 +73,12 @@ const HeaderList: FC<HeaderListProps> = ({ isListOpened, closeList }) => {
 							</Link>
 							{user.roles && Array.isArray(user.roles) && user.roles.includes('ROLE_USER') && (
 								<>
-									<Link to='/application-page' className='list__item' onClick={handleToggleList}>
-										<i className='uil uil-comment-alt-notes list__icon'></i>
-										<div className='list__item-link'>Моя заявка</div>
-									</Link>
+									{(status === ApplicationStatus.IN_PROCESS || status === ApplicationStatus.PENDING || status === ApplicationStatus.TESTINS) && (
+										<Link to='/application' className='list__item' onClick={handleToggleList}>
+											<i className='uil uil-comment-alt-notes list__icon'></i>
+											<div className='list__item-link'>Моя заявка</div>
+										</Link>
+									)}
 									<Link to='/quiz-sessions' className='list__item' onClick={handleToggleList}>
 										<i className='uil uil-clipboard-notes list__icon'></i>
 										<div className='list__item-link'>Тестирование</div>

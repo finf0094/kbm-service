@@ -1,0 +1,66 @@
+.er-modal__content {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.er-modal__field {
+	display: flex;
+	flex-direction: column;
+}
+
+.er-modal__field label {
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+.er-modal__field input {
+	font-size: 16px;
+	border-radius: 5px;
+}
+
+
+/* Add this style to your CSS file or component */
+.select-box {
+	position: relative;
+}
+
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	position: relative;
+	/* Ensure relative positioning for the ::after pseudo-element */
+}
+
+/* Style for the arrow icon in the select */
+select::after {
+	content: '\25BC';
+	/* Unicode character for the down arrow */
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%) rotate(0deg);
+	pointer-events: none;
+	transition: transform 0.3s ease;
+	/* Add transition for smooth rotation */
+}
+
+/* Style for the arrow icon when the select is open */
+select:focus::after {
+	transform: translateY(-50%) rotate(180deg);
+}
+
+.er-modal__content input,
+.er-modal__content select {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	background: #fff;
+	font-size: 14px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}

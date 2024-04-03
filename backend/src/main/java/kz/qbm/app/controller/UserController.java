@@ -34,14 +34,14 @@ public class UserController {
                         @RequestParam(required = false) String itin) {
         if (id != null) {
             return userService.getUserById(id).orElseThrow(
-                    () -> new NotFoundException("User with ID " + id + " does not exist")
+                    () -> new NotFoundException("Пользователь с ID  " + id + " не существует")
             );
         } else if (itin != null) {
             return userService.getUserByItin(itin).orElseThrow(
-                    () -> new NotFoundException("User with ITIN " + itin + " does not exist")
+                    () -> new NotFoundException("Пользователь с ИИН " + itin + " не существует")
             );
         } else {
-            throw new UnknownParameterException("Either 'id' or 'itin' parameter is required.");
+            throw new UnknownParameterException("\n" + "Требуется параметр «id» или «itin».");
         }
     }
 
@@ -72,7 +72,7 @@ public class UserController {
     public Message handleResumeDelete(@PathVariable Long userId) {
         userService.deleteResume(userId);
 
-        return new Message(HttpStatus.OK.value(), "Resume successfully deleted !");
+        return new Message(HttpStatus.OK.value(), "Resume successfully deleted");
     }
 
 }

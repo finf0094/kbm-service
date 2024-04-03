@@ -139,7 +139,7 @@ public class ApplicationService {
         return applicationRepository.save(application);
     }
 
-    public Message deleteDesiredPosition(String applicationId, Long positionId) {
+    public Application deleteDesiredPosition(String applicationId, Long positionId) {
         Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new NotFoundException(String.format("Application with id: %s does not exist", applicationId)));
 
@@ -158,9 +158,7 @@ public class ApplicationService {
         // Remove the Position from the list
         desiredPositions.remove(positionToDelete);
 
-        // Update the Application entity in the database
-        applicationRepository.save(application);
-        return new Message(HttpStatus.OK.value(), "desired position deleted successfully");
+        return applicationRepository.save(application);
     }
 
     public Application setExperience(String applicationId, Experience experience) {

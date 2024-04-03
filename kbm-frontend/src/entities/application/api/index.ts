@@ -1,8 +1,11 @@
-import {BaseQueryFn, createApi, FetchArgs} from "@reduxjs/toolkit/query/react";
+import {BaseQueryFn, createApi, FetchArgs} from '@reduxjs/toolkit/query/react';
 
-import { IApplication } from "../model/application/IApplication.ts";
+import { IApplication } from '../model/application/IApplication.ts';
 import { baseQueryWithReauth, CustomError } from '@/shared/api/index.ts'
 import { IEmployee } from '../model/IEmployee.ts'
+import { IMessageResponse } from '@/entities/response/index.ts'
+import { IEducationWithoutId } from '../model/IEducation.ts'
+import { IExperienceWithoutId } from '../model/IExperience.ts'
 
 export const applicationApi = createApi({
     reducerPath: 'applicationApi',
@@ -54,6 +57,36 @@ export const applicationApi = createApi({
             }),
         }),
 
+        // EDUCATION
+        setEducation: builder.mutation<IApplication, { applicationId: string, body: IEducationWithoutId }>({
+            query: ({applicationId, body}) => ({
+                url: `/applications/${applicationId}/setEducation`,
+                method: 'POST',
+                body
+            })
+        }),
+        deleteEducation: builder.mutation<IMessageResponse, {educationId: number}>({
+            query: ({educationId}) => ({
+                url: `/applications/${educationId}/deleteEducation`,
+                method: 'DELETE'
+            })
+        }),
+
+        // EXPERIENCE
+        setExperience: builder.mutation<IApplication, { applicationId: string, body: IExperienceWithoutId }>({
+            query: ({applicationId, body}) => ({
+                url: `/applications/${applicationId}/setExperience`,
+                method: 'POST',
+                body
+            })
+        }),
+        deleteExperience: builder.mutation<IMessageResponse, {experienceId: number}>({
+            query: ({experienceId}) => ({
+                url: `/applications/${experienceId}/deleteExperience`,
+                method: 'DELETE',
+            })
+        }),
+
         approve: builder.mutation<IApplication, string>({
             query: (applicationId: string) => ({
                 url: `/applications/${applicationId}/approve`,
@@ -79,6 +112,12 @@ export const {
 
     useSetDesiredPositionMutation,
     useDeleteDesiredPositionMutation,
+
+    useSetEducationMutation,
+    useDeleteEducationMutation,
+
+    useSetExperienceMutation,
+    useDeleteExperienceMutation,
 
     useApproveMutation,
     useRejectMutation

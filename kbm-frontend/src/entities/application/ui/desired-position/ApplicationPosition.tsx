@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { toast } from "react-toastify"
+import { toast } from 'react-toastify'
 
 import './ApplicationPosition.css'
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks'
@@ -68,9 +68,9 @@ export const ApplicationPosition: React.FC<ApplicationPositionProps> = React.mem
 		}
 	}, [applicationData, deleteError, dispatch, isDeleteError, isDeleteSuccess, dataAfterDeleted, isSetError, isSetSuccess, setError])
 	return (
-		<div className="app-table">
-			<div className="table__title">Желаемая должность</div>
-			<div className="app-table__content">
+		<div className='app-table'>
+			<div className='table__title'>Желаемая должность</div>
+			<div className='app-table__content'>
 			{desiredPositions.length > 0 && (
 				<table>
 					<thead>
@@ -90,8 +90,8 @@ export const ApplicationPosition: React.FC<ApplicationPositionProps> = React.mem
 									<td>{position.name}</td>
 									{isChangble && (
 										<td>
-											<button onClick={() => deleteDesiredPosition(position)} className="app-table__delete">
-												<i className="uil uil-trash"></i>
+											<button onClick={() => deleteDesiredPosition(position)} className='app-table__delete'>
+												<i className='uil uil-trash-alt'></i>
 											</button>
 										</td>
 									)}
@@ -103,8 +103,8 @@ export const ApplicationPosition: React.FC<ApplicationPositionProps> = React.mem
 				
 				{isChangble && (
 					<div className={`app-table__button ${desiredPositions.length > 0 ? '' : 'app-table__empty'}`}>
-						<button type="button" onClick={addPositionModal}>
-							Добавить <i className="uil uil-plus"></i>
+						<button type='button' onClick={addPositionModal}>
+							Добавить <i className='uil uil-plus'></i>
 						</button>
 					</div>
 				)}

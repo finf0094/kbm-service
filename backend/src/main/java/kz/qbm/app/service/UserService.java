@@ -64,10 +64,10 @@ public class UserService {
 
     public User createUser(UserDTO userDTO) {
         if (userRepository.existsByItin(userDTO.getItin())) {
-            throw new RequestExistException("User with ITIN " + userDTO.getItin() + " already exists");
+            throw new RequestExistException("Пользователь с таким ИИН уже существует");
         }
         if (userRepository.existsByEmail(userDTO.getEmail())) {
-            throw new RequestExistException("User with EMAIL " + userDTO.getEmail() + " already exists");
+            throw new RequestExistException("Пользователь с таким Email уже существует");
         }
 
         Position position = null;

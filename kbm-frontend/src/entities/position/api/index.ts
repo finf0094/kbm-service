@@ -1,4 +1,4 @@
-import { BaseQueryFn, createApi, FetchArgs } from "@reduxjs/toolkit/query/react"
+import { BaseQueryFn, createApi, FetchArgs } from '@reduxjs/toolkit/query/react'
 import { IDepartment, IPosition, ILocation } from '..'
 import { IPage } from '@/entities/response/model/IPage'
 import { baseQueryWithReauth, CustomError } from '@/shared/api'

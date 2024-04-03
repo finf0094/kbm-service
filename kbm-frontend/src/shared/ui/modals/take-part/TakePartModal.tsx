@@ -34,7 +34,7 @@ export const TakePartModal: FC<{ id: string }> = ({ id }) => {
 		if (isApplicationSuccess && applicationData) {
 			dispatch(setApplicationData(applicationData))
 			dispatch(closeModal({ id }))
-			navigate("/application")
+			navigate('/application')
 		}
 		if (applicationError && 'data' in applicationError && applicationError.data) {
 			toast.error(`${applicationError.data.message}`)

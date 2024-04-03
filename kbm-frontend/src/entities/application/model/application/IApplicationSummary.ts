@@ -1,6 +1,6 @@
-import {ApplicationStatus} from "./ApplicationStatus.ts";
-import {IUserDetail} from "../user/IUserDetail.ts";
-import { IScheduleInterviewDetails } from "../IScheduleInterviewDetails.ts";
+import {ApplicationStatus} from './ApplicationStatus.ts';
+import {IUserDetail} from '../user/IUserDetail.ts';
+import { IScheduleInterviewDetails } from '../IScheduleInterviewDetails.ts';
 
 
 export interface IApplicationSummary {

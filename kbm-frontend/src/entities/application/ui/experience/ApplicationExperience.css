@@ -1,14 +1,8 @@
-.table__title {
-	margin-bottom: 15px;
-	font-size: 22px;
-	font-weight: 500;
-}
-
-.app-table__content {
+.app-experience__content {
 	margin-bottom: 5vh;
 }
 
-.app-table table {
+.app-experience table {
 	width: 100%;
 	border: 1px solid #cecece6e;
 	color: #393939;
@@ -19,54 +13,48 @@
 	border-collapse: collapse;
 }
 
-.app-table th {
+.app-experience th {
 	background: #edeced;
 	font-weight: 500;
 	font-size: 18px;
 }
 
-
-.app-table tr {
+.app-experience tr {
 	border-bottom: 1px solid;
 	border-color: #cecece6e;
 }
 
-.app-table tr:last-child {
+.app-experience tr:last-child {
 	border: 0;
 }
 
-.app-table th, td {
+.app-experience th, td {
 	padding: 13px 0;
 	border-right: 1px solid #cecece6e;
 }
 
-.app-table__delete i::before {
-	font-size: 26px;
-	color: red;
-}
-
-.app-table__button {
+.app-experience__button {
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 }
 
-.app-table__button button {
+.app-experience__button button {
 	padding: 15px 50px;
 	font-size: 19px;
 	color: #fff;
 	border: none;
 	border-radius: 15px;
-	background: var(--first-color);
+	background: var(--first-color); /* Make sure to define this variable or replace it with the actual color code */
 	cursor: pointer;
 	margin-top: 20px;
 }
 
-.app-table__button i::before {
+.app-experience__button i::before {
 	color: #fff;
 }
 
-.app-table__empty {
+.app-experience__empty {
 	justify-content: flex-start;
 }

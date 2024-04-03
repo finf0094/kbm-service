@@ -1,0 +1,62 @@
+/* ExperienceRequestModal.css */
+
+.exp-request__content {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.exp-request__field {
+	display: flex;
+	flex-direction: column;
+}
+
+.exp-request__field label {
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+/* Select box styles */
+.select-box {
+	position: relative;
+}
+
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	position: relative;
+}
+
+/* Style for the arrow icon in the select */
+select::after {
+	content: '\25BC';
+	/* Unicode character for the down arrow */
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%) rotate(0deg);
+	pointer-events: none;
+	transition: transform 0.3s ease;
+	/* Add transition for smooth rotation */
+}
+
+/* Style for the arrow icon when the select is open */
+select:focus::after {
+	transform: translateY(-50%) rotate(180deg);
+}
+
+
+.exp-request__content input,
+.exp-request__content select {
+	width: 100%;
+	height: auto;
+	background: #fff;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}

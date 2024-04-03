@@ -64,13 +64,13 @@ export const PositionSelectModal: FC<{ id: string, onSubmit: (position: IPositio
 			title='Выберите локацию, департамент и позицию'
 			style={{ width: '40vw' }}
 			onConfirm={handleSubmit}
-			buttonText="Добавить"
+			buttonText='Добавить'
 			buttonDisabled={!selectedDepartment && !selectedLocation && !selectedPosition}
 		>
-			<div className="select-modal__content">
-				<div className="select-box">
-					<select value={selectedLocation ? selectedLocation.name : ""} onChange={handleLocationChange}>
-						<option value="">Выберите локацию</option>
+			<div className='select-modal__content'>
+				<div className='select-box'>
+					<select value={selectedLocation ? selectedLocation.name : ''} onChange={handleLocationChange}>
+						<option value=''>Выберите локацию</option>
 						{locations.map((location) => (
 							<option key={location.id} value={location.name}>
 								{location.name}
@@ -79,9 +79,9 @@ export const PositionSelectModal: FC<{ id: string, onSubmit: (position: IPositio
 					</select>
 				</div>
 				{selectedLocation && (
-					<div className="select-box">
-						<select value={selectedDepartment ? selectedDepartment.name : ""} onChange={handleDepartmentChange}>
-							<option value="">Выберите департамент</option>
+					<div className='select-box'>
+						<select value={selectedDepartment ? selectedDepartment.name : ''} onChange={handleDepartmentChange}>
+							<option value=''>Выберите департамент</option>
 							{departmentOptions.map((department) => (
 								<option key={department.id} value={department.name}>
 									{department.name}
@@ -91,9 +91,9 @@ export const PositionSelectModal: FC<{ id: string, onSubmit: (position: IPositio
 					</div>
 				)}
 				{selectedDepartment && (
-					<div className="select-box">
-						<select value={selectedPosition ? selectedPosition.name : ""} onChange={handlePositionChange}>
-							<option value="">Выберите позицию</option>
+					<div className='select-box'>
+						<select value={selectedPosition ? selectedPosition.name : ''} onChange={handlePositionChange}>
+							<option value=''>Выберите позицию</option>
 							{positionOptions.map((position) => (
 								<option key={position.id} value={position.name}>
 									{position.name}

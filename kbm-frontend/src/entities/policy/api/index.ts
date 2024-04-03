@@ -1,4 +1,4 @@
-import { createApi, FetchArgs, BaseQueryFn } from "@reduxjs/toolkit/query/react";
+import { createApi, FetchArgs, BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth, CustomError } from '@/shared/api'
 import { IPolicy } from '../model/IPolicy'
 

@@ -15,7 +15,7 @@ const initializeApplicationState = () => {
         experiences: [] as IExperience[],
         educations: [] as IEducation[],
         interviewDetails: {} as IScheduleInterviewDetails,
-        videoUrl: "",
+        videoUrl: '',
     };
 };
 

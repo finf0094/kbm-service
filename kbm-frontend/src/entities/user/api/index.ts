@@ -4,10 +4,7 @@ import { baseQueryWithReauth, CustomError } from '@/shared/api/baseQuery.ts'
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
-	baseQuery: baseQueryWithReauth as BaseQueryFn<
-		string | FetchArgs,
-		unknown,
-		CustomError>,
+	baseQuery: baseQueryWithReauth as BaseQueryFn<string | FetchArgs, unknown,	CustomError>,
 	endpoints: (builder) => ({
 		getUserByItin: builder.query<IUserDetail, string>({
 			query: (itin: string) => ({
