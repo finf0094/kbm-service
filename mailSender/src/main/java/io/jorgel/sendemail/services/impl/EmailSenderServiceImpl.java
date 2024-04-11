@@ -46,8 +46,8 @@ public class EmailSenderServiceImpl implements EmailSenderService {
                 StandardCharsets.UTF_8.name());
 
         Context context = new Context();
-        context.setVariable("employeeName", testEmployeeEmail.getEmployeeName()); // Set the employeeName variable
-        context.setVariable("testLinks", testEmployeeEmail.getTestLink()); // Set the testLinks variable
+        context.setVariable("employeeName", testEmployeeEmail.getEmployeeName()); 
+        context.setVariable("testLinks", testEmployeeEmail.getTestLink()); 
         String html = templateEngine.process("test", context);
 
         helper.setTo(testEmployeeEmail.getTo());
@@ -67,17 +67,17 @@ public class EmailSenderServiceImpl implements EmailSenderService {
                 StandardCharsets.UTF_8.name());
 
         Context context = new Context();
-        context.setVariable("userName", interviewEmployeeEmail.getEmployeeName()); // Set the userName variable
-        context.setVariable("position", interviewEmployeeEmail.getPosition()); // Set the position variable
-        context.setVariable("format", interviewEmployeeEmail.getFormat()); // Set the format variable
-        context.setVariable("venue", interviewEmployeeEmail.getVenue()); // Set the venue variable
+        context.setVariable("userName", interviewEmployeeEmail.getEmployeeName()); 
+        context.setVariable("position", interviewEmployeeEmail.getPosition()); 
+        context.setVariable("format", interviewEmployeeEmail.getFormat()); 
+        context.setVariable("venue", interviewEmployeeEmail.getVenue()); 
         context.setVariable("curatorName", interviewEmployeeEmail.getCuratorName());
         LocalDateTime time = LocalDateTime.ofInstant(interviewEmployeeEmail.getTime().toInstant(), ZoneId.systemDefault());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         String formattedDateTime = time.format(formatter);
         context.setVariable("time", formattedDateTime);
 
-        String html = templateEngine.process("interview", context); // "interview" is the template name
+        String html = templateEngine.process("interview", context);
 
         helper.setTo(interviewEmployeeEmail.getTo());
         helper.setText(html, true);
